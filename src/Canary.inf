@@ -1,0 +1,4 @@
+main-class = com.therazzerapp.adminmenu.AdminMenu
+author = TheRaZZeRApp
+version = 0.0.1
+name = AdminMenu
