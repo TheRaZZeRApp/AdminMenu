@@ -1,6 +1,5 @@
 package com.therazzerapp.adminmenu.items;
 
-import com.therazzerapp.adminmenu.Translator;
 import de.myelitecraft.elitelib.api.EliteLib;
 import de.myelitecraft.elitelib.api.menu.MenuEntry;
 import net.canarymod.Canary;

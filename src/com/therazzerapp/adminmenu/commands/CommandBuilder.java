@@ -62,6 +62,7 @@ public class CommandBuilder extends PlayerCommand {
         player.message(command);
 
         if(para.equals("") && runCMD){
+            player.message(command);
             player.executeCommand(new String[]{command});
         } else if (para.equals("")){
             player.chat(command);
@@ -70,7 +71,7 @@ public class CommandBuilder extends PlayerCommand {
             ChatComponentFactory f = Canary.factory().getChatComponentFactory();
             player.message("\n\n\n\n\n\n\n\n\n\n\n\n\n\n" + translator.localeTranslate(headline, player.getLocale()).replaceAll("_", " ") + "\n============================");
 
-            player.sendChatComponent(getMenu(para, "commandbuilder " + runCMD + " " + headline + " " + back + " " + command,player));
+            player.sendChatComponent(getMenu(para, "commandbuilder " + runCMD + " " + headline + " " + back + " " + refreshAble + " " + command,player));
 
             if(refreshAble){
                 ChatComponent cCRefresh = f.newChatComponent(translator.localeTranslate("item_name_const_refresh",player.getLocale()));
