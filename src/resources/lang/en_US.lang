@@ -54,15 +54,26 @@ adminmenu_menu_headline_world_showdeathmessages=Death Messages Menu
 adminmenu_menu_headline_group=Group Menu
 
 autolist_headline_player_kick=Player_Kick_Menu:
+autolist_hover_player=Click to choose a player.
+autolist_hover_amount=Click to choose an amount.
+autolist_hover_achievement=Click to choose an achievement.
+autolist_hover_sound=Click to choose a sound.
+autolist_hover_time=Click to choose a time amount.
+autolist_hover_block=Click to choose a block.
+autolist_hover_permission=Click to choose a permission.
+autolist_hover_plugins=Click to select a plugin.
+autolist_hover_group=Click to choose a group.
+autolist_hover_effect=Click to choose an effect.
+autolist_hover_tf=Click to choose an opinion.
 
 item_name_main_player_commands=- Player Commands
 item_name_main_server_commands=- Server Commands
-item_name_main_world_commands= - World Commands
-item_name_main_group_commands= - Group Commands
+item_name_main_world_commands=- World Commands
+item_name_main_group_commands=- Group Commands
 
 item_name_const_close=x Close
 item_name_const_close_hover=Click to exit the admin menu.
-item_name_const_back=\u0061 Back
+item_name_const_back=Back
 item_name_const_back_hover=Click to get back.
 item_name_const_backtomain=Main Menu
 item_name_const_forward=Forward
@@ -154,3 +165,5 @@ item_name_group_list=List Groups
 item_name_group_rename=Rename Group
 item_name_group_permission_add=Add Permission To Group
 item_name_group_permission_remove=Remove Permission From Group
+
+error_cbuilder_unknownparameter=Unknown parameter:

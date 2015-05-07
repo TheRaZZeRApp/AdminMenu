@@ -1,14 +1,9 @@
 package com.therazzerapp.adminmenu.commands;
 
-import com.therazzerapp.adminmenu.items.Back;
-import com.therazzerapp.adminmenu.items.Exit;
-import com.therazzerapp.adminmenu.items.Refresh;
-import com.therazzerapp.adminmenu.menus.PlayerList;
-import de.myelitecraft.elitelib.api.EliteLib;
+import com.therazzerapp.adminmenu.menus.*;
 import de.myelitecraft.elitelib.api.commands.Arg;
 import de.myelitecraft.elitelib.api.commands.CommandMeta;
 import de.myelitecraft.elitelib.api.commands.PlayerCommand;
-import de.myelitecraft.elitelib.api.menu.Menu;
 import net.canarymod.Canary;
 import net.canarymod.api.chat.ChatComponent;
 import net.canarymod.api.entity.living.humanoid.Player;
@@ -29,6 +24,7 @@ import java.util.Map;
 
 public class CommandBuilder extends PlayerCommand {
 
+    //                                    0     1    2   3     4     5     6      7    8   9     10     11   12   13    14    15    16   17    18    19    20
     private final String[] parameters = {"%p","%w","%r","%a","%a1","%a2","%ac","%so","%c","%t1","%t2","%i","%b","%b1","%pg","%pl","%g","%gp","%pi","%ef","%tf"};
 
     public CommandBuilder(CommandOwner owner, LocaleHelper translator) {
@@ -74,7 +70,7 @@ public class CommandBuilder extends PlayerCommand {
             ChatComponentFactory f = Canary.factory().getChatComponentFactory();
             player.message("\n\n\n\n\n\n\n\n\n\n\n\n\n\n" + translator.localeTranslate(headline, player.getLocale()).replaceAll("_", " ") + "\n============================");
 
-            player.sendChatComponent(getMenu(para, "commandbuilder " + runCMD + " " + headline + " " + back + " " + command));
+            player.sendChatComponent(getMenu(para, "commandbuilder " + runCMD + " " + headline + " " + back + " " + command,player));
 
             if(refreshAble){
                 ChatComponent cCRefresh = f.newChatComponent(translator.localeTranslate("item_name_const_refresh",player.getLocale()));
@@ -103,13 +99,55 @@ public class CommandBuilder extends PlayerCommand {
 
     }
 
-    private ChatComponent getMenu(String para, String command){
+    private ChatComponent getMenu(String para, String command, Player player){
 
         if(para.equals(parameters[0])){
-            return PlayerList.getBody("Click to choose a player",command);
+            return PlayerList.getBody(translator.localeTranslate("autolist_hover_player",player.getLocale()),command);
+        } else if (para.equals(parameters[1])){
+            return WhiteList.getBody(translator.localeTranslate("autolist_hover_player",player.getLocale()),command);
+        } else if (para.equals(parameters[2])){
+            return ReserveList.getBody(translator.localeTranslate("autolist_hover_player", player.getLocale()), command);
+        } else if (para.equals(parameters[3])){
+            return AmountList00.getBody(translator.localeTranslate("autolist_hover_amount", player.getLocale()), command);
+        } else if (para.equals(parameters[4])){
+            return AmountList01.getBody(translator.localeTranslate("autolist_hover_amount", player.getLocale()), command);
+        } else if (para.equals(parameters[5])){
+            return AmountList02.getBody(translator.localeTranslate("autolist_hover_amount", player.getLocale()), command);
+        } else if (para.equals(parameters[6])){
+            return AchievementList.getBody(translator.localeTranslate("autolist_hover_achievement", player.getLocale()), command);
+        } else if (para.equals(parameters[7])){
+            return SoundList.getBody(translator.localeTranslate("autolist_hover_sound", player.getLocale()), command);
+        } else if (para.equals(parameters[8])){
+            command = command.replaceFirst(parameters[8],player.getName());
+            player.executeCommand(new String[]{command});
+        } else if (para.equals(parameters[9])){
+            return TimeList00.getBody(translator.localeTranslate("autolist_hover_time", player.getLocale()), command);
+        } else if (para.equals(parameters[10])){
+            return TimeList01.getBody(translator.localeTranslate("autolist_hover_time", player.getLocale()), command);
+        } else if (para.equals(parameters[11])){
+            //todo ka was das ist
+        } else if (para.equals(parameters[12])){
+            //todo ka was das ist
+        } else if (para.equals(parameters[13])){
+            return BlockList.getBody(translator.localeTranslate("autolist_hover_block", player.getLocale()), command);
+        } else if (para.equals(parameters[14])){
+            return GroupPermissionList.getBody(translator.localeTranslate("autolist_hover_permission", player.getLocale()), command);
+        } else if (para.equals(parameters[15])){
+            return PluginList.getBody(translator.localeTranslate("autolist_hover_plugins", player.getLocale()), command);
+        } else if (para.equals(parameters[16])){
+            return GroupList.getBody(translator.localeTranslate("autolist_hover_group", player.getLocale()), command);
+        } else if (para.equals(parameters[17])){
+            return PlayerGroupsList.getBody(translator.localeTranslate("autolist_hover_block", player.getLocale()), command);
+        } else if (para.equals(parameters[18])){
+            return BlockList.getBody(translator.localeTranslate("autolist_hover_group", player.getLocale()), command);
+        } else if (para.equals(parameters[19])){
+            return EffectList.getBody(translator.localeTranslate("autolist_hover_effect", player.getLocale()), command);
+        } else if (para.equals(parameters[20])){
+            return TrueFalseList.getBody(translator.localeTranslate("autolist_hover_tf", player.getLocale()), command);
         }
 
-
+        ChatComponentFactory f = Canary.factory().getChatComponentFactory();
+        f.newChatComponent(translator.localeTranslate("error_cbuilder_unknownparameter",player.getLocale()));
         return null;
 
     }
