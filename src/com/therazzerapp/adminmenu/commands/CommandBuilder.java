@@ -62,7 +62,6 @@ public class CommandBuilder extends PlayerCommand {
         player.message(command);
 
         if(para.equals("") && runCMD){
-            player.message(command);
             player.executeCommand(new String[]{command});
         } else if (para.equals("")){
             player.chat(command);

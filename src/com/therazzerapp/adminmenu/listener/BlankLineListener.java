@@ -15,7 +15,7 @@ import net.canarymod.plugin.PluginListener;
 public class BlankLineListener implements PluginListener {
     @HookHandler
     public void onChatClick(ChatClickHook hook){
-        if(hook.getName().equals("chatmenu") && hook.getParameters()[0].startsWith("adminmenu_")){
+        if(hook.getName().equals("chatmenu") && hook.getParameters()[0].startsWith("adm_")){
             hook.getPlayer().message("\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
         }
     }
