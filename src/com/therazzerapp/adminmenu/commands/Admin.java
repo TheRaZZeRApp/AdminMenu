@@ -33,7 +33,8 @@ public class Admin extends PlayerCommand{
     @Override
     protected void execute(Player player, Map<Arg, String[]> map, String[] strings, boolean b) {
         playersInMenu.add(player);
-        Menu main = EliteLib.getMenuManager().getMenu("menu_headline_main");
+        Menu main = EliteLib.getMenuManager().getMenu("adminmenu_menu_headline_main");
+        player.message("\n\n\n\n\n\n\n\n\n\n\n\n");
         main.showMenu(player);
     }
 }

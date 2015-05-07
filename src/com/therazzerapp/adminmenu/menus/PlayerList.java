@@ -34,6 +34,7 @@ public class PlayerList {
 
             String com  = command.replaceFirst("%p" , p.getName());
 
+
             playerText.getChatStyle().setChatClickEvent(f.newClickEvent(f.getRunCommand(), '/' + com));
 
             text.appendSibling(playerText);

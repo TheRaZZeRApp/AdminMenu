@@ -31,7 +31,7 @@ public class CommandBuilder extends PlayerCommand {
     private final String[] parameters = {"%p","%w","%r","%a","%a1","%a2","%ac","%so","%c","%t1","%t2","%i","%b","%b1","%pg","%pl","%g","%gp","%pi","%ef","%tf"};
 
     public CommandBuilder(CommandOwner owner, LocaleHelper translator) {
-        super(new CommandMeta(new String[]{"commandbuilder","cbuilder"},new String[]{"adminmenu.command.commandbuilder"},"Runs the command builder.", "/cbuilder <runCMD> <headline> <back> <command> [%params]",4,0), owner, translator);
+        super(new CommandMeta(new String[]{"commandbuilder","cbuilder"},new String[]{"adminmenu.command.commandbuilder"},"Runs the command builder.", "/cbuilder <runCMD> <headline> <back> <command> [%params]",4), owner, translator);
     }
 
     @Override
@@ -57,21 +57,21 @@ public class CommandBuilder extends PlayerCommand {
             }
         }
 
+        player.message(command);
+
         if(para.equals("") && runCMD){
             player.executeCommand(new String[]{command});
         } else if (para.equals("")){
-            System.out.println(command);
             player.chat(command);
         } else {
             ChatComponentFactory f = Canary.factory().getChatComponentFactory();
-            Menu mainMenu = EliteLib.getMenuFactory().newMenu(headline + " Menu", "adminmenu.menu.main", f.colorWhite());
-            mainMenu.addEntry(EliteLib.getMenuFactory().newMenuEntry("============================"));
-            player.sendChatComponent(getMenu(para, "/cbuilder " + runCMD + " " + headline + " " + back + " " + command));
-            mainMenu.addEntry(EliteLib.getMenuFactory().newMenuEntry("============================"));
-            mainMenu.addEntry(new Back("adminmenu.command.admin","/chatclick chatmenu " + back,translator).getItem());
-            mainMenu.addEntry(new Exit("Click to exit the menu!",translator).getItem());
+            player.message("\n\n\n\n\n\n\n\n\n\n\n\n\n\n" + headline + " Menu\n" + "============================");
+            player.sendChatComponent(getMenu(para, "commandbuilder " + runCMD + " " + headline + " " + back + " " + command));
+            Menu mainMenuPart2 = EliteLib.getMenuFactory().newMenu("============================", "adminmenu.menu.main", f.colorWhite());
+            mainMenuPart2.addEntry(new Back("adminmenu.command.admin","/chatclick chatmenu " + back,translator).getItem());
+            mainMenuPart2.addEntry(new Exit("Click to exit the menu!",translator).getItem());
+            mainMenuPart2.showMenu(player);
         }
-
 
     }
 
