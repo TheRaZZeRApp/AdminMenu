@@ -1,6 +1,10 @@
 package com.therazzerapp.adminmenu;
 
+import com.therazzerapp.adminmenu.commands.Admin;
+import com.therazzerapp.adminmenu.commands.CommandBuilder;
 import com.therazzerapp.adminmenu.config.Config;
+import de.myelitecraft.elitelib.api.EliteLib;
+import de.myelitecraft.elitelib.api.commands.CommandManager;
 import net.canarymod.plugin.Plugin;
 
 import java.io.File;
@@ -50,6 +54,8 @@ public class AdminMenu extends Plugin {
         }
 
         CreateMenus.initMenus(translator);
+        EliteLib.getCommandManager().registerCommand(this,new Admin(this, translator));
+        EliteLib.getCommandManager().registerCommand(this,new CommandBuilder(this,translator));
 
         return true;
     }

@@ -31,7 +31,7 @@ public class CommandBuilder extends PlayerCommand {
     private final String[] parameters = {"%p","%w","%r","%a","%a1","%a2","%ac","%so","%c","%t1","%t2","%i","%b","%b1","%pg","%pl","%g","%gp","%pi","%ef","%tf"};
 
     public CommandBuilder(CommandOwner owner, LocaleHelper translator) {
-        super(new CommandMeta(new String[]{"commandbuilder","cbuilder"},new String[]{"adminmenu.command.commandbuilder"},"Runs the command builder.", "/cbuilder <runCMD> <headline> <back> <command> [%params]",5,0), owner, translator);
+        super(new CommandMeta(new String[]{"commandbuilder","cbuilder"},new String[]{"adminmenu.command.commandbuilder"},"Runs the command builder.", "/cbuilder <runCMD> <headline> <back> <command> [%params]",4,0), owner, translator);
     }
 
     @Override

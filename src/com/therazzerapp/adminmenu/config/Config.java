@@ -50,6 +50,11 @@ public class Config {
 
     public static void createConfig(File file){
         JsonObject root = new JsonObject();
+        root.addProperty("muteChatInMenu",true);
+        root.addProperty("playermenu",true);
+        root.addProperty("servermenu",true);
+        root.addProperty("worldmenu",true);
+        root.addProperty("groupmenu",true);
         saveJsonFile(file,root);
     }
 }

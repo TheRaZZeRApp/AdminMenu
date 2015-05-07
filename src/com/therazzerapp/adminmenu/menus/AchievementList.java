@@ -2,8 +2,6 @@ package com.therazzerapp.adminmenu.menus;
 
 import net.canarymod.Canary;
 import net.canarymod.api.chat.ChatComponent;
-import net.canarymod.api.chat.ClickEvent;
-import net.canarymod.api.chat.HoverEvent;
 import net.canarymod.api.factory.ChatComponentFactory;
 import net.canarymod.api.statistics.Achievements;
 
@@ -37,13 +35,11 @@ public class AchievementList {
 
             amountText.getChatStyle().setColor(f.colorYellow());
 
-            HoverEvent hoverEvent = f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip + type.name().toLowerCase()));
-            amountText.getChatStyle().setChatHoverEvent(hoverEvent);
+            amountText.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip + type.name().toLowerCase())));
 
             String com = command.replaceFirst("%ac", type.getNativeName());
 
-            ClickEvent clickEvent = f.newClickEvent(f.getRunCommand(), '/' + com);
-            amountText.getChatStyle().setChatClickEvent(clickEvent);
+            amountText.getChatStyle().setChatClickEvent(f.newClickEvent(f.getRunCommand(), '/' + com));
 
             text.appendSibling(amountText);
         }
