@@ -1,6 +1,5 @@
 package com.therazzerapp.adminmenu.items;
 
-import com.therazzerapp.adminmenu.Translator;
 import net.visualillusionsent.utils.LocaleHelper;
 
 /**
@@ -13,7 +12,7 @@ import net.visualillusionsent.utils.LocaleHelper;
  */
 
 public class Exit extends SpecialItem {
-    public Exit(String HOVERTEXT, LocaleHelper TRANSLATOR) {
-        super("extras_close", "adminmenu.command.close", HOVERTEXT, "/adminmenu exit", TRANSLATOR);
+    public Exit(LocaleHelper TRANSLATOR) {
+        super("item_name_const_close", "adminmenu.command.close", "item_name_const_close_hover", "/adminmenu exit", TRANSLATOR);
     }
 }

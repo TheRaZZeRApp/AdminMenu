@@ -10,7 +10,7 @@ import net.visualillusionsent.utils.LocaleHelper;
  * Package: com.therazzerapp.adminmenu.items
  */
 public class Refresh extends SpecialItem {
-    public Refresh(String NAME, String PERMISSION, String HOVERTEXT, String COMMAND, LocaleHelper TRANSLATOR) {
-        super("extras_close", "adminmenu.command.close", HOVERTEXT, "/adminmenu exit", TRANSLATOR);
+    public Refresh(String HOVERTEXT, String COMMAND, LocaleHelper TRANSLATOR) {
+        super("item_name_const_refresh", "adminmenu.command.refresh", HOVERTEXT, COMMAND, TRANSLATOR);
     }
 }

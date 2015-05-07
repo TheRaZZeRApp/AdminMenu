@@ -1,6 +1,6 @@
 package com.therazzerapp.adminmenu.items;
 
-import com.therazzerapp.adminmenu.Translator;
+import net.visualillusionsent.utils.LocaleHelper;
 
 /**
  * Project: AdminMenu
@@ -12,7 +12,7 @@ import com.therazzerapp.adminmenu.Translator;
  */
 
 public class Forward extends SpecialItem {
-    public Forward(String PERMISSION, String COMMAND, Translator TRANSLATOR) {
-        super("item_name_const_forward", PERMISSION, "const_forward_hover", COMMAND, TRANSLATOR);
+    public Forward(String PERMISSION, String COMMAND, LocaleHelper TRANSLATOR) {
+        super("item_name_const_forward", PERMISSION, "item_name_const_forward_hover", COMMAND, TRANSLATOR);
     }
 }

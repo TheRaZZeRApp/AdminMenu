@@ -18,11 +18,11 @@ import net.visualillusionsent.utils.LocaleHelper;
 
 public abstract class SpecialItem {
 
-    private final String PERMISSION;
-    private final String HOVERTEXT;
-    private final String COMMAND;
-    private final String NAME;
-    private final LocaleHelper TRANSLATOR;
+    private String PERMISSION;
+    private String HOVERTEXT;
+    private String COMMAND;
+    private String NAME;
+    private LocaleHelper TRANSLATOR;
 
 
     public SpecialItem(String NAME, String PERMISSION, String HOVERTEXT, String COMMAND, LocaleHelper TRANSLATOR) {
