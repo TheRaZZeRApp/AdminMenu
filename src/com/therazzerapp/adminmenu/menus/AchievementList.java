@@ -43,7 +43,6 @@ public class AchievementList {
 
             text.appendSibling(amountText);
         }
-        text.appendText("\n");
         return text;
     }
 }
