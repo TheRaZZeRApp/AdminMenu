@@ -63,7 +63,9 @@ public class AmountList00 {
                     break;
             }
 
-            amountText.appendText("\n");
+            if(x != 9){
+                amountText.appendText("\n");
+            }
 
             HoverEvent hoverEvent = f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip));
             amountText.getChatStyle().setChatHoverEvent(hoverEvent);

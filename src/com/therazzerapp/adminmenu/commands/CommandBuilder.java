@@ -53,8 +53,9 @@ public class CommandBuilder extends PlayerCommand {
         for (int i = 4; i < strings.length; i++) {
             command += strings[i] + " ";
             for (int j = 0; j < parameters.length; j++) {
-                if(strings[i].equals(parameters[j]) && para.equals("")){
-                    para = strings[i];
+
+                if((strings[i].startsWith(parameters[j]) || strings[i].equals(parameters[j])) && para.equals("")){
+                    para = parameters[j];
                 }
             }
         }
@@ -69,6 +70,8 @@ public class CommandBuilder extends PlayerCommand {
 
             ChatComponentFactory f = Canary.factory().getChatComponentFactory();
             player.message("\n\n\n\n\n\n\n\n\n\n\n\n\n\n" + translator.localeTranslate(headline, player.getLocale()).replaceAll("_", " ") + "\n============================");
+
+            System.out.println(para);
 
             player.sendChatComponent(getMenu(para, "commandbuilder " + runCMD + " " + headline + " " + back + " " + refreshAble + " " + command,player));
 
