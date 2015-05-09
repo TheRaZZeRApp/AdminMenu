@@ -11,6 +11,6 @@ import net.visualillusionsent.utils.LocaleHelper;
  */
 public class Refresh extends SpecialItem {
     public Refresh(String HOVERTEXT, String COMMAND, LocaleHelper TRANSLATOR) {
-        super("item_name_const_refresh", "adminmenu.command.refresh", HOVERTEXT, COMMAND, TRANSLATOR);
+        super("itm_n_c_refresh", "adminmenu.command.refresh", HOVERTEXT, COMMAND, TRANSLATOR);
     }
 }
