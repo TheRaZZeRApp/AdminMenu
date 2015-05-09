@@ -28,7 +28,7 @@ public class CommandBuilder extends PlayerCommand {
     private final String[] parameters = {"%p","%w","%r","%a","%a1","%a2","%ac","%so","%c","%t1","%t2","%i","%b","%b1","%pg","%pl","%g","%gp","%pi","%ef","%tf"};
 
     public CommandBuilder(CommandOwner owner, LocaleHelper translator) {
-        super(new CommandMeta(new String[]{"commandbuilder", "cbuilder"}, new String[]{"adminmenu.command.commandbuilder"}, "Runs the command builder.", "/cbuilder <runCMD> <headline> <back> <refreshAble> <command> [%params]", 4), owner, translator);
+        super(new CommandMeta(new String[]{"commandbuilder", "cbuilder", "acb"}, new String[]{"adminmenu.command.commandbuilder"}, "Runs the command builder.", "/cbuilder <runCMD> <headline> <back> <refreshAble> <command> [%params]", 4), owner, translator);
     }
 
     @Override
@@ -53,14 +53,27 @@ public class CommandBuilder extends PlayerCommand {
         for (int i = 4; i < strings.length; i++) {
             command += strings[i] + " ";
             for (int j = 0; j < parameters.length; j++) {
-
-                if((strings[i].startsWith(parameters[j]) || strings[i].equals(parameters[j])) && para.equals("")){
+                if(strings[i].equals(parameters[j]) && para.equals("")){
                     para = parameters[j];
+                    break;
+                }
+            }
+            if(para.equals("")) {
+                for (int j = 0; j < parameters.length; j++) {
+                    if (strings[i].startsWith(parameters[j]) && para.equals("")){
+                        para = parameters[j];
+                        break;
+                    }
                 }
             }
         }
 
-        player.message(command);
+
+        if (para.equals(parameters[8])){
+            command = command.replaceFirst(parameters[8],player.getName());
+            player.executeCommand(new String[]{"acb " + runCMD + " " + headline + " " + back + " " + refreshAble + " " + command});
+            return;
+        }
 
         if(para.equals("") && runCMD){
             player.executeCommand(new String[]{command});
@@ -71,30 +84,30 @@ public class CommandBuilder extends PlayerCommand {
             ChatComponentFactory f = Canary.factory().getChatComponentFactory();
             player.message("\n\n\n\n\n\n\n\n\n\n\n\n\n\n" + translator.localeTranslate(headline, player.getLocale()).replaceAll("_", " ") + "\n============================");
 
-            System.out.println(para);
+            //System.out.println(para);
 
-            player.sendChatComponent(getMenu(para, "commandbuilder " + runCMD + " " + headline + " " + back + " " + refreshAble + " " + command,player));
+            player.sendChatComponent(getMenu(para, "acb " + runCMD + " " + headline + " " + back + " " + refreshAble + " " + command,player));
 
             if(refreshAble){
-                ChatComponent cCRefresh = f.newChatComponent(translator.localeTranslate("item_name_const_refresh",player.getLocale()));
+                ChatComponent cCRefresh = f.newChatComponent(translator.localeTranslate("itm_n_c_refresh",player.getLocale()));
                 cCRefresh.getChatStyle().setColor(f.colorYellow());
-                cCRefresh.getChatStyle().setChatClickEvent(f.newClickEvent(f.getRunCommand(), "/commandbuilder " + runCMD + " " + headline + " " + back + " " + refreshAble + " " + command));
-                cCRefresh.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(),f.newChatComponent(translator.localeTranslate("item_name_const_refresh_hover", player.getLocale()))));
+                cCRefresh.getChatStyle().setChatClickEvent(f.newClickEvent(f.getRunCommand(), "/acb " + runCMD + " " + headline + " " + back + " " + refreshAble + " " + command));
+                cCRefresh.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(),f.newChatComponent(translator.localeTranslate("itm_n_c_refresh_hover", player.getLocale()))));
                 player.sendChatComponent(cCRefresh);
             }
 
-            ChatComponent cCBack = f.newChatComponent(translator.localeTranslate("item_name_const_back", player.getLocale()));
+            ChatComponent cCBack = f.newChatComponent(translator.localeTranslate("itm_n_c_back", player.getLocale()));
             cCBack.getChatStyle().setColor(f.colorYellow());
             cCBack.getChatStyle().setChatClickEvent(f.newClickEvent(f.getRunCommand(), "/chatclick chatmenu " + back));
-            cCBack.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(),f.newChatComponent(translator.localeTranslate("item_name_const_back_hover", player.getLocale()))));
+            cCBack.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(),f.newChatComponent(translator.localeTranslate("itm_n_c_back_hover", player.getLocale()))));
             player.sendChatComponent(cCBack);
 
             player.message("============================");
 
-            ChatComponent cCExit = f.newChatComponent(translator.localeTranslate("item_name_const_close", player.getLocale()));
+            ChatComponent cCExit = f.newChatComponent(translator.localeTranslate("itm_n_c_close", player.getLocale()));
             cCExit.getChatStyle().setColor(f.colorYellow());
             cCExit.getChatStyle().setChatClickEvent(f.newClickEvent(f.getRunCommand(), "/adminmenu exit"));
-            cCExit.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(),f.newChatComponent(translator.localeTranslate("item_name_const_exit_hover", player.getLocale()))));
+            cCExit.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(),f.newChatComponent(translator.localeTranslate("itm_n_c_exit_hover", player.getLocale()))));
             player.sendChatComponent(cCExit);
 
             player.message("\n");
@@ -120,9 +133,6 @@ public class CommandBuilder extends PlayerCommand {
             return AchievementList.getBody(translator.localeTranslate("autolist_hover_achievement", player.getLocale()), command);
         } else if (para.equals(parameters[7])){
             return SoundList.getBody(translator.localeTranslate("autolist_hover_sound", player.getLocale()), command);
-        } else if (para.equals(parameters[8])){
-            command = command.replaceFirst(parameters[8],player.getName());
-            player.executeCommand(new String[]{command});
         } else if (para.equals(parameters[9])){
             return TimeList00.getBody(translator.localeTranslate("autolist_hover_time", player.getLocale()), command);
         } else if (para.equals(parameters[10])){
@@ -150,8 +160,7 @@ public class CommandBuilder extends PlayerCommand {
         }
 
         ChatComponentFactory f = Canary.factory().getChatComponentFactory();
-        f.newChatComponent(translator.localeTranslate("error_cbuilder_unknownparameter",player.getLocale()));
-        return null;
+        return f.newChatComponent(translator.localeTranslate("error_cbuilder_unknownparameter",player.getLocale()));
 
     }
 }
