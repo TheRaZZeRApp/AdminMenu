@@ -154,6 +154,14 @@ public class CreateMenus {
             player_give.addEntry(EliteLib.getMenuFactory().newMenuEntry("itm_n_p_give_item", "adminmenu.player.give.self.item", f.colorYellow(), f.getShowText(), f.newChatComponent("itm_n_p_give_item_hover"), f.getRunCommand(), "/acb true atl_h_p_gi adm_m_h_p_gi true give %c %i %a", translator));
             player_give.addEntry(EliteLib.getMenuFactory().newMenuEntry("itm_n_p_give_block", "adminmenu.player.give.self.block", f.colorYellow(), f.getShowText(), f.newChatComponent("itm_n_p_give_block_hover"), f.getRunCommand(), "/acb true atl_h_p_gi adm_m_h_p_gi true give %c %b1 %a", translator));
             EliteLib.getMenuManager().addMenu(addEnd(player_give, translator, null, null, "adminmenu.menu.player_00", "/chatclick chatmenu adm_m_h_p"));
+
+            //Effect menu
+            Menu player_effect = EliteLib.getMenuFactory().newMenu("adm_m_h_p_ef","adminmenu.menu.player.effect",f.colorWhite(),translator);
+            player_effect.addEntry(getBreakLine());
+            player_effect.addEntry(EliteLib.getMenuFactory().newMenuEntry("itm_n_p_effect_give", "adminmenu.player.effect.give", f.colorYellow(), f.getShowText(), f.newChatComponent("itm_n_p_effect_give_hover"), f.getRunCommand(), "/acb true atl_h_p_ef adm_m_h_p_ef true effect %p %ef %t2", translator));
+            player_effect.addEntry(EliteLib.getMenuFactory().newMenuEntry("itm_n_p_effect_givea", "adminmenu.player.effect.give.advanced", f.colorYellow(), f.getShowText(), f.newChatComponent("itm_n_p_effect_givea_hover"), f.getRunCommand(), "/acb true atl_h_p_ef adm_m_h_p_ef true effect %p %ef %t2 %a2 %tf", translator));
+            //todo weitermachen
+            player_effect.addEntry(EliteLib.getMenuFactory().newMenuEntry("itm_n_p_effect_clear", "adminmenu.player.effect.give", f.colorYellow(), f.getShowText(), f.newChatComponent("itm_n_p_effect_give_hover"), f.getRunCommand(), "/acb true atl_h_p_ef adm_m_h_p_ef true effect %p clear", translator));
     }
 
     private static Menu addEnd(Menu menu,LocaleHelper translator,String permissionForward, String commandForward, String permissionBack, String commandBack){
