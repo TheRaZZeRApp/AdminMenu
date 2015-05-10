@@ -68,6 +68,8 @@ atl_h_p_kill=Player_Kill_Menu:
 atl_h_p_mute=Player_Mute_Menu:
 atl_h_p_ac=Player_Achievement_Menu:
 atl_h_p_s=Player_Sound_Menu:
+atl_h_s_whl=Player_Whitelist_Menu:
+atl_h_s_whl_l=Whitelisted_Player:
 autolist_hover_player=Click to choose a player.
 autolist_hover_amount=Click to choose an amount.
 autolist_hover_achievement=Click to choose an achievement.
@@ -203,7 +205,8 @@ itm_n_s_stop=Stop Server
 itm_n_s_stop_hover=Click to stop the server.
 itm_n_s_reloadconfigs=Reload Configs
 itm_n_s_reloadconfigs_hover=Click to realoade the configs.
-itm_n_s_whitelist=Whitelist
+itm_n_s_whl=Whitelist
+itm_n_s_whl_add_hover=Click to add a player to the whitelist.
 itm_n_s_reservelist=Reserverlist
 itm_n_s_afktimeout=AFK Timeout
 itm_n_s_world=World Control
@@ -217,6 +220,12 @@ itm_n_s_debug_stop=Stop and Save
 itm_n_s_plugin_disable=Disable Plugin
 itm_n_s_plugin_enable=Enable Plugin
 itm_n_s_plugin_reloade=Reloade Plugin
+
+
+
+
+itm_n_w_firespread=Fire Spread
+itm_n_w_firespread_hover=Click to toggle the fire spread gamerule.
 itm_n_w_firespread_on_hover=Click to turn the firespread on.
 
 hover_main_player_commands=Click to open the player menu.

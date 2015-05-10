@@ -24,7 +24,7 @@ public class PlayerList {
 
             ChatComponent playerText = f.newChatComponent(p.getName() + ",");
 
-            if (p.isOperator() || p.hasPermission("adminmenue.admin")) {
+            if (p.isOperator() || p.hasPermission("adminmenu.admin")) {
                 playerText.getChatStyle().setColor(f.colorRed());
             } else {
                 playerText.getChatStyle().setColor(f.colorGreen());
