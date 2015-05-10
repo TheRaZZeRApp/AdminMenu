@@ -52,9 +52,6 @@ public class WhiteList {
                 text.appendSibling(whitelistText);
             }
         }
-
-        text.appendText("\n");
-
         return text;
     }
 }
