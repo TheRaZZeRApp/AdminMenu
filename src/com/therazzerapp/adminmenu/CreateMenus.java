@@ -8,6 +8,7 @@ import de.myelitecraft.elitelib.api.EliteLib;
 import de.myelitecraft.elitelib.api.menu.Menu;
 import de.myelitecraft.elitelib.api.menu.MenuEntry;
 import net.canarymod.Canary;
+import net.canarymod.api.chat.ChatComponent;
 import net.canarymod.api.factory.ChatComponentFactory;
 import net.visualillusionsent.utils.LocaleHelper;
 
@@ -22,6 +23,8 @@ import net.visualillusionsent.utils.LocaleHelper;
 
 public class CreateMenus {
 
+    private static ChatComponentFactory f = Canary.factory().getChatComponentFactory();
+
     public static void initMenus (LocaleHelper translator){
         ChatComponentFactory f = Canary.factory().getChatComponentFactory();
 
@@ -34,16 +37,16 @@ public class CreateMenus {
         Menu mainMenu = EliteLib.getMenuFactory().newMenu("adm_m_h_main", "adminmenu.menu.main", f.colorWhite(),translator);
         mainMenu.addEntry(getBreakLine());
         if (AdminMenu.settings.isPlayermenu()){
-            mainMenu.addEntry(EliteLib.getMenuFactory().newMenuEntry("item_name_main_player_commands", null, f.colorYellow(), f.getShowText(), f.newChatComponent("hover_main_player_commands"),f.getRunCommand(), "/chatclick chatmenu adm_m_h_p",translator));
+            mainMenu.addEntry(EliteLib.getMenuFactory().newMenuEntry("itm_n_m_player_commands", "adminmenu.menu.player", f.colorYellow(), f.getShowText(), f.newChatComponent("hover_main_player_commands"),f.getRunCommand(), "/chatclick chatmenu adm_m_h_p",translator));
         }
         if (AdminMenu.settings.isServermenu()){
-            mainMenu.addEntry(EliteLib.getMenuFactory().newMenuEntry("item_name_main_server_commands", null, f.colorYellow(), f.getShowText(), f.newChatComponent("hover_main_server_commands"),f.getRunCommand(), "/chatclick chatmenu adm_m_h_s",translator));
+            mainMenu.addEntry(EliteLib.getMenuFactory().newMenuEntry("itm_n_m_server_commands","adminmenu.menu.server", f.colorYellow(), f.getShowText(), f.newChatComponent("hover_main_server_commands"),f.getRunCommand(), "/chatclick chatmenu adm_m_h_s",translator));
         }
         if(AdminMenu.settings.isWorldmenu()){
-            mainMenu.addEntry(EliteLib.getMenuFactory().newMenuEntry("item_name_main_world_commands", null, f.colorYellow(), f.getShowText(), f.newChatComponent("hover_main_world_commands"),f.getRunCommand(), "/chatclick chatmenu adm_m_h_w",translator));
+            mainMenu.addEntry(EliteLib.getMenuFactory().newMenuEntry("itm_n_m_world_commands","adminmenu.menu.world", f.colorYellow(), f.getShowText(), f.newChatComponent("hover_main_world_commands"),f.getRunCommand(), "/chatclick chatmenu adm_m_h_w",translator));
         }
         if(AdminMenu.settings.isGroupmenu()){
-            mainMenu.addEntry(EliteLib.getMenuFactory().newMenuEntry("item_name_main_group_commands", null, f.colorYellow(), f.getShowText(), f.newChatComponent("hover_main_group_commands"),f.getRunCommand(), "/chatclick chatmenu adm_m_h_g",translator));
+            mainMenu.addEntry(EliteLib.getMenuFactory().newMenuEntry("itm_n_m_group_commands" ,"adminmenu.menu.group", f.colorYellow(), f.getShowText(), f.newChatComponent("hover_main_group_commands"),f.getRunCommand(), "/chatclick chatmenu adm_m_h_g",translator));
         }
         EliteLib.getMenuManager().addMenu(addNavigation(mainMenu,translator));
 
@@ -55,13 +58,13 @@ public class CreateMenus {
         Menu player_00 = EliteLib.getMenuFactory().newMenu("adm_m_h_p", "adminmenu.menu.player_00", f.colorWhite(),translator);
         player_00.addEntry(getBreakLine());
         player_00.addEntry(EliteLib.getMenuFactory().newMenuEntry("itm_n_p_kick", "adminmenu.menu.player.kick", f.colorYellow(), f.getShowText(), f.newChatComponent("itm_n_p_kick_hover"), f.getRunCommand(), "/chatclick chatmenu adm_m_h_p_kick", translator));
-        player_00.addEntry(EliteLib.getMenuFactory().newMenuEntry("itm_n_p_ban", "adminmenu.menu.player.ban", f.colorYellow(), f.getShowText(), f.newChatComponent("itm_n_p_ban_hover"), f.getRunCommand(),"/chatclick chatmenu adm_m_h_p_ban" , translator));
-        player_00.addEntry(EliteLib.getMenuFactory().newMenuEntry("itm_n_p_gm", "adminmenu.menu.player.gamemode", f.colorYellow(), f.getShowText(), f.newChatComponent("itm_n_p_gm_hover"), f.getRunCommand(),"/chatclick chatmenu adm_m_h_p_gm" , translator));
-        player_00.addEntry(EliteLib.getMenuFactory().newMenuEntry("itm_n_p_kill", "adminmenu.menu.player.kill", f.colorYellow(), f.getShowText(), f.newChatComponent("itm_n_p_kill_hover"), f.getRunCommand(),"/acb true atl_h_p_kill adm_m_h_p true kill %p" , translator));
-        player_00.addEntry(EliteLib.getMenuFactory().newMenuEntry("itm_n_p_mute", "adminmenu.menu.player.mute", f.colorYellow(), f.getShowText(), f.newChatComponent("itm_n_p_mute_hover"), f.getRunCommand(),"/acb true atl_h_p_mute adm_m_h_p true mute %p" , translator));
-        player_00.addEntry(EliteLib.getMenuFactory().newMenuEntry("itm_n_p_gi", "adminmenu.menu.player.give", f.colorYellow(), f.getShowText(), f.newChatComponent("itm_n_p_gi_hover"), f.getRunCommand(),"/chatclick chatmenu adm_m_h_p_gi" , translator));
-        player_00.addEntry(EliteLib.getMenuFactory().newMenuEntry("itm_n_p_tp", "adminmenu.menu.player.tp", f.colorYellow(), f.getShowText(), f.newChatComponent("itm_n_p_tp_hover"), f.getRunCommand(),"/chatclick chatmenu adm_m_h_p_tp" , translator));
-        EliteLib.getMenuManager().addMenu(addNavigation(player_00, translator, "adminmenu.menu.player_01", "/chatclick chatmenu adm_m_h_p_01",null,null));
+        player_00.addEntry(EliteLib.getMenuFactory().newMenuEntry("itm_n_p_ban","adminmenu.menu.player.ban", f.colorYellow(), f.getShowText(), f.newChatComponent("itm_n_p_ban_hover"), f.getRunCommand(),"/chatclick chatmenu adm_m_h_p_ban" , translator));
+        player_00.addEntry(EliteLib.getMenuFactory().newMenuEntry("itm_n_p_gm","adminmenu.menu.player.gamemode", f.colorYellow(), f.getShowText(), f.newChatComponent("itm_n_p_gm_hover"), f.getRunCommand(),"/chatclick chatmenu adm_m_h_p_gm" , translator));
+        player_00.addEntry(EliteLib.getMenuFactory().newMenuEntry("itm_n_p_kill","adminmenu.menu.player.kill", f.colorYellow(), f.getShowText(), f.newChatComponent("itm_n_p_kill_hover"), f.getRunCommand(),"/acb true atl_h_p_kill adm_m_h_p true kill %p" , translator));
+        player_00.addEntry(EliteLib.getMenuFactory().newMenuEntry("itm_n_p_mute","adminmenu.menu.player.mute", f.colorYellow(), f.getShowText(), f.newChatComponent("itm_n_p_mute_hover"), f.getRunCommand(),"/acb true atl_h_p_mute adm_m_h_p true mute %p" , translator));
+        player_00.addEntry(EliteLib.getMenuFactory().newMenuEntry("itm_n_p_gi","adminmenu.menu.player.give", f.colorYellow(), f.getShowText(), f.newChatComponent("itm_n_p_gi_hover"), f.getRunCommand(),"/chatclick chatmenu adm_m_h_p_gi" , translator));
+        player_00.addEntry(EliteLib.getMenuFactory().newMenuEntry("itm_n_p_tp","adminmenu.menu.player.tp", f.colorYellow(), f.getShowText(), f.newChatComponent("itm_n_p_tp_hover"), f.getRunCommand(),"/chatclick chatmenu adm_m_h_p_tp" , translator));
+        EliteLib.getMenuManager().addMenu(addNavigation(player_00, translator,"adminmenu.menu.player_01", "/chatclick chatmenu adm_m_h_p_01",null,null));
 
         //Player menu part 2
         Menu player_01 = EliteLib.getMenuFactory().newMenu("adm_m_h_p_01", "adminmenu.menu.player_01", f.colorWhite(),translator);
@@ -78,7 +81,7 @@ public class CreateMenus {
         //Player menu part 3
         Menu player_02 = EliteLib.getMenuFactory().newMenu("adm_m_h_p_02", "adminmenu.menu.player_02", f.colorWhite(),translator);
         player_02.addEntry(getBreakLine());
-        player_02.addEntry(EliteLib.getMenuFactory().newMenuEntry("itm_n_p_ac", "adminmenu.menu.player.ac", f.colorYellow(), f.getShowText(), f.newChatComponent("itm_n_p_ac_hover"), f.getRunCommand(), "/chatclick chatmenu adm_m_h_p_ac", translator));
+        player_02.addEntry(EliteLib.getMenuFactory().newMenuEntry("itm_n_p_ac", getHyphen("itm_n_p_ac"), "adminmenu.menu.player.ac", f.colorYellow(), f.getShowText(), f.newChatComponent("itm_n_p_ac_hover"), f.getRunCommand(), "/chatclick chatmenu adm_m_h_p_ac", translator));
         EliteLib.getMenuManager().addMenu(addNavigation(player_02, translator, null,null, "adminmenu.menu.player_01", "/chatclick chatmenu adm_m_h_p_01"));
 
             //Kick menu
@@ -257,6 +260,10 @@ public class CreateMenus {
 
     }
 
+    private static ChatComponent getHyphen (String lang){
+        return f.newChatComponent("- ").appendSibling(f.newChatComponent(lang));
+    }
+
     private static Menu addNavigation(Menu menu,LocaleHelper translator,String permissionForward, String commandForward, String permissionBack, String commandBack){
         
         //Forward Buttons
@@ -295,7 +302,6 @@ public class CreateMenus {
     }
 
     private static Menu getGameruleMenu(String menuName, String menuPermission, String itemPermission, String onHover, String offHover, String statusHover, String gameRule, String commandBack, String permissionBack, LocaleHelper translator){
-        ChatComponentFactory f = Canary.factory().getChatComponentFactory();
         Menu menu = EliteLib.getMenuFactory().newMenu(menuName,menuPermission, f.colorWhite(),translator);
         menu.addEntry(getBreakLine());
         menu.addEntry(EliteLib.getMenuFactory().newMenuEntry("itm_n_c_turnon", itemPermission + ".turnon", f.colorYellow(), f.getShowText(), f.newChatComponent(onHover + "_hover"), f.getRunCommand(), "/gamerule " + gameRule + " true", translator));

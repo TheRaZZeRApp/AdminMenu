@@ -13,6 +13,6 @@ import net.visualillusionsent.utils.LocaleHelper;
 
 public class Exit extends SpecialItem {
     public Exit(LocaleHelper TRANSLATOR) {
-        super("itm_n_c_close", "adminmenu.command.close", "itm_n_c_hover", "/adminmenu exit", TRANSLATOR);
+        super("itm_n_c_close", "" ,"adminmenu.command.close", "itm_n_c_hover", "/adminmenu exit", TRANSLATOR);
     }
 }
