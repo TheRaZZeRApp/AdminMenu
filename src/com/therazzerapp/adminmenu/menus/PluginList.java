@@ -25,6 +25,7 @@ public class PluginList {
             ChatComponent reserveText = f.newChatComponent(plugin + ", ");
 
             reserveText.getChatStyle().setColor(f.colorYellow());
+            //todo Color red=disabled green=enabled
             HoverEvent hoverEvent = f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip));
             reserveText.getChatStyle().setChatHoverEvent(hoverEvent);
 

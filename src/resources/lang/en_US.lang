@@ -1,5 +1,6 @@
 extras_chatoff=Chat Off
 extras_chaton=Chat On
+cbuilder_runcommand=Click to run the generated command.
 
 adm_m_h_main=Admin Menu:
 adm_m_h_p=Player Menu 1/3
@@ -71,6 +72,8 @@ atl_h_p_s=Player_Sound_Menu:
 atl_h_s_whl=Player_Whitelist_Menu:
 atl_h_s_whl_l=Whitelisted_Player:
 atl_h_s_res=Reservelisted_Player:
+atl_h_s_w=World_Menu:
+atl_h_s_p=Plugin_Menu:
 autolist_hover_player=Click to choose a player.
 autolist_hover_amount=Click to choose an amount.
 autolist_hover_achievement=Click to choose an achievement.
@@ -82,6 +85,7 @@ autolist_hover_plugins=Click to select a plugin.
 autolist_hover_group=Click to choose a group.
 autolist_hover_effect=Click to choose an effect.
 autolist_hover_tf=Click to choose an opinion.
+autolist_hover_world=Click to select a world.
 
 itm_n_m_player_commands=- Player Commands
 itm_n_m_server_commands=- Server Commands
@@ -117,7 +121,7 @@ itm_n_p_gm_hover=Click to change a players gamemode.
 itm_n_p_kill=- Kill
 itm_n_p_kill_hover=Click to kill a player.
 itm_n_p_mute=- Mute/Unmute
-itm_n_p_give=- Give
+itm_n_p_gi=- Give
 itm_n_p_tp=- Teleport
 itm_n_p_tp_hover=Click to teleport a player.
 itm_n_p_op=- Op Player
@@ -202,6 +206,8 @@ itm_n_p_achievement_clear_hover=Click to clear a players achievements.
 itm_n_p_sounds_player=- Play Sound To Player
 itm_n_p_sounds_all=- Play Sound To All
 itm_n_p_invisible=- Visibility
+
+
 itm_n_s_stop=- Stop Server
 itm_n_s_stop_hover=Click to stop the server.
 itm_n_s_reloadconfigs=- Reload Configs
@@ -212,21 +218,39 @@ itm_n_s_res=- Reserverlist
 itm_n_s_res_hover=Click to change the reservelist settings.
 itm_n_s_afktimeout=- AFK Timeout
 itm_n_s_world=- World Control
+itm_n_s_world_hover=Click create or delete a world.
 itm_n_s_plugin=- Plugins
+itm_n_s_plugin_hover=Click to configure all plugins.
 itm_n_s_debug=- Debug Mode
 itm_n_s_world_create=- Create
 itm_n_s_world_delete=- Delete
 itm_n_s_world_load=- Load
-itm_n_s_debug_start=- Start
-itm_n_s_debug_stop=- Stop and Save
-itm_n_s_plugin_disable=- Disable Plugin
-itm_n_s_plugin_enable=- Enable Plugin
-itm_n_s_plugin_reloade=- Reloade Plugin
+itm_n_s_d=- Debuging
+itm_n_s_d_hover=Click to start or stop the debug mode.
+itm_n_s_d_start=- Start
+itm_n_s_d_stop=- Stop and Save
+itm_n_s_t=- Afk Timeout
+itm_n_s_t_hover=Click to change the afk timeout settings.
+itm_n_s_afktimeout=- Set time
+itm_n_s_afktimeout_hover=Click to the time after a player gets kicked for beeing afk.
+itm_n_s_w_create=- Create World
+itm_n_s_w_create_hover=Click to create a new world.
+itm_n_s_w_delete=- Delete World
+itm_n_s_w_delete_hover=Click to delete a world.
+itm_n_s_w_load=- Load World
+itm_n_s_w_load_hover=Click to load a new world.
+itm_n_s_d_start=- Start Debuging
+itm_n_s_d_start_hover=Click to start the debug recording.
+itm_n_s_d_stop=- Stop/Save Debuging
+itm_n_s_d_stop_hover=Click to stop and save the debug recording.
+itm_n_s_p_disable=- Disable Plugin
+itm_n_s_p_disable_hover=Click to disable a loaded plugin.
+itm_n_s_p_enable=- Enable Plugin
+itm_n_s_p_enable_hover=Click to disable a loaded plugin.
+itm_n_s_p_reload=- Reload Plugin
+itm_n_s_p_reload_hover=Click to reload a loaded plugin.
 
-
-
-
-itm_n_w_firespread=Fire Spread
+itm_n_w_firespread=-Fire Spread
 itm_n_w_firespread_hover=Click to toggle the fire spread gamerule.
 itm_n_w_firespread_on_hover=Click to turn the firespread on.
 
