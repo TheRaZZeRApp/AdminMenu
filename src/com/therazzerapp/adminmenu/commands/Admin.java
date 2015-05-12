@@ -1,5 +1,7 @@
 package com.therazzerapp.adminmenu.commands;
 
+import com.therazzerapp.adminmenu.AdminMenu;
+import com.therazzerapp.adminmenu.Settings;
 import de.myelitecraft.elitelib.api.EliteLib;
 import de.myelitecraft.elitelib.api.commands.Arg;
 import de.myelitecraft.elitelib.api.commands.CommandMeta;
@@ -33,6 +35,11 @@ public class Admin extends PlayerCommand{
     @Override
     protected void execute(Player player, Map<Arg, String[]> map, String[] strings, boolean b) {
         playersInMenu.add(player);
+
+        if(AdminMenu.settings.isMuteChatInMenu()){
+            //Mute chat
+        }
+
         Menu main = EliteLib.getMenuManager().getMenu("adm_m_h_main");
         player.message("\n\n\n\n\n\n\n\n\n\n\n\n");
         main.showMenu(player);

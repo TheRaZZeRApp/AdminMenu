@@ -1,5 +1,14 @@
 package com.therazzerapp.adminmenu.commands;
 
+import de.myelitecraft.elitelib.api.commands.Arg;
+import de.myelitecraft.elitelib.api.commands.CommandMeta;
+import de.myelitecraft.elitelib.api.commands.PlayerCommand;
+import net.canarymod.api.entity.living.humanoid.Player;
+import net.canarymod.commandsys.CommandOwner;
+import net.visualillusionsent.utils.LocaleHelper;
+
+import java.util.Map;
+
 /**
  * Project: AdminMenu
  * User: Pual
@@ -9,5 +18,14 @@ package com.therazzerapp.adminmenu.commands;
  * E-Mail: rezzer101@googlemail.com
  */
 
-public class ExitMenu {
+public class ExitMenu extends PlayerCommand{
+    public ExitMenu(CommandOwner owner, LocaleHelper translator) {
+        super(new CommandMeta(new String[]{"exit"},new String[]{"adminmenu.command.exit"},"Exit the admin menu.", "/admin exit",0,0,"admin"), owner, translator);
+    }
+
+    @Override
+    protected void execute(Player player, Map<Arg, String[]> map, String[] strings, boolean b) {
+        player.message("\n\n\n\n\n\n\n\n\n\n\n");
+        //Chat entmuten
+    }
 }

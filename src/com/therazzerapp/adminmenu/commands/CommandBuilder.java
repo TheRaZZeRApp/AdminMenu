@@ -24,8 +24,8 @@ import java.util.Map;
 
 public class CommandBuilder extends PlayerCommand {
 
-    //                                    0     1    2   3     4     5     6      7    8   9     10     11   12   13    14    15    16   17    18    19    20
-    private final String[] parameters = {"%p","%w","%r","%a","%a1","%a2","%ac","%so","%c","%t1","%t2","%i","%b","%b1","%pg","%pl","%g","%gp","%pi","%ef","%tf"};
+    //                                    0     1    2   3     4     5     6      7    8   9     10     11   12   13    14    15    16   17    18    19    20   21
+    private final String[] parameters = {"%p","%w","%r","%a","%a1","%a2","%ac","%so","%c","%t1","%t2","%i","%b","%b1","%pg","%pl","%g","%gp","%pi","%ef","%tf","%bp"};
 
     public CommandBuilder(CommandOwner owner, LocaleHelper translator) {
         super(new CommandMeta(new String[]{"commandbuilder", "cbuilder", "acb"}, new String[]{"adminmenu.command.commandbuilder"}, "Runs the command builder.", "/cbuilder <runCMD> <headline> <back> <refreshAble> <command> [%params]", 4), owner, translator);
@@ -157,6 +157,8 @@ public class CommandBuilder extends PlayerCommand {
             return EffectList.getBody(translator.localeTranslate("autolist_hover_effect", player.getLocale()), command);
         } else if (para.equals(parameters[20])){
             return TrueFalseList.getBody(translator.localeTranslate("autolist_hover_tf", player.getLocale()), command);
+        } else if (para.equals(parameters[21])){
+            return BannedPlayerList.getBody(translator.localeTranslate("autolist_hover_player", player.getLocale()), command);
         }
 
         ChatComponentFactory f = Canary.factory().getChatComponentFactory();
