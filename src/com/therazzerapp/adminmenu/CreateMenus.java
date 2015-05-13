@@ -270,6 +270,8 @@ public class CreateMenus {
         //World menu part 1
         Menu world_00 = EliteLib.getMenuFactory().newMenu("adm_m_h_w", "adminmenu.menu.world_00", f.colorWhite(), translator);
         world_00.addEntry(getBreakLine());
+        world_00.addEntry(EliteLib.getMenuFactory().newMenuEntry("itm_n_w_time", "adminmenu.world.time", f.colorYellow(), f.getShowText(), f.newChatComponent("itm_n_w_time_hover"), f.getRunCommand(), "/chatclick chatmenu adm_m_h_w_time", translator));
+        world_00.addEntry(EliteLib.getMenuFactory().newMenuEntry("itm_n_w_weather", "adminmenu.world.weather", f.colorYellow(), f.getShowText(), f.newChatComponent("itm_n_w_weather_hover"), f.getRunCommand(), "/chatclick chatmenu adm_m_h_w_weather", translator));
         world_00.addEntry(EliteLib.getMenuFactory().newMenuEntry("itm_n_w_firespread", "adminmenu.world.firespread", f.colorYellow(), f.getShowText(), f.newChatComponent("itm_n_w_firespread_hover"), f.getRunCommand(), "/chatclick chatmenu adm_m_h_w_firespread", translator));
         EliteLib.getMenuManager().addMenu(addNavigation(world_00, translator, "adminmenu.menu.world_01", "/chatclick chatmenu adm_m_h_w_01", null, null));
 
@@ -283,13 +285,33 @@ public class CreateMenus {
         world_02.addEntry(getBreakLine());
         EliteLib.getMenuManager().addMenu(addNavigation(world_02, translator, null, null, "adminmenu.menu.world_01", "/chatclick chatmenu adm_m_h_w_01"));
 
-        //Firespread Menu
-        Menu world_firespread = getGameruleMenu("adm_m_h_w_firespread", "adminmenu.menu.world.firespread", "adminmenu.world.firespread", "itm_n_w_firespread_on", "itm_n_w_firespread_off", "itm_n_w_firespread_status", "doFireTick", "/chatclick chatmenu adm_m_h_w", "adminmenu.menu.world_00", translator);
-        EliteLib.getMenuManager().addMenu(world_firespread);
+            //Time menu
+            Menu world_time = EliteLib.getMenuFactory().newMenu("adm_m_h_w_time", "adminmenu.menu.world.time", f.colorWhite(), translator);
+            world_time.addEntry(getBreakLine());
+            world_time.addEntry(EliteLib.getMenuFactory().newMenuEntry("itm_n_w_time_morning","adminmenu.world.time.morning",f.colorYellow(),f.getShowText(),f.newChatComponent("itm_n_w_time_morning_hover"),f.getRunCommand(),"/time set 0",translator));
+            world_time.addEntry(EliteLib.getMenuFactory().newMenuEntry("itm_n_w_time_midday","adminmenu.world.time.midday",f.colorYellow(),f.getShowText(),f.newChatComponent("itm_n_w_time_midday_hover"),f.getRunCommand(),"/time set 6000",translator));
+            world_time.addEntry(EliteLib.getMenuFactory().newMenuEntry("itm_n_w_time_evening","adminmenu.world.time.evening",f.colorYellow(),f.getShowText(),f.newChatComponent("itm_n_w_time_evening_hover"),f.getRunCommand(),"/time set 12000",translator));
+            world_time.addEntry(EliteLib.getMenuFactory().newMenuEntry("itm_n_w_time_night","adminmenu.world.time.night",f.colorYellow(),f.getShowText(),f.newChatComponent("itm_n_w_time_night_hover"),f.getRunCommand(),"/time set 18000",translator));
+            EliteLib.getMenuManager().addMenu(addNavigation(world_time,translator,null,null,"adminmenu.menu.world_00","/chatclick chatmenu adm_m_h_w"));
 
-        //Daylightcycle Menu
-        Menu world_daylightcycle = getGameruleMenu("adm_m_h_w_daylightcycle","adminmenu.menu.world.daylightcycle","adminmenu.world.daylightcycle","itm_n_w_daylightcycle_on","itm_n_w_daylightcycle_off","itm_n_w_daylightcycle_status","doDaylightCycle","/chatclick chatmenu adm_m_h_w_01","adminmenu.menu.world_01",translator);
-        EliteLib.getMenuManager().addMenu(world_firespread);
+            //Weather menu
+            Menu world_weather = EliteLib.getMenuFactory().newMenu("adm_m_h_w_weather", "adminmenu.menu.world.weather", f.colorWhite(), translator);
+            world_weather.addEntry(getBreakLine());
+            world_weather.addEntry(EliteLib.getMenuFactory().newMenuEntry("itm_n_w_weather_sun","adminmenu.world.weather.sun",f.colorYellow(),f.getShowText(),f.newChatComponent("itm_n_w_weather_sun_hover"),f.getRunCommand(),"/weather clear",translator));
+            world_weather.addEntry(EliteLib.getMenuFactory().newMenuEntry("itm_n_w_weather_rain","adminmenu.world.weather.rain",f.colorYellow(),f.getShowText(),f.newChatComponent("itm_n_w_weather_rain_hover"),f.getRunCommand(),"/weather rain",translator));
+            world_weather.addEntry(EliteLib.getMenuFactory().newMenuEntry("itm_n_w_weather_thunder","adminmenu.world.weather.thunder",f.colorYellow(),f.getShowText(),f.newChatComponent("itm_n_w_weather_thunder_hover"),f.getRunCommand(),"/weather thunder",translator));
+            world_weather.addEntry(EliteLib.getMenuFactory().newMenuEntry("itm_n_w_weather_toggle","adminmenu.world.weather.toggle",f.colorYellow(),f.getShowText(),f.newChatComponent("itm_n_w_weather_toggle_hover"),f.getRunCommand(),"/toggledownfall",translator));
+            EliteLib.getMenuManager().addMenu(addNavigation(world_weather, translator, null, null, "adminmenu.menu.world_00", "/chatclick chatmenu adm_m_h_w"));
+
+            //Autosave menu
+
+            //Firespread Menu
+            Menu world_firespread = getGameruleMenu("adm_m_h_w_firespread", "adminmenu.menu.world.firespread", "adminmenu.world.firespread", "itm_n_w_firespread_on", "itm_n_w_firespread_off", "itm_n_w_firespread_status", "doFireTick", "/chatclick chatmenu adm_m_h_w", "adminmenu.menu.world_00", translator);
+            EliteLib.getMenuManager().addMenu(world_firespread);
+
+            //Daylightcycle Menu
+            Menu world_daylightcycle = getGameruleMenu("adm_m_h_w_daylightcycle","adminmenu.menu.world.daylightcycle","adminmenu.world.daylightcycle","itm_n_w_daylightcycle_on","itm_n_w_daylightcycle_off","itm_n_w_daylightcycle_status","doDaylightCycle","/chatclick chatmenu adm_m_h_w_01","adminmenu.menu.world_01",translator);
+            EliteLib.getMenuManager().addMenu(world_firespread);
 
 
 

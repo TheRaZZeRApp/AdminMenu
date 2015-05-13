@@ -31,7 +31,7 @@ public class WorldList {
 
             temp.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip)));
 
-            String com  = command.replaceFirst("%wo" , w.getName());
+            String com  = command.replaceFirst("%wo" , w.getName() + w.getType());
 
 
             temp.getChatStyle().setChatClickEvent(f.newClickEvent(f.getRunCommand(), '/' + com));
