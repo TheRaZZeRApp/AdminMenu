@@ -21,7 +21,7 @@ import java.util.Map;
 public class KillAllMonster extends PlayerCommand{
 
     public KillAllMonster(CommandMeta meta, CommandOwner owner, LocaleHelper translator) {
-        super(new CommandMeta(new String[]{"killallamonsters"},new String[]{"adminmenu.command.admin"},"Kills all monsters.", "/killallmonsters",0,0), owner, translator);
+        super(new CommandMeta(new String[]{"killallamonsters"},new String[]{"adminmenu.command.killallamonsters"},"Kills all monsters.", "/killallmonsters",0,0), owner, translator);
     }
 
     @Override

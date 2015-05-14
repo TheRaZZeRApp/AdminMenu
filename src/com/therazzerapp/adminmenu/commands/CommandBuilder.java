@@ -87,7 +87,7 @@ public class CommandBuilder extends PlayerCommand {
         } else {
 
             ChatComponentFactory f = Canary.factory().getChatComponentFactory();
-            player.message("\n\n\n\n\n\n\n\n\n\n\n\n\n\n" + translator.localeTranslate(headline, player.getLocale()).replaceAll("_", " ") + "\n============================");
+            player.message("\n\n\n\n\n\n\n\n\n\n\n\n\n\n" + translator.localeTranslate(headline, player.getLocale()) + "\n============================");
 
             //System.out.println(para);
 
@@ -95,25 +95,25 @@ public class CommandBuilder extends PlayerCommand {
             player.sendChatComponent(getMenu(para, "acb " + runCMD + " " + headline + " " + back + " " + refreshAble + " " + command, player));
 
             if(refreshAble){
-                ChatComponent cCRefresh = f.newChatComponent(translator.localeTranslate("itm_n_c_refresh",player.getLocale()));
+                ChatComponent cCRefresh = f.newChatComponent(translator.localeTranslate("i_c_refresh",player.getLocale()));
                 cCRefresh.getChatStyle().setColor(f.colorYellow());
                 cCRefresh.getChatStyle().setChatClickEvent(f.newClickEvent(f.getRunCommand(), "/acb " + runCMD + " " + headline + " " + back + " " + refreshAble + " " + command));
-                cCRefresh.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(),f.newChatComponent(translator.localeTranslate("itm_n_c_refresh_hover", player.getLocale()))));
+                cCRefresh.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(),f.newChatComponent(translator.localeTranslate("i_c_refresh_hover", player.getLocale()))));
                 player.sendChatComponent(cCRefresh);
             }
 
-            ChatComponent cCBack = f.newChatComponent("<= " + translator.localeTranslate("itm_n_c_back", player.getLocale()));
+            ChatComponent cCBack = f.newChatComponent("<= " + translator.localeTranslate("i_c_back", player.getLocale()));
             cCBack.getChatStyle().setColor(f.colorYellow());
             cCBack.getChatStyle().setChatClickEvent(f.newClickEvent(f.getRunCommand(), "/chatclick chatmenu " + back));
-            cCBack.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(),f.newChatComponent(translator.localeTranslate("itm_n_c_back_hover", player.getLocale()))));
+            cCBack.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(),f.newChatComponent(translator.localeTranslate("i_c_back_hover", player.getLocale()))));
             player.sendChatComponent(cCBack);
 
             player.message("============================");
 
-            ChatComponent cCExit = f.newChatComponent(translator.localeTranslate("itm_n_c_close", player.getLocale()));
+            ChatComponent cCExit = f.newChatComponent(translator.localeTranslate("i_c_close", player.getLocale()));
             cCExit.getChatStyle().setColor(f.colorYellow());
             cCExit.getChatStyle().setChatClickEvent(f.newClickEvent(f.getRunCommand(), "/adminmenu exit"));
-            cCExit.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(),f.newChatComponent(translator.localeTranslate("itm_n_c_exit_hover", player.getLocale()))));
+            cCExit.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(),f.newChatComponent(translator.localeTranslate("i_c_exit_hover", player.getLocale()))));
             player.sendChatComponent(cCExit);
 
             player.message("\n");

@@ -23,7 +23,7 @@ import java.util.Map;
 public class KillAllAnimals extends PlayerCommand{
 
     public KillAllAnimals(CommandOwner owner, LocaleHelper translator) {
-        super(new CommandMeta(new String[]{"killallanimals"},new String[]{"adminmenu.command.admin"},"Kills all animals.", "/killallanimals",0,0), owner, translator);
+        super(new CommandMeta(new String[]{"killallanimals"},new String[]{"adminmenu.command.killallanimals"},"Kills all animals.", "/killallanimals",0,0), owner, translator);
     }
 
     @Override
