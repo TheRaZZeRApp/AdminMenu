@@ -272,6 +272,10 @@ public class CreateMenus {
         world_00.addEntry(getBreakLine());
         world_00.addEntry(EliteLib.getMenuFactory().newMenuEntry("itm_n_w_time", "adminmenu.world.time", f.colorYellow(), f.getShowText(), f.newChatComponent("itm_n_w_time_hover"), f.getRunCommand(), "/chatclick chatmenu adm_m_h_w_time", translator));
         world_00.addEntry(EliteLib.getMenuFactory().newMenuEntry("itm_n_w_weather", "adminmenu.world.weather", f.colorYellow(), f.getShowText(), f.newChatComponent("itm_n_w_weather_hover"), f.getRunCommand(), "/chatclick chatmenu adm_m_h_w_weather", translator));
+        world_00.addEntry(EliteLib.getMenuFactory().newMenuEntry("itm_n_w_setspawn", "adminmenu.world.setspawn", f.colorYellow(), f.getShowText(), f.newChatComponent("itm_n_w_setspawn_hover"), f.getRunCommand(), "/setspawn", translator));
+        world_00.addEntry(EliteLib.getMenuFactory().newMenuEntry("itm_n_w_saveworld", "adminmenu.world.saveworld", f.colorYellow(), f.getShowText(), f.newChatComponent("itm_n_w_saveworld_hover"), f.getRunCommand(), "/save-all", translator));
+        world_00.addEntry(EliteLib.getMenuFactory().newMenuEntry("itm_n_w_autosave", "adminmenu.world.autosave", f.colorYellow(), f.getShowText(), f.newChatComponent("itm_n_w_autosave_hover"), f.getRunCommand(), "/chatclick chatmenu adm_m_h_w_autosave", translator));
+        world_00.addEntry(EliteLib.getMenuFactory().newMenuEntry("itm_n_w_kill", "adminmenu.world.kill", f.colorYellow(), f.getShowText(), f.newChatComponent("itm_n_w_kill_hover"), f.getRunCommand(), "/chatclick chatmenu adm_m_h_w_kill", translator));
         world_00.addEntry(EliteLib.getMenuFactory().newMenuEntry("itm_n_w_firespread", "adminmenu.world.firespread", f.colorYellow(), f.getShowText(), f.newChatComponent("itm_n_w_firespread_hover"), f.getRunCommand(), "/chatclick chatmenu adm_m_h_w_firespread", translator));
         EliteLib.getMenuManager().addMenu(addNavigation(world_00, translator, "adminmenu.menu.world_01", "/chatclick chatmenu adm_m_h_w_01", null, null));
 
@@ -304,6 +308,47 @@ public class CreateMenus {
             EliteLib.getMenuManager().addMenu(addNavigation(world_weather, translator, null, null, "adminmenu.menu.world_00", "/chatclick chatmenu adm_m_h_w"));
 
             //Autosave menu
+            Menu world_autosave = EliteLib.getMenuFactory().newMenu("adm_m_h_w_autosave", "adminmenu.menu.world.autosave", f.colorWhite(), translator);
+            world_autosave.addEntry(getBreakLine());
+            world_autosave.addEntry(EliteLib.getMenuFactory().newMenuEntry("itm_n_c_turnon","adminmenu.world.autosave.turnon",f.colorYellow(),f.getShowText(),f.newChatComponent("itm_n_w_autosave_turnon_hover"),f.getRunCommand(),"/save-on",translator));
+            world_autosave.addEntry(EliteLib.getMenuFactory().newMenuEntry("itm_n_c_turnoff","adminmenu.world.autosave.turnoff",f.colorYellow(),f.getShowText(),f.newChatComponent("itm_n_w_autosave_turnoff_hover"),f.getRunCommand(),"/save-off",translator));
+            EliteLib.getMenuManager().addMenu(addNavigation(world_autosave, translator, null, null, "adminmenu.menu.world_00", "/chatclick chatmenu adm_m_h_w"));
+
+            //Kill menu
+            Menu world_kill = EliteLib.getMenuFactory().newMenu("adm_m_h_w_kill", "adminmenu.menu.world.kill", f.colorWhite(), translator);
+            world_kill.addEntry(getBreakLine());
+            world_kill.addEntry(EliteLib.getMenuFactory().newMenuEntry("itm_n_w_kill_everything","adminmenu.world.kill.everything",f.colorYellow(),f.getShowText(),f.newChatComponent("itm_n_w_kill_everything_hover"),f.getRunCommand(),"/kill @e",translator));
+            world_kill.addEntry(EliteLib.getMenuFactory().newMenuEntry("itm_n_w_kill_almosteverything","adminmenu.world.kill.almosteverything",f.colorYellow(),f.getShowText(),f.newChatComponent("itm_n_w_kill_almosteverything_hover"),f.getRunCommand(),"/kill @e[type=!Player]",translator));
+            world_kill.addEntry(EliteLib.getMenuFactory().newMenuEntry("itm_n_w_kill_player","adminmenu.world.kill.player",f.colorYellow(),f.getShowText(),f.newChatComponent("itm_n_w_kill_player_hover"),f.getRunCommand(),"/kill @a",translator));
+            world_kill.addEntry(EliteLib.getMenuFactory().newMenuEntry("itm_n_w_kill_items","adminmenu.world.kill.items",f.colorYellow(),f.getShowText(),f.newChatComponent("itm_n_w_kill_items_hover"),f.getRunCommand(),"/kill @e[type=Item]",translator));
+            world_kill.addEntry(EliteLib.getMenuFactory().newMenuEntry("itm_n_w_kill_monster","adminmenu.world.kill.monster",f.colorYellow(),f.getShowText(),f.newChatComponent("itm_n_w_kill_monster_hover"),f.getRunCommand(),"/kill @e[type=Item]",translator));
+            world_kill.addEntry(EliteLib.getMenuFactory().newMenuEntry("itm_n_w_kill_animal","adminmenu.world.kill.animal",f.colorYellow(),f.getShowText(),f.newChatComponent("itm_n_w_kill_animal_hover"),f.getRunCommand(),"/kill @e[type=Item]",translator));
+            world_kill.addEntry(EliteLib.getMenuFactory().newMenuEntry("itm_n_w_kill_villager","adminmenu.world.kill.villager",f.colorYellow(),f.getShowText(),f.newChatComponent("itm_n_w_kill_villager_hover"),f.getRunCommand(),"/kill @e[type=Villager]",translator));
+            EliteLib.getMenuManager().addMenu(addNavigation(world_kill, translator, null, null, "adminmenu.menu.world_00", "/chatclick chatmenu adm_m_h_w"));
+
+                Menu world_kill_monster_00 = EliteLib.getMenuFactory().newMenu("adm_m_h_w_kill_monster_00", "adminmenu.menu.world.kill.monster_00", f.colorWhite(), translator);
+                world_kill_monster_00.addEntry(getBreakLine());
+                world_kill_monster_00.addEntry(EliteLib.getMenuFactory().newMenuEntry("itm_n_c_everything","adminmenu.world.kill.monster.everything",f.colorYellow(),f.getShowText(),f.newChatComponent("itm_n_w_kill_monster_everything_hover"),f.getRunCommand(),"/killallmonsters",translator));
+                world_kill_monster_00.addEntry(EliteLib.getMenuFactory().newMenuEntry("Skeleton","adminmenu.world.kill.monster.skeleton",f.colorYellow(),f.getShowText(),f.newChatComponent("itm_n_w_kill_monster_skeleton_hover"),f.getRunCommand(),"/kill @e[type=Skeleton]",translator));
+                world_kill_monster_00.addEntry(EliteLib.getMenuFactory().newMenuEntry("Zombie","adminmenu.world.kill.monster.zombie",f.colorYellow(),f.getShowText(),f.newChatComponent("itm_n_w_kill_monster_zombie_hover"),f.getRunCommand(),"/kill @e[type=Zombie]",translator));
+                world_kill_monster_00.addEntry(EliteLib.getMenuFactory().newMenuEntry("Creeper","adminmenu.world.kill.monster.creeper",f.colorYellow(),f.getShowText(),f.newChatComponent("itm_n_w_kill_monster_creeper_hover"),f.getRunCommand(),"/kill @e[type=Creeper]",translator));
+                world_kill_monster_00.addEntry(EliteLib.getMenuFactory().newMenuEntry("Spider","adminmenu.world.kill.monster.spider",f.colorYellow(),f.getShowText(),f.newChatComponent("itm_n_w_kill_monster_spider_hover"),f.getRunCommand(),"/kill @e[type=Spider]",translator));
+                world_kill_monster_00.addEntry(EliteLib.getMenuFactory().newMenuEntry("Slime","adminmenu.world.kill.monster.slime",f.colorYellow(),f.getShowText(),f.newChatComponent("itm_n_w_kill_monster_slime_hover"),f.getRunCommand(),"/kill @e[type=Slime]",translator));
+                world_kill_monster_00.addEntry(EliteLib.getMenuFactory().newMenuEntry("Ghast","adminmenu.world.kill.monster.ghast",f.colorYellow(),f.getShowText(),f.newChatComponent("itm_n_w_kill_monster_ghast_hover"),f.getRunCommand(),"/kill @e[type=Ghast]",translator));
+                EliteLib.getMenuManager().addMenu(addNavigation(world_kill_monster_00, translator, "adminmenu.menu.world.kill.monster_01", "/chatclick chatmenu adm_m_h_w_kill_monster_01", "adminmenu.menu.world.kill", "/chatclick chatmenu adm_m_h_w_kill"));
+
+                Menu world_kill_monster_01 = EliteLib.getMenuFactory().newMenu("adm_m_h_w_kill_monster_01", "adminmenu.menu.world.kill.monster_01", f.colorWhite(), translator);
+                world_kill_monster_01.addEntry(getBreakLine());
+                world_kill_monster_01.addEntry(EliteLib.getMenuFactory().newMenuEntry("Pig Zombie","adminmenu.world.kill.monster.pigzombie",f.colorYellow(),f.getShowText(),f.newChatComponent("itm_n_w_kill_monster_pigzombie_hover"),f.getRunCommand(),"/kill @e[type=PigZombie]",translator));
+                world_kill_monster_01.addEntry(EliteLib.getMenuFactory().newMenuEntry("Enderman","adminmenu.world.kill.monster.enderman",f.colorYellow(),f.getShowText(),f.newChatComponent("itm_n_w_kill_monster_enderman_hover"),f.getRunCommand(),"/kill @e[type=Enderman]",translator));
+                world_kill_monster_01.addEntry(EliteLib.getMenuFactory().newMenuEntry("Cave Spider","adminmenu.world.kill.monster.cavespider",f.colorYellow(),f.getShowText(),f.newChatComponent("itm_n_w_kill_monster_cavespider_hover"),f.getRunCommand(),"/kill @e[type=CaveSpider]",translator));
+                world_kill_monster_01.addEntry(EliteLib.getMenuFactory().newMenuEntry("Silverfish","adminmenu.world.kill.monster.silverfish",f.colorYellow(),f.getShowText(),f.newChatComponent("itm_n_w_kill_monster_silverfish_hover"),f.getRunCommand(),"/kill @e[type=Silverfish]",translator));
+                world_kill_monster_01.addEntry(EliteLib.getMenuFactory().newMenuEntry("Blaze","adminmenu.world.kill.monster.blaze",f.colorYellow(),f.getShowText(),f.newChatComponent("itm_n_w_kill_monster_blaze_hover"),f.getRunCommand(),"/kill @e[type=Blaze]",translator));
+                world_kill_monster_01.addEntry(EliteLib.getMenuFactory().newMenuEntry("Lava Slime","adminmenu.world.kill.monster.lavaslime",f.colorYellow(),f.getShowText(),f.newChatComponent("itm_n_w_kill_monster_lavaslime_hover"),f.getRunCommand(),"/kill @e[type=LavaSlime]",translator));
+                world_kill_monster_01.addEntry(EliteLib.getMenuFactory().newMenuEntry("Ender Dragon","adminmenu.world.kill.monster.enderdragon",f.colorYellow(),f.getShowText(),f.newChatComponent("itm_n_w_kill_monster_enderdragon_hover"),f.getRunCommand(),"/kill @e[type=EnderDragon]",translator));
+                EliteLib.getMenuManager().addMenu(addNavigation(world_kill_monster_01, translator, "adminmenu.menu.world.kill.monster_02", "/chatclick chatmenu adm_m_h_w_kill_monster_02", "adminmenu.menu.world.kill.monster_00", "/chatclick chatmenu adm_m_h_w_kill_monster_00"));
+
+                //Weitermachen monster menu 3
 
             //Firespread Menu
             Menu world_firespread = getGameruleMenu("adm_m_h_w_firespread", "adminmenu.menu.world.firespread", "adminmenu.world.firespread", "itm_n_w_firespread_on", "itm_n_w_firespread_off", "itm_n_w_firespread_status", "doFireTick", "/chatclick chatmenu adm_m_h_w", "adminmenu.menu.world_00", translator);
@@ -311,7 +356,18 @@ public class CreateMenus {
 
             //Daylightcycle Menu
             Menu world_daylightcycle = getGameruleMenu("adm_m_h_w_daylightcycle","adminmenu.menu.world.daylightcycle","adminmenu.world.daylightcycle","itm_n_w_daylightcycle_on","itm_n_w_daylightcycle_off","itm_n_w_daylightcycle_status","doDaylightCycle","/chatclick chatmenu adm_m_h_w_01","adminmenu.menu.world_01",translator);
-            EliteLib.getMenuManager().addMenu(world_firespread);
+            EliteLib.getMenuManager().addMenu(world_daylightcycle);
+
+            //Entitydrops Menu
+            Menu world_entitydrops = getGameruleMenu("adm_m_h_w_entitydrops","adminmenu.menu.world.entitydrops","adminmenu.world.entitydrops","itm_n_w_entitydrops_on","itm_n_w_entitydrops_off","itm_n_w_entitydrops_status","doEntityDrops","/chatclick chatmenu adm_m_h_w_01","adminmenu.menu.world_01",translator);
+            EliteLib.getMenuManager().addMenu(world_entitydrops);
+
+            //Entitydrops Menu
+            Menu world_mobloot = getGameruleMenu("adm_m_h_w_mobloot","adminmenu.menu.world.mobloot","adminmenu.world.mobloot","itm_n_w_mobloot_on","itm_n_w_mobloot_off","itm_n_w_mobloot_status","doMobLoot","/chatclick chatmenu adm_m_h_w_01","adminmenu.menu.world_01",translator);
+            EliteLib.getMenuManager().addMenu(world_mobloot);
+
+
+
 
 
 
