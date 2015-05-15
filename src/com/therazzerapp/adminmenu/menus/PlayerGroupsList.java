@@ -44,6 +44,6 @@ public class PlayerGroupsList {
             text.appendText("ERROR No player named");
         }
 
-        return text.appendText("\n");
+        return text;
     }
 }

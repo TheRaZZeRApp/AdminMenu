@@ -75,6 +75,7 @@ atl_h_s_res=Reservelisted_ layer:
 atl_h_s_w=World Menu:
 atl_h_s_p=Plugin Menu:
 atl_h_w_t=Tickspeed Menu:
+atl_h_gp=Permission Menu:
 autolist_hover_player=Click to choose a player.
 autolist_hover_amount=Click to choose an amount.
 autolist_hover_achievement=Click to choose an achievement.
@@ -368,13 +369,24 @@ i_w_firespread=- Fire Spread
 i_w_firespread_hover=Click to toggle the fire spread gamerule.
 i_w_firespread_on_hover=Click to turn the firespread on.
 
+
+
+i_g_permission_remove=- Remove Permission From Group
+i_g_permission_remove_hover=Click to remove a permission from a group.
+i_g_addplayer_hover=Click to add a player to a group.
+i_g_removeplayer_hover=Click to remove a player from a group.
+i_g_creategroup=- Create Group
+i_g_creategroup_hover=Click to create a group.
+i_g_deletegroup=- Delete Group
+i_g_deletegroup_hover=Click to delete a group.
+i_g_listgroup=- List Groups
+i_g_listgroup_hover=Click to list all groups.
+i_g_renamegroup=- Rename Group
+i_g_renamegroup_hover=Click to rename a group.
+i_g_permission_add=- Add Permission To Group
+i_g_permission_add_hover=Click to add permissions to a group.
+
 hover_main_player_commands=Click to open the player menu.
 
-item_name_group_create=Create Group
-item_name_group_delete=Delete Group
-item_name_group_list=List Groups
-item_name_group_rename=Rename Group
-item_name_group_permission_add=Add Permission To Group
-item_name_group_permission_remove=Remove Permission From Group
-
 error_cbuilder_unknownparameter=Unknown parameter:
+cbuilder_generatedtext=Generated command:

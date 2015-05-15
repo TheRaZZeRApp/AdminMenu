@@ -77,13 +77,16 @@ public class CommandBuilder extends PlayerCommand {
 
         if(para.equals("") && runCMD){
             player.executeCommand(new String[]{command});
-        } else if (para.equals("")){
+        } else if (para.equals("") && !runCMD){
             ChatComponentFactory f = Canary.factory().getChatComponentFactory();
-            ChatComponent cCCommand = f.newChatComponent(command);
-            cCCommand.getChatStyle().setChatClickEvent(f.newClickEvent(f.getRunCommand(),"/" + command));
+
+            ChatComponent cCText = f.newChatComponent(translator.localeTranslate("cbuilder_generatedtext",player.getLocale()) + "\n============================\n");
+
+            ChatComponent cCCommand = f.newChatComponent("/" + command);
+            cCCommand.getChatStyle().setChatClickEvent(f.newClickEvent(f.getSuggestCommand(),"/" + command));
             cCCommand.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(translator.localeTranslate("cbuilder_runcommand", player.getLocale()))));
             cCCommand.getChatStyle().setColor(f.colorYellow());
-            player.sendChatComponent(cCCommand);
+            player.sendChatComponent(cCText.appendSibling(cCCommand));
         } else {
 
             ChatComponentFactory f = Canary.factory().getChatComponentFactory();

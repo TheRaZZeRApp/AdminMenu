@@ -42,6 +42,6 @@ public class GroupPermissionList {
             text.appendSibling(groupText);
         }
 
-        return text.appendText("\n");
+        return text;
     }
 }

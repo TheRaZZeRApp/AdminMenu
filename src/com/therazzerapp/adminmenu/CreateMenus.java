@@ -456,6 +456,27 @@ public class CreateMenus {
 
         }
 
+        /////////////////////////////////////////////////////
+        //                    Group Menu                   //
+        /////////////////////////////////////////////////////
+
+        Menu group_00 = EliteLib.getMenuFactory().newMenu("adm_m_h_g", "adminmenu.menu.group_00", f.colorWhite(), translator);
+        group_00.addEntry(getBreakLine());
+        group_00.addEntry(EliteLib.getMenuFactory().newMenuEntry("i_c_addplayer", "adminmenu.group.addplayer", f.colorYellow(), f.getShowText(), f.newChatComponent("i_g_addplayer_hover"), f.getRunCommand(), "/acb true atl_h_gp adm_m_h_g true playermod add %p %g", translator));
+        group_00.addEntry(EliteLib.getMenuFactory().newMenuEntry("i_c_removeplayer", "adminmenu.group.removeplayer", f.colorYellow(), f.getShowText(), f.newChatComponent("i_g_removeplayer_hover"), f.getRunCommand(), "/acb true atl_h_gp adm_m_h_g true playermod remove %p %g", translator));
+        group_00.addEntry(EliteLib.getMenuFactory().newMenuEntry("i_g_creategroup", "adminmenu.group.create", f.colorYellow(), f.getShowText(), f.newChatComponent("i_g_creategroup_hover"), f.getSuggestCommand(), "/groupmod add <name>", translator));
+        group_00.addEntry(EliteLib.getMenuFactory().newMenuEntry("i_g_deletegroup", "adminmenu.group.delete", f.colorYellow(), f.getShowText(), f.newChatComponent("i_g_deletegroup_hover"), f.getRunCommand(), "/acb true atl_h_gp adm_m_h_g true groupmod remove %g", translator));
+        group_00.addEntry(EliteLib.getMenuFactory().newMenuEntry("i_g_listgroup", "adminmenu.group.list", f.colorYellow(), f.getShowText(), f.newChatComponent("i_g_listgroup_hover"), f.getRunCommand(), "/groupmod list", translator));
+        group_00.addEntry(EliteLib.getMenuFactory().newMenuEntry("i_g_renamegroup", "adminmenu.group.rename", f.colorYellow(), f.getShowText(), f.newChatComponent("i_g_renamegroup_hover"), f.getRunCommand(), "/acb false atl_h_gp adm_m_h_g true groupmod rename %g <newName>", translator));
+        group_00.addEntry(EliteLib.getMenuFactory().newMenuEntry("i_g_permission_add", "adminmenu.group.permission.add", f.colorYellow(), f.getShowText(), f.newChatComponent("i_g_permission_add_hover"), f.getRunCommand(), "/acb false atl_h_gp adm_m_h_g true groupmod permission add %g <permission>", translator));
+
+        EliteLib.getMenuManager().addMenu(addNavigation(group_00, translator, "adminmenu.menu.group_01", "/chatclick chatmenu adm_m_h_g_01", null,null));
+
+        Menu group_01 = EliteLib.getMenuFactory().newMenu("adm_m_h_g_01", "adminmenu.menu.group_01", f.colorWhite(), translator);
+        group_01.addEntry(getBreakLine());
+        group_01.addEntry(EliteLib.getMenuFactory().newMenuEntry("i_g_permission_remove", "adminmenu.group.permission.remove", f.colorYellow(), f.getShowText(), f.newChatComponent("i_g_permission_remove_hover"), f.getRunCommand(), "/acb true atl_h_gp adm_m_h_g_01 true groupmod permission remove %g %pg", translator));
+        EliteLib.getMenuManager().addMenu(addNavigation(group_01, translator, null,null, "adminmenu.menu.group_00", "/chatclick chatmenu adm_m_h_g_00"));
+
     }
 
     private static ChatComponent getHyphen (String lang){
