@@ -48,7 +48,6 @@ public class EffectList {
             text.appendSibling(amountText);
 
         }
-        text.appendText("\n");
         return text;
     }
 }

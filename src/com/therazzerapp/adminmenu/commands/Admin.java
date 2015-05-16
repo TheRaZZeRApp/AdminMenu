@@ -7,7 +7,9 @@ import de.myelitecraft.elitelib.api.commands.Arg;
 import de.myelitecraft.elitelib.api.commands.CommandMeta;
 import de.myelitecraft.elitelib.api.commands.PlayerCommand;
 import de.myelitecraft.elitelib.api.menu.Menu;
+import net.canarymod.Canary;
 import net.canarymod.api.entity.living.humanoid.Player;
+import net.canarymod.api.factory.ChatComponentFactory;
 import net.canarymod.commandsys.CommandOwner;
 import net.visualillusionsent.utils.LocaleHelper;
 
@@ -37,11 +39,12 @@ public class Admin extends PlayerCommand{
         playersInMenu.add(player);
 
         if(AdminMenu.settings.isMuteChatInMenu()){
-            //Mute chat
+            ChatComponentFactory f = Canary.factory().getChatComponentFactory();
+            player.showTitle(f.newChatComponent(translator.localeTranslate("extras_chatoff",player.getLocale())));
         }
 
-        Menu main = EliteLib.getMenuManager().getMenu("adm_m_h_main");
         player.message("\n\n\n\n\n\n\n\n\n\n\n\n");
+        Menu main = EliteLib.getMenuManager().getMenu("adm_m_h_main");
         main.showMenu(player);
     }
 }

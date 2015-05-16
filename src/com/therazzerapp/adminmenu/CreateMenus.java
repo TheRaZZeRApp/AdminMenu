@@ -243,8 +243,9 @@ public class CreateMenus {
             Menu server_world = EliteLib.getMenuFactory().newMenu("adm_m_h_s_w", "adminmenu.menu.server.world", f.colorWhite(), translator);
             server_world.addEntry(getBreakLine());
             server_world.addEntry(EliteLib.getMenuFactory().newMenuEntry("i_s_w_create", "adminmenu.server.world.create", f.colorYellow(), f.getShowText(), f.newChatComponent("i_s_w_create_hover"), f.getSuggestCommand(), "/world create <worldName>", translator));
-            server_world.addEntry(EliteLib.getMenuFactory().newMenuEntry("i_s_w_delete", "adminmenu.server.world.create", f.colorYellow(), f.getShowText(), f.newChatComponent("i_s_w_delete_hover"), f.getRunCommand(), "/acb true atl_h_s_w adm_m_h_s_w true world delete %wo", translator));
+            server_world.addEntry(EliteLib.getMenuFactory().newMenuEntry("i_s_w_delete", "adminmenu.server.world.create", f.colorYellow(), f.getShowText(), f.newChatComponent("i_s_w_delete_hover"), f.getRunCommand(), "/acb true atl_h_s_wd adm_m_h_s_w true world delete %wo", translator));
             server_world.addEntry(EliteLib.getMenuFactory().newMenuEntry("i_s_w_load", "adminmenu.server.world.load", f.colorYellow(), f.getShowText(), f.newChatComponent("i_s_w_load_hover"), f.getSuggestCommand(), "/world load <worldName>", translator));
+            server_world.addEntry(EliteLib.getMenuFactory().newMenuEntry("i_s_w_unload", "adminmenu.server.world.unload", f.colorYellow(), f.getShowText(), f.newChatComponent("i_s_w_unload_hover"), f.getSuggestCommand(), "/world unload <worldName>", translator));
             EliteLib.getMenuManager().addMenu(addNavigation(server_world, translator, null, null, "adminmenu.menu.server_00", "/chatclick chatmenu adm_m_h_s"));
 
             //Debugmode menu
@@ -479,11 +480,11 @@ public class CreateMenus {
 
     }
 
-    private static ChatComponent getHyphen (String lang){
+    public static ChatComponent getHyphen (String lang){
         return f.newChatComponent("- ").appendSibling(f.newChatComponent(lang));
     }
 
-    private static Menu addNavigation(Menu menu,LocaleHelper translator,String permissionForward, String commandForward, String permissionBack, String commandBack){
+    public static Menu addNavigation(Menu menu,LocaleHelper translator,String permissionForward, String commandForward, String permissionBack, String commandBack){
         
         //Forward Buttons
         if(!(commandForward == null)){
@@ -509,18 +510,18 @@ public class CreateMenus {
         return menu;
     }
 
-    private static Menu addNavigation(Menu menu,LocaleHelper translator){
+    public static Menu addNavigation(Menu menu,LocaleHelper translator){
         menu.addEntry(getBreakLine());
         menu.addEntry(new Exit(translator).getItem());
         menu.addEntry(EliteLib.getMenuFactory().newBlankLine());
         return menu;
     }
 
-    private static MenuEntry getBreakLine(){
+    public static MenuEntry getBreakLine(){
         return EliteLib.getMenuFactory().newMenuEntry("============================");
     }
 
-    private static Menu getGameruleMenu(String menuName, String menuPermission, String itemPermission, String onHover, String offHover, String statusHover, String gameRule, String commandBack, String permissionBack, LocaleHelper translator){
+    public static Menu getGameruleMenu(String menuName, String menuPermission, String itemPermission, String onHover, String offHover, String statusHover, String gameRule, String commandBack, String permissionBack, LocaleHelper translator){
         Menu menu = EliteLib.getMenuFactory().newMenu(menuName,menuPermission, f.colorWhite(),translator);
         menu.addEntry(getBreakLine());
         menu.addEntry(EliteLib.getMenuFactory().newMenuEntry("i_c_turnon", itemPermission + ".turnon", f.colorYellow(), f.getShowText(), f.newChatComponent(onHover + "_hover"), f.getRunCommand(), "/gamerule " + gameRule + " true", translator));

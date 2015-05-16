@@ -92,9 +92,6 @@ public class CommandBuilder extends PlayerCommand {
             ChatComponentFactory f = Canary.factory().getChatComponentFactory();
             player.message("\n\n\n\n\n\n\n\n\n\n\n\n\n\n" + translator.localeTranslate(headline, player.getLocale()) + "\n============================");
 
-            //System.out.println(para);
-
-
             player.sendChatComponent(getMenu(para, "acb " + runCMD + " " + headline + " " + back + " " + refreshAble + " " + command, player));
 
             if(refreshAble){
@@ -127,7 +124,7 @@ public class CommandBuilder extends PlayerCommand {
     private ChatComponent getMenu(String para, String command, Player player){
 
         if(para.equals(parameters[0])){
-            return PlayerList.getBody(translator.localeTranslate("autolist_hover_player",player.getLocale()),command);
+            return PlayerList.getBody(translator.localeTranslate("autolist_hover_player",player.getLocale()),command,player,translator);
         } else if (para.equals(parameters[1])){
             return WhiteList.getBody(translator.localeTranslate("autolist_hover_player",player.getLocale()),command);
         } else if (para.equals(parameters[2])){
@@ -169,7 +166,7 @@ public class CommandBuilder extends PlayerCommand {
         } else if (para.equals(parameters[21])){
             return BannedPlayerList.getBody(translator.localeTranslate("autolist_hover_player", player.getLocale()), command);
         } else if (para.equals(parameters[22])){
-            return WorldList.getBody(translator.localeTranslate("autolist_hover_world", player.getLocale()), command);
+            return WorldList.getBody(translator.localeTranslate("autolist_hover_world", player.getLocale()), command, player,translator);
         }
 
         ChatComponentFactory f = Canary.factory().getChatComponentFactory();

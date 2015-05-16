@@ -16,11 +16,11 @@ import net.canarymod.api.statistics.Achievements;
 
 public class AchievementList {
     public static ChatComponent getBody(String tooltip, String command){
+
         ChatComponentFactory f = Canary.factory().getChatComponentFactory();
         ChatComponent text = f.newChatComponent("");
 
         int counter = 0;
-
         for (Achievements type : Achievements.values()){
 
             ChatComponent amountText;
@@ -35,11 +35,8 @@ public class AchievementList {
 
             amountText.getChatStyle().setColor(f.colorYellow());
 
-            amountText.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip + type.name().toLowerCase())));
-
-            String com = command.replaceFirst("%ac", type.getNativeName());
-
-            amountText.getChatStyle().setChatClickEvent(f.newClickEvent(f.getRunCommand(), '/' + com));
+            amountText.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip + " " + type.name().toLowerCase())));
+            amountText.getChatStyle().setChatClickEvent(f.newClickEvent(f.getRunCommand(), '/' + command.replaceFirst("%ac", type.getNativeName())));
 
             text.appendSibling(amountText);
         }
