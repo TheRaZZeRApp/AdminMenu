@@ -35,7 +35,7 @@ public class PlayerInventoryList {
 
                 Item item = player.getInventory().getSlot(x);
                 if (item != null) {
-                    ChatComponent groupText = f.newChatComponent("- " + item.getDisplayName() + " Amount: " + item.getAmount() + "\n");
+                    ChatComponent groupText = f.newChatComponent("- " + item.getDisplayName() + " Amount: §a" + item.getAmount() + "\n");
 
                     groupText.getChatStyle().setColor(f.colorYellow());
 

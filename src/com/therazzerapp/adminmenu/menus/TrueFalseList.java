@@ -4,7 +4,9 @@ import net.canarymod.Canary;
 import net.canarymod.api.chat.ChatComponent;
 import net.canarymod.api.chat.ClickEvent;
 import net.canarymod.api.chat.HoverEvent;
+import net.canarymod.api.entity.living.humanoid.Player;
 import net.canarymod.api.factory.ChatComponentFactory;
+import net.visualillusionsent.utils.LocaleHelper;
 
 /**
  * Project: AdminMenu
@@ -16,7 +18,7 @@ import net.canarymod.api.factory.ChatComponentFactory;
  */
 
 public class TrueFalseList {
-    public static ChatComponent getBody(String tooltip, String command) {
+    public static ChatComponent getBody(String tooltip, String command,Player player,LocaleHelper translator) {
         ChatComponentFactory f = Canary.factory().getChatComponentFactory();
         ChatComponent text = f.newChatComponent("");
 
@@ -26,25 +28,17 @@ public class TrueFalseList {
             amountText.getChatStyle().setColor(f.colorYellow());
             switch (x){
                 case 0:
-                    amountText.appendText("- True");
+                    amountText.appendText(translator.localeTranslate("extras_true",player.getLocale()) + "\n");
                     amount = "true";
                     break;
                 case 1:
-                    amountText.appendText("- False");
+                    amountText.appendText(translator.localeTranslate("extras_false",player.getLocale()));
                     amount = "false";
                     break;
             }
 
-            amountText.appendText("\n");
-
-            HoverEvent hoverEvent = f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip));
-            amountText.getChatStyle().setChatHoverEvent(hoverEvent);
-
-            String com  = command.replaceFirst("%tf" ,amount);
-
-            ClickEvent clickEvent = f.newClickEvent(f.getRunCommand(), '/' + com);
-            amountText.getChatStyle().setChatClickEvent(clickEvent);
-
+            amountText.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip)));
+            amountText.getChatStyle().setChatClickEvent(f.newClickEvent(f.getRunCommand(), '/' + command.replaceFirst("%tf" ,amount)));
             text.appendSibling(amountText);
         }
         return text;

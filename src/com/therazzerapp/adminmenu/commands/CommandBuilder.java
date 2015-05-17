@@ -112,7 +112,7 @@ public class CommandBuilder extends PlayerCommand {
 
             ChatComponent cCExit = f.newChatComponent(translator.localeTranslate("i_c_close", player.getLocale()));
             cCExit.getChatStyle().setColor(f.colorYellow());
-            cCExit.getChatStyle().setChatClickEvent(f.newClickEvent(f.getRunCommand(), "/adminmenu exit"));
+            cCExit.getChatStyle().setChatClickEvent(f.newClickEvent(f.getRunCommand(), "/admin exit"));
             cCExit.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(),f.newChatComponent(translator.localeTranslate("i_c_exit_hover", player.getLocale()))));
             player.sendChatComponent(cCExit);
 
@@ -126,9 +126,9 @@ public class CommandBuilder extends PlayerCommand {
         if(para.equals(parameters[0])){
             return PlayerList.getBody(translator.localeTranslate("autolist_hover_player",player.getLocale()),command,player,translator);
         } else if (para.equals(parameters[1])){
-            return WhiteList.getBody(translator.localeTranslate("autolist_hover_player",player.getLocale()),command);
+            return WhiteList.getBody(translator.localeTranslate("autolist_hover_player",player.getLocale()),command,player,translator);
         } else if (para.equals(parameters[2])){
-            return ReserveList.getBody(translator.localeTranslate("autolist_hover_player", player.getLocale()), command);
+            return ReserveList.getBody(translator.localeTranslate("autolist_hover_player", player.getLocale()), command,player,translator);
         } else if (para.equals(parameters[3])){
             return AmountList00.getBody(translator.localeTranslate("autolist_hover_amount", player.getLocale()), command);
         } else if (para.equals(parameters[4])){
@@ -152,9 +152,9 @@ public class CommandBuilder extends PlayerCommand {
         } else if (para.equals(parameters[14])){
             return GroupPermissionList.getBody(translator.localeTranslate("autolist_hover_permission", player.getLocale()), command);
         } else if (para.equals(parameters[15])){
-            return PluginList.getBody(translator.localeTranslate("autolist_hover_plugins", player.getLocale()), command);
+            return PluginList.getBody(translator.localeTranslate("autolist_hover_plugins", player.getLocale()), command,player,translator);
         } else if (para.equals(parameters[16])){
-            return GroupList.getBody(translator.localeTranslate("autolist_hover_group", player.getLocale()), command);
+            return GroupList.getBody(translator.localeTranslate("autolist_hover_group", player.getLocale()), command, player,translator);
         } else if (para.equals(parameters[17])){
             return PlayerGroupsList.getBody(translator.localeTranslate("autolist_hover_block", player.getLocale()), command);
         } else if (para.equals(parameters[18])){
@@ -162,9 +162,9 @@ public class CommandBuilder extends PlayerCommand {
         } else if (para.equals(parameters[19])){
             return EffectList.getBody(translator.localeTranslate("autolist_hover_effect", player.getLocale()), command);
         } else if (para.equals(parameters[20])){
-            return TrueFalseList.getBody(translator.localeTranslate("autolist_hover_tf", player.getLocale()), command);
+            return TrueFalseList.getBody(translator.localeTranslate("autolist_hover_tf", player.getLocale()), command,player,translator);
         } else if (para.equals(parameters[21])){
-            return BannedPlayerList.getBody(translator.localeTranslate("autolist_hover_player", player.getLocale()), command);
+            return BannedPlayerList.getBody(translator.localeTranslate("autolist_hover_player", player.getLocale()), command, player,translator);
         } else if (para.equals(parameters[22])){
             return WorldList.getBody(translator.localeTranslate("autolist_hover_world", player.getLocale()), command, player,translator);
         }

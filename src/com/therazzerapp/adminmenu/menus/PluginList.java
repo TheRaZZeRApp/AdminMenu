@@ -1,10 +1,14 @@
 package com.therazzerapp.adminmenu.menus;
 
+import com.therazzerapp.adminmenu.AdminMenu;
 import net.canarymod.Canary;
 import net.canarymod.api.chat.ChatComponent;
 import net.canarymod.api.chat.ClickEvent;
 import net.canarymod.api.chat.HoverEvent;
+import net.canarymod.api.entity.living.humanoid.Player;
 import net.canarymod.api.factory.ChatComponentFactory;
+import net.canarymod.plugin.Plugin;
+import net.visualillusionsent.utils.LocaleHelper;
 
 /**
  * Project: AdminMenu
@@ -16,25 +20,44 @@ import net.canarymod.api.factory.ChatComponentFactory;
  */
 
 public class PluginList {
-    public static ChatComponent getBody(String tooltip, String command) {
+    public static ChatComponent getBody(String tooltip, String command,Player player, LocaleHelper translator) {
         ChatComponentFactory f = Canary.factory().getChatComponentFactory();
         ChatComponent text = f.newChatComponent("");
 
-        for (String plugin : Canary.pluginManager().getPluginNames()) {
+        int counter = 0;
+        String komma;
+        for (Plugin plugin : Canary.pluginManager().getPlugins()) {
 
-            ChatComponent reserveText = f.newChatComponent(plugin + ", ");
+            counter++;
+            komma = ", ";
+            if (counter >= Canary.pluginManager().getPlugins().size()){
+                komma = "";
+            }else if((counter % 5) == 0){
+                komma = ",\n";
+            }
 
-            reserveText.getChatStyle().setColor(f.colorYellow());
-            //todo Color red=disabled green=enabled
-            HoverEvent hoverEvent = f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip));
-            reserveText.getChatStyle().setChatHoverEvent(hoverEvent);
+            ChatComponent pluginText = f.newChatComponent(plugin.getName() + komma);
 
-            String com  = command.replaceFirst("%pl" , plugin);
+            String status;
+            if(plugin.isDisabled()){
+                status = translator.localeTranslate("atl_pg_disabled",player.getLocale());
+            }else {
+                status = translator.localeTranslate("atl_pg_enabled",player.getLocale());
+            }
 
-            ClickEvent clickEvent = f.newClickEvent(f.getRunCommand(), '/' + com);
-            reserveText.getChatStyle().setChatClickEvent(clickEvent);
+            pluginText.getChatStyle().setColor(f.colorYellow());
 
-            text.appendSibling(reserveText);
+            pluginText.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip + " §a" + plugin.getName())));
+
+            if(AdminMenu.settings.isPluginInfos()){
+                pluginText.getChatStyle().getChatHoverEvent().getValue()
+                        .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_pg_status", player.getLocale()) + " " + status))
+                        .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_pg_author", player.getLocale()) + " §a" + plugin.getAuthor()))
+                        .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_pg_version", player.getLocale()) + " §a" + plugin.getVersion()));
+            }
+
+            pluginText.getChatStyle().setChatClickEvent(f.newClickEvent(f.getRunCommand(), '/' + command.replaceFirst("%pl" , plugin.getName())));
+            text.appendSibling(pluginText);
         }
 
         return text;

@@ -228,8 +228,8 @@ public class CreateMenus {
             Menu server_reservelist = EliteLib.getMenuFactory().newMenu("adm_m_h_s_res", "adminmenu.menu.server.reservelist", f.colorWhite(), translator);
             server_reservelist.addEntry(getBreakLine());
             server_reservelist.addEntry(EliteLib.getMenuFactory().newMenuEntry("i_c_addplayer", "adminmenu.server.reservelist.add", f.colorYellow(), f.getShowText(), f.newChatComponent("i_s_res_add_hover"), f.getSuggestCommand(), "/reservelist add <player>", translator));
-            server_reservelist.addEntry(EliteLib.getMenuFactory().newMenuEntry("i_c_removeplayer", "adminmenu.server.reservelist.remove", f.colorYellow(), f.getShowText(), f.newChatComponent("i_s_res_remove_hover"), f.getSuggestCommand(), "/acb true atl_h_s_res adm_m_h_s_res true reservelist remove %r", translator));
-            server_reservelist.addEntry(EliteLib.getMenuFactory().newMenuEntry("i_c_listplayer", "adminmenu.server.reservelist.list", f.colorYellow(), f.getShowText(), f.newChatComponent("i_s_res_list_hover"), f.getSuggestCommand(), "/acb true atl_h_s_res adm_m_h_s_res true msg %r", translator));
+            server_reservelist.addEntry(EliteLib.getMenuFactory().newMenuEntry("i_c_removeplayer", "adminmenu.server.reservelist.remove", f.colorYellow(), f.getShowText(), f.newChatComponent("i_s_res_remove_hover"), f.getRunCommand(), "/acb true atl_h_s_res adm_m_h_s_res true reservelist remove %r", translator));
+            server_reservelist.addEntry(EliteLib.getMenuFactory().newMenuEntry("i_c_listplayer", "adminmenu.server.reservelist.list", f.colorYellow(), f.getShowText(), f.newChatComponent("i_s_res_list_hover"), f.getRunCommand(), "/acb true atl_h_s_res adm_m_h_s_res true msg %r", translator));
             EliteLib.getMenuManager().addMenu(addNavigation(server_reservelist, translator, null, null, "adminmenu.menu.server_00", "/chatclick chatmenu adm_m_h_s"));
 
             //Timeout menu

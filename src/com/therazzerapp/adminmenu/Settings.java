@@ -18,6 +18,11 @@ public class Settings {
     private final boolean servermenu;
     private final boolean worldmenu;
     private final boolean groupmenu;
+    private final boolean playerInfos;
+    private final boolean worldInfos;
+    private final boolean pluginInfos;
+    private final boolean banInfos;
+    private final boolean groupInfos;
 
     public Settings(JsonObject root) {
         this.muteChatInMenu = root.getAsJsonPrimitive("muteChatInMenu").getAsBoolean();
@@ -25,6 +30,11 @@ public class Settings {
         this.servermenu = root.getAsJsonPrimitive("servermenu").getAsBoolean();
         this.worldmenu = root.getAsJsonPrimitive("worldmenu").getAsBoolean();
         this.groupmenu = root.getAsJsonPrimitive("groupmenu").getAsBoolean();
+        this.playerInfos = root.getAsJsonPrimitive("playerInfos").getAsBoolean();
+        this.worldInfos = root.getAsJsonPrimitive("worldInfos").getAsBoolean();
+        this.pluginInfos = root.getAsJsonPrimitive("pluginInfos").getAsBoolean();
+        this.banInfos = root.getAsJsonPrimitive("banInfos").getAsBoolean();
+        this.groupInfos = root.getAsJsonPrimitive("groupInfos").getAsBoolean();
     }
 
     public boolean isMuteChatInMenu() {
@@ -45,5 +55,25 @@ public class Settings {
 
     public boolean isGroupmenu() {
         return groupmenu;
+    }
+
+    public boolean isPlayerInfos() {
+        return playerInfos;
+    }
+
+    public boolean isWorldInfos() {
+        return worldInfos;
+    }
+
+    public boolean isPluginInfos() {
+        return pluginInfos;
+    }
+
+    public boolean isBanInfos() {
+        return banInfos;
+    }
+
+    public boolean isGroupInfos() {
+        return groupInfos;
     }
 }

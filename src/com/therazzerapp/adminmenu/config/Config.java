@@ -55,6 +55,11 @@ public class Config {
         root.addProperty("servermenu",true);
         root.addProperty("worldmenu",true);
         root.addProperty("groupmenu",true);
+        root.addProperty("playerInfos",true);
+        root.addProperty("worldInfos",true);
+        root.addProperty("pluginInfos",true);
+        root.addProperty("banInfos",true);
+        root.addProperty("groupInfos",true);
         saveJsonFile(file,root);
     }
 }

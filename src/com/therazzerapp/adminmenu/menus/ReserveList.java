@@ -1,11 +1,14 @@
 package com.therazzerapp.adminmenu.menus;
 
+import com.therazzerapp.adminmenu.AdminMenu;
 import net.canarymod.Canary;
 import net.canarymod.api.PlayerReference;
 import net.canarymod.api.chat.ChatComponent;
 import net.canarymod.api.chat.ClickEvent;
 import net.canarymod.api.chat.HoverEvent;
+import net.canarymod.api.entity.living.humanoid.Player;
 import net.canarymod.api.factory.ChatComponentFactory;
+import net.visualillusionsent.utils.LocaleHelper;
 
 /**
  * Project: AdminMenu
@@ -17,43 +20,63 @@ import net.canarymod.api.factory.ChatComponentFactory;
  */
 
 public class ReserveList {
-    public static ChatComponent getBody(String tooltip, String command) {
+    public static ChatComponent getBody(String tooltip, String command,Player player, LocaleHelper translator) {
         ChatComponentFactory f = Canary.factory().getChatComponentFactory();
         ChatComponent text = f.newChatComponent("");
 
+        int counter = 0;
+        String komma = ",";
         for (String uuid : Canary.reservelist().getReservations()) {
+
+            counter++;
+            if(counter >= Canary.whitelist().getWhitelisted().length){
+                komma = "";
+            }
+
+
             PlayerReference reference = Canary.getServer().matchKnownPlayer(uuid);
+
             if (reference != null) {
 
-                ChatComponent reserveText = f.newChatComponent(reference.getName() + ", ");
 
-                reserveText.getChatStyle().setColor(f.colorYellow());
-                HoverEvent hoverEvent = f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip));
-                reserveText.getChatStyle().setChatHoverEvent(hoverEvent);
+                ChatComponent reservelistText = f.newChatComponent(reference.getName() + komma);
+                reservelistText.getChatStyle().setColor(f.colorYellow());
+                reservelistText.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip +  " §a" + reference.getName())));
 
-                String com  = command.replaceFirst("%r" , reference.getName());
+                String online = translator.localeTranslate("extras_no", player.getLocale());
+                if(reference.isOnline()){
+                    online = translator.localeTranslate("extras_yes",player.getLocale());
+                }
 
-                ClickEvent clickEvent = f.newClickEvent(f.getRunCommand(), '/' + com);
-                reserveText.getChatStyle().setChatClickEvent(clickEvent);
+                if(AdminMenu.settings.isPlayerInfos()){
+                    reservelistText.getChatStyle().getChatHoverEvent().getValue()
+                            .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_w_online", player.getLocale()) + " §f" + online))
+                            .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_p_group", player.getLocale()) + " §f" + reference.getGroup().getName()));
 
-                text.appendSibling(reserveText);
+                    if(reference.isOnline()){
+                        reservelistText.getChatStyle().getChatHoverEvent().getValue()
+                                .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_p_world", player.getLocale()) + " §f" + reference.getWorld().getName()))
+                                .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_p_ip", player.getLocale()) + " §f" + reference.getIP()));
+                    }
+                }
+
+                reservelistText.getChatStyle().setChatClickEvent(f.newClickEvent(f.getRunCommand(), '/' + command.replaceFirst("%w" , reference.getName())));
+
+                text.appendSibling(reservelistText);
 
             } else {
-                ChatComponent reserveText = f.newChatComponent("Unknown, ");
-                reserveText.getChatStyle().setColor(f.colorYellow());
-                HoverEvent hoverEvent = f.newHoverEvent(f.getShowText(), f.newChatComponent(uuid));
-                reserveText.getChatStyle().setChatHoverEvent(hoverEvent);
+                ChatComponent reservelistText = f.newChatComponent(translator.localeTranslate("atl_w_unknown", player.getLocale()) + komma);
+                reservelistText.getChatStyle().setColor(f.colorGold());
+                HoverEvent hoverEvent = f.newHoverEvent(f.getShowText(), f.newChatComponent("UUID: §a" + uuid));
+                reservelistText.getChatStyle().setChatHoverEvent(hoverEvent);
 
-                String com  = command.replaceFirst("%r" , uuid);
 
-                ClickEvent clickEvent = f.newClickEvent(f.getRunCommand(), '/' + com);
-                reserveText.getChatStyle().setChatClickEvent(clickEvent);
+                ClickEvent clickEvent = f.newClickEvent(f.getRunCommand(), '/' + command.replaceFirst("%w" , uuid));
+                reservelistText.getChatStyle().setChatClickEvent(clickEvent);
 
-                text.appendSibling(reserveText);
+                text.appendSibling(reservelistText);
             }
         }
-        text.appendText("\n");
-
         return text;
     }
 }

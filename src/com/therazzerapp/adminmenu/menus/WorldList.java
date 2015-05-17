@@ -1,5 +1,6 @@
 package com.therazzerapp.adminmenu.menus;
 
+import com.therazzerapp.adminmenu.AdminMenu;
 import net.canarymod.Canary;
 import net.canarymod.api.chat.ChatComponent;
 import net.canarymod.api.entity.living.humanoid.Player;
@@ -39,12 +40,16 @@ public class WorldList {
                 temp.getChatStyle().setColor(f.colorRed());
             } else {
                 temp = f.newChatComponent("- " + w.getName() + newLine);
-                temp.getChatStyle().setColor(f.colorGreen());
+                temp.getChatStyle().setColor(f.colorYellow());
             }
 
-            ChatComponent cCPlayer = f.newChatComponent("\n" + translator.localeTranslate("atl_w_player",player.getLocale())+ " " + w.getPlayerList().size());
-            ChatComponent cCType = f.newChatComponent("\n" + translator.localeTranslate("atl_w_type",player.getLocale()) + " " + w.getType().getName().toLowerCase());
-            temp.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(translator.localeTranslate(tooltip, player.getLocale()) + " " + w.getName()).appendSibling(cCPlayer).appendSibling(cCType)));
+            temp.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(translator.localeTranslate(tooltip, player.getLocale()) + " " + w.getName())));
+
+            if(AdminMenu.settings.isWorldInfos()){
+                temp.getChatStyle().getChatHoverEvent().getValue()
+                        .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_w_player",player.getLocale())+ " " + w.getPlayerList().size()))
+                        .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_w_type",player.getLocale()) + " " + w.getType().getName().toLowerCase()));
+            }
 
 
             temp.getChatStyle().setChatClickEvent(f.newClickEvent(f.getRunCommand(), '/' + command.replaceFirst("%wo" , w.getName()+ "_" +w.getType().getName())));
