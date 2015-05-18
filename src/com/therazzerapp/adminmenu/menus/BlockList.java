@@ -1,5 +1,7 @@
 package com.therazzerapp.adminmenu.menus;
 
+import com.google.gson.JsonObject;
+import com.therazzerapp.adminmenu.config.Config;
 import net.canarymod.Canary;
 import net.canarymod.api.chat.ChatComponent;
 import net.canarymod.api.chat.ClickEvent;
@@ -19,6 +21,8 @@ public class BlockList {
     public static ChatComponent getBody(String tooltip, String command) {
         ChatComponentFactory f = Canary.factory().getChatComponentFactory();
         ChatComponent text = f.newChatComponent("");
+
+        JsonObject root = Config.getBlockList();
 
         for (int x = 1; x <= 9;x++) {
             String amount = "";

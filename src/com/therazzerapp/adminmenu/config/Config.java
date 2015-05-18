@@ -6,6 +6,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import org.json.simple.JSONObject;
 
 import java.io.File;
 import java.io.FileReader;
@@ -49,7 +50,10 @@ public class Config {
     }
 
     public static void createConfig(File file){
+
+
         JsonObject root = new JsonObject();
+
         root.addProperty("muteChatInMenu",true);
         root.addProperty("playermenu",true);
         root.addProperty("servermenu",true);
@@ -61,5 +65,23 @@ public class Config {
         root.addProperty("banInfos",true);
         root.addProperty("groupInfos",true);
         saveJsonFile(file,root);
+    }
+
+    public static void createBlockList(File file){
+        JsonObject root = new JsonObject();
+        root.addProperty("- Stone","minecraft:stone");
+        root.addProperty("- Grass","minecraft:grass");
+        root.addProperty("- Dirt","minecraft:dirt");
+        root.addProperty("- Cobblestone","minecraft:cobblestone");
+        root.addProperty("- Oak Wood Plank","minecraft:planks");
+        root.addProperty("- Oak Wood","minecraft:log");
+        root.addProperty("- Glass","minecraft:glass");
+        root.addProperty("- White Wool","minecraft:wool");
+        root.addProperty("- Stone Slab","minecraft:stone_slab");
+        saveJsonFile(file,root);
+    }
+
+    public static JsonObject getBlockList(){
+        return readJsonFile(new File("./config/AdminMenu/ATL/blockList.json"));
     }
 }

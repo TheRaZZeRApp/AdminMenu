@@ -1,5 +1,6 @@
 package com.therazzerapp.adminmenu;
 
+import com.google.gson.JsonObject;
 import com.therazzerapp.adminmenu.commands.Admin;
 import com.therazzerapp.adminmenu.commands.CommandBuilder;
 import com.therazzerapp.adminmenu.config.Config;
@@ -54,6 +55,12 @@ public class AdminMenu extends Plugin {
             translator = new Translator("en_US");
         }
 
+        createATLConfigs();
+
+
+
+
+
         CreateMenus.initMenus(translator);
         EliteLib.getCommandManager().registerCommand(this, new Admin(this, translator));
         EliteLib.getCommandManager().registerCommand(this,new CommandBuilder(this,translator));
@@ -66,5 +73,23 @@ public class AdminMenu extends Plugin {
     @Override
     public void disable() {
 
+    }
+
+    private void createATLConfigs(){
+        //ATL Configs
+        File atlConfigDir = new File("./config/AdminMenu/ATL/");
+        if(!atlConfigDir.exists()){
+            atlConfigDir.mkdir();
+        }
+        File atlBlockListConfig = new File("./config/AdminMenu/ATL/blockList.json");
+        if(!atlBlockListConfig.exists()){
+            try {
+                atlBlockListConfig.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            getLogman().info("Config file created");
+            Config.createBlockList(atlBlockListConfig);
+        }
     }
 }
