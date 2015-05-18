@@ -2,8 +2,6 @@ package com.therazzerapp.adminmenu.menus;
 
 import net.canarymod.Canary;
 import net.canarymod.api.chat.ChatComponent;
-import net.canarymod.api.chat.ClickEvent;
-import net.canarymod.api.chat.HoverEvent;
 import net.canarymod.api.factory.ChatComponentFactory;
 import net.canarymod.api.world.effects.SoundEffect;
 
@@ -19,48 +17,40 @@ import net.canarymod.api.world.effects.SoundEffect;
 public class SoundList {
     public static ChatComponent getBody(String tooltip, String command) {
         ChatComponentFactory f = Canary.factory().getChatComponentFactory();
-        ChatComponent text = f.newChatComponent("");
+        ChatComponent cCText = f.newChatComponent("");
 
         int counter = 0;
         int counter2 = 0;
 
 
         for (SoundEffect.Type type : SoundEffect.Type.values()){
-
             counter2++;
 
-            ChatComponent amountText;
+            ChatComponent cCSoundText;
 
             if (counter == 0){
-                amountText = f.newChatComponent("- " + type.name().toLowerCase() + "   ");
+                cCSoundText = f.newChatComponent("- " + type.name().toLowerCase() + "   ");
                 counter = 1;
             } else if (counter == 1){
-                amountText = f.newChatComponent(type.name().toLowerCase() + "   ");
+                cCSoundText = f.newChatComponent(type.name().toLowerCase() + "   ");
                 counter = 2;
             } else {
-                amountText = f.newChatComponent(type.name().toLowerCase() + "\n");
+                cCSoundText = f.newChatComponent(type.name().toLowerCase() + "\n");
                 counter = 0;
             }
 
-            amountText.getChatStyle().setColor(f.colorYellow());
+            cCSoundText.getChatStyle().setColor(f.colorYellow());
+            cCSoundText.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip + type.name().toLowerCase())));
+            cCSoundText.getChatStyle().setChatClickEvent(f.newClickEvent(f.getRunCommand(), '/' + command.replaceFirst("%so", ""+type.getMcName())));
 
-            HoverEvent hoverEvent = f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip + type.name().toLowerCase()));
-            amountText.getChatStyle().setChatHoverEvent(hoverEvent);
+            cCText.appendSibling(cCSoundText);
 
-            String com = command.replaceFirst("%so", ""+type.getMcName());
-
-            ClickEvent clickEvent = f.newClickEvent(f.getRunCommand(), '/' + com);
-            amountText.getChatStyle().setChatClickEvent(clickEvent);
-
-            text.appendSibling(amountText);
-
-            if (counter2 == 120){
-                text.appendText("\n");
-                return text;
+            if (counter2 >= 120){
+                cCText.appendText("\n");
+                return cCText;
             }
 
         }
-        text.appendText("\n");
-        return text;
+        return cCText;
     }
 }

@@ -20,7 +20,7 @@ public class PlayerList {
 
     public static ChatComponent getBody(String tooltip, String command,Player player, LocaleHelper translator){
         ChatComponentFactory f = Canary.factory().getChatComponentFactory();
-        ChatComponent text = f.newChatComponent("");
+        ChatComponent cCText = f.newChatComponent("");
         String komma;
         int counter = 0;
         for (Player p : Canary.getServer().getPlayerList()) {
@@ -31,36 +31,31 @@ public class PlayerList {
                 komma = "";
             }
 
-            ChatComponent playerText = f.newChatComponent(p.getName() + komma);
+            ChatComponent cCPlayerText = f.newChatComponent(p.getName() + komma);
 
             if (p.isOperator() || p.hasPermission("adminmenu.isadmin")) {
-                playerText.getChatStyle().setColor(f.colorRed());
+                cCPlayerText.getChatStyle().setColor(f.colorRed());
             } else {
-                playerText.getChatStyle().setColor(f.colorYellow());
+                cCPlayerText.getChatStyle().setColor(f.colorYellow());
             }
 
             if(p == player){
-                playerText.getChatStyle().setColor(f.colorDarkRed());
+                cCPlayerText.getChatStyle().setColor(f.colorDarkRed());
             }
 
-            playerText.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip + " §a" +p.getName())));
+            cCPlayerText.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip + " §a" +p.getName())));
 
             if(AdminMenu.settings.isPlayerInfos()){
-                playerText.getChatStyle().getChatHoverEvent().getValue()
+                cCPlayerText.getChatStyle().getChatHoverEvent().getValue()
                         .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_p_world", player.getLocale()) + " §f" + p.getWorld().getName()))
                         .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_p_group", player.getLocale()) + " §f" + p.getGroup().getName()))
                         .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_p_ip",player.getLocale()) + " §f" + p.getIP()))
                         .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_p_locale",player.getLocale()) + " §f" + p.getLocale()));
             }
+            cCPlayerText.getChatStyle().setChatClickEvent(f.newClickEvent(f.getRunCommand(), '/' + command.replaceFirst("%p" , p.getName())));
 
-            String com  = command.replaceFirst("%p" , p.getName());
-
-
-            playerText.getChatStyle().setChatClickEvent(f.newClickEvent(f.getRunCommand(), '/' + com));
-
-            text.appendSibling(playerText);
-
+            cCText.appendSibling(cCPlayerText);
         }
-        return text;
+        return cCText;
     }
 }

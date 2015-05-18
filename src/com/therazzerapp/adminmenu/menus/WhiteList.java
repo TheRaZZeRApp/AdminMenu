@@ -22,7 +22,7 @@ import net.visualillusionsent.utils.LocaleHelper;
 public class WhiteList {
     public static ChatComponent getBody(String tooltip, String command, Player player, LocaleHelper translator) {
         ChatComponentFactory f = Canary.factory().getChatComponentFactory();
-        ChatComponent text = f.newChatComponent("");
+        ChatComponent cCText = f.newChatComponent("");
 
         int counter = 0;
         String komma = ",";
@@ -39,9 +39,9 @@ public class WhiteList {
             if (reference != null) {
 
 
-                ChatComponent whitelistText = f.newChatComponent(reference.getName() + komma);
-                whitelistText.getChatStyle().setColor(f.colorYellow());
-                whitelistText.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip +  " §a" + reference.getName())));
+                ChatComponent cCWhitelistText = f.newChatComponent(reference.getName() + komma);
+                cCWhitelistText.getChatStyle().setColor(f.colorYellow());
+                cCWhitelistText.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip +  " §a" + reference.getName())));
 
                 String online = translator.localeTranslate("extras_no",player.getLocale());
                 if(reference.isOnline()){
@@ -49,36 +49,36 @@ public class WhiteList {
                 }
 
                 if(AdminMenu.settings.isPlayerInfos()){
-                    whitelistText.getChatStyle().getChatHoverEvent().getValue()
+                    cCWhitelistText.getChatStyle().getChatHoverEvent().getValue()
                             .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_w_online", player.getLocale()) + " §f" + online))
                             .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_p_group", player.getLocale()) + " §f" + reference.getGroup().getName()));
 
                     if(reference.isOnline()){
-                        whitelistText.getChatStyle().getChatHoverEvent().getValue()
+                        cCWhitelistText.getChatStyle().getChatHoverEvent().getValue()
                                 .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_p_world", player.getLocale()) + " §f" + reference.getWorld().getName()))
                                 .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_p_ip", player.getLocale()) + " §f" + reference.getIP()));
                     }
                 }
 
-                whitelistText.getChatStyle().setChatClickEvent(f.newClickEvent(f.getRunCommand(), '/' + command.replaceFirst("%w" , reference.getName())));
+                cCWhitelistText.getChatStyle().setChatClickEvent(f.newClickEvent(f.getRunCommand(), '/' + command.replaceFirst("%w" , reference.getName())));
 
-                text.appendSibling(whitelistText);
+                cCText.appendSibling(cCWhitelistText);
 
             } else {
 
 
-                ChatComponent whitelistText = f.newChatComponent(translator.localeTranslate("atl_w_unknown", player.getLocale()) + komma);
-                whitelistText.getChatStyle().setColor(f.colorGold());
+                ChatComponent cCWhitelistText = f.newChatComponent(translator.localeTranslate("atl_w_unknown", player.getLocale()) + komma);
+                cCWhitelistText.getChatStyle().setColor(f.colorGold());
                 HoverEvent hoverEvent = f.newHoverEvent(f.getShowText(), f.newChatComponent("UUID: §a" + uuid));
-                whitelistText.getChatStyle().setChatHoverEvent(hoverEvent);
+                cCWhitelistText.getChatStyle().setChatHoverEvent(hoverEvent);
 
 
                 ClickEvent clickEvent = f.newClickEvent(f.getRunCommand(), '/' + command.replaceFirst("%w" , uuid));
-                whitelistText.getChatStyle().setChatClickEvent(clickEvent);
+                cCWhitelistText.getChatStyle().setChatClickEvent(clickEvent);
 
-                text.appendSibling(whitelistText);
+                cCText.appendSibling(cCWhitelistText);
             }
         }
-        return text;
+        return cCText;
     }
 }

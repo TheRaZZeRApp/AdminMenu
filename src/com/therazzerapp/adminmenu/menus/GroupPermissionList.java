@@ -2,8 +2,6 @@ package com.therazzerapp.adminmenu.menus;
 
 import net.canarymod.Canary;
 import net.canarymod.api.chat.ChatComponent;
-import net.canarymod.api.chat.ClickEvent;
-import net.canarymod.api.chat.HoverEvent;
 import net.canarymod.api.factory.ChatComponentFactory;
 import net.canarymod.permissionsystem.PermissionNode;
 import net.canarymod.user.Group;
@@ -20,28 +18,22 @@ import net.canarymod.user.Group;
 public class GroupPermissionList {
     public static ChatComponent getBody(String tooltip, String command) {
         ChatComponentFactory f = Canary.factory().getChatComponentFactory();
-        ChatComponent text = f.newChatComponent("");
+        ChatComponent cCText = f.newChatComponent("");
 
         String[] temp = command.split(" ");
-        String groupName = temp[6];
-        Group group = Canary.usersAndGroups().getGroup(groupName);
+        Group group = Canary.usersAndGroups().getGroup(temp[7]);
 
         for (PermissionNode permission : group.getPermissionProvider().getPermissionMap()) {
 
-            ChatComponent groupText = f.newChatComponent("- " + permission.getFullPath() + "\n");
-            groupText.getChatStyle().setColor(f.colorYellow());
+            ChatComponent cCGroupText = f.newChatComponent("- " + permission.getFullPath() + "\n");
 
-            HoverEvent hoverEvent = f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip));
-            groupText.getChatStyle().setChatHoverEvent(hoverEvent);
+            cCGroupText.getChatStyle().setColor(f.colorYellow());
+            cCGroupText.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip)));
+            cCGroupText.getChatStyle().setChatClickEvent(f.newClickEvent(f.getRunCommand(), '/' + command.replaceFirst("%pg" , permission.getFullPath())));
 
-            String com  = command.replaceFirst("%pg" , permission.getFullPath());
-
-            ClickEvent clickEvent = f.newClickEvent(f.getRunCommand(), '/' + com);
-            groupText.getChatStyle().setChatClickEvent(clickEvent);
-
-            text.appendSibling(groupText);
+            cCText.appendSibling(cCGroupText);
         }
 
-        return text;
+        return cCText;
     }
 }

@@ -2,13 +2,10 @@ package com.therazzerapp.adminmenu.menus;
 
 import net.canarymod.Canary;
 import net.canarymod.api.chat.ChatComponent;
-import net.canarymod.api.chat.ClickEvent;
-import net.canarymod.api.chat.HoverEvent;
 import net.canarymod.api.entity.living.humanoid.Player;
 import net.canarymod.api.factory.ChatComponentFactory;
 import net.canarymod.api.inventory.Item;
 
-import java.util.Arrays;
 
 /**
  * Project: AdminMenu
@@ -22,39 +19,28 @@ import java.util.Arrays;
 public class PlayerInventoryList {
     public static ChatComponent getBody(String tooltip, String command) {
         ChatComponentFactory f = Canary.factory().getChatComponentFactory();
-        ChatComponent text = f.newChatComponent("");
+        ChatComponent cCText = f.newChatComponent("");
 
         String[] playerName = command.split(" ");
-
-        System.out.println(Arrays.toString(playerName));
-
-        if (playerName.length >= 5){
-
-            Player player = Canary.getServer().getPlayer(playerName[4]);
+        if (playerName.length >= 6){
+            Player player = Canary.getServer().getPlayer(playerName[5]);
             for(int x=0;x < player.getInventory().getSize();x++){
-
                 Item item = player.getInventory().getSlot(x);
+
                 if (item != null) {
-                    ChatComponent groupText = f.newChatComponent("- " + item.getDisplayName() + " Amount: §a" + item.getAmount() + "\n");
+                    ChatComponent cCInvText = f.newChatComponent("- " + item.getDisplayName() + " Amount: §a" + item.getAmount() + "\n");
 
-                    groupText.getChatStyle().setColor(f.colorYellow());
+                    cCInvText.getChatStyle().setColor(f.colorYellow());
+                    cCInvText.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip)));
+                    cCInvText.getChatStyle().setChatClickEvent(f.newClickEvent(f.getRunCommand(), '/' + command.replaceFirst("%pi", "" + item.getType().getMachineName() + " " + item.getType().getData())));
 
-                    HoverEvent hoverEvent = f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip));
-                    groupText.getChatStyle().setChatHoverEvent(hoverEvent);
-
-                    String com = command.replaceFirst("%pi", "" + item.getType().getMachineName() + " " + item.getType().getData());
-
-                    ClickEvent clickEvent = f.newClickEvent(f.getRunCommand(), '/' + com);
-                    groupText.getChatStyle().setChatClickEvent(clickEvent);
-
-                    text.appendSibling(groupText);
+                    cCText.appendSibling(cCInvText);
                 }
             }
-
         } else {
-            text.appendText("ERROR No player named");
+            cCText.appendText("ERROR No player named");
         }
 
-        return text;
+        return cCText;
     }
 }

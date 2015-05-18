@@ -75,9 +75,9 @@ public class CommandBuilder extends PlayerCommand {
             return;
         }
 
-        if(para.equals("") && runCMD){
+        if(para.isEmpty() && runCMD){
             player.executeCommand(new String[]{command});
-        } else if (para.equals("") && !runCMD){
+        } else if (para.isEmpty()){
             ChatComponentFactory f = Canary.factory().getChatComponentFactory();
 
             ChatComponent cCText = f.newChatComponent(translator.localeTranslate("cbuilder_generatedtext",player.getLocale()) + "\n============================\n");

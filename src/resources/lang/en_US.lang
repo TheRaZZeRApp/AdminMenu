@@ -116,6 +116,8 @@ atl_grp_parent=Parent:
 atl_grp_prefix=Prefix:
 atl_grp_childs=Childs:
 atl_grp_isdefault=This is the §adefault §fgroup.
+atl_ban_creaton=Banned On:
+atl_ban_expiration=Unbann Date:
 
 i_m_player_commands=- Player Commands
 i_m_server_commands=- Server Commands

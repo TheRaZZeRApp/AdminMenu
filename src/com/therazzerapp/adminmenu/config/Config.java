@@ -6,7 +6,8 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import org.json.simple.JSONObject;
+import de.myelitecraft.elitelib.api.EliteLib;
+import de.myelitecraft.elitelib.api.config.ConfigSection;
 
 import java.io.File;
 import java.io.FileReader;
@@ -68,20 +69,76 @@ public class Config {
     }
 
     public static void createBlockList(File file){
-        JsonObject root = new JsonObject();
-        root.addProperty("- Stone","minecraft:stone");
-        root.addProperty("- Grass","minecraft:grass");
-        root.addProperty("- Dirt","minecraft:dirt");
-        root.addProperty("- Cobblestone","minecraft:cobblestone");
-        root.addProperty("- Oak Wood Plank","minecraft:planks");
-        root.addProperty("- Oak Wood","minecraft:log");
-        root.addProperty("- Glass","minecraft:glass");
-        root.addProperty("- White Wool","minecraft:wool");
-        root.addProperty("- Stone Slab","minecraft:stone_slab");
-        saveJsonFile(file,root);
+        de.myelitecraft.elitelib.api.config.Config config = EliteLib.getConfigManager().getConfig("JSON");
+        ConfigSection root = config.load(file);
+        String[] blocks = {
+                 "minecraft:stone"
+                ,"minecraft:grass"
+                ,"minecraft:dirt"
+                ,"minecraft:cobblestone"
+                ,"minecraft:planks"
+                ,"minecraft:log"
+                ,"minecraft:glass"
+                ,"minecraft:wool"
+                ,"minecraft:stone_slab"
+        };
+
+        root.setStringArray("blocks",blocks);
+        config.save(root,file);
     }
 
-    public static JsonObject getBlockList(){
-        return readJsonFile(new File("./config/AdminMenu/ATL/blockList.json"));
+    public static void createAmountList00(File file){
+        de.myelitecraft.elitelib.api.config.Config config = EliteLib.getConfigManager().getConfig("JSON");
+        ConfigSection root = config.load(file);
+        int[] amounts = {
+                256
+                ,128
+                ,64
+                ,32
+                ,16
+                ,8
+                ,4
+                ,2
+                ,1
+        };
+        root.setIntArray("amounts", amounts);
+        config.save(root,file);
     }
+
+    public static void createAmountList01(File file){
+        de.myelitecraft.elitelib.api.config.Config config = EliteLib.getConfigManager().getConfig("JSON");
+        ConfigSection root = config.load(file);
+        String[] amounts = {
+                "Complete"
+                ,"128"
+                ,"64"
+                ,"32"
+                ,"16"
+                ,"8"
+                ,"4"
+                ,"2"
+                ,"1"
+        };
+        root.setStringArray("amounts", amounts);
+        config.save(root,file);
+    }
+
+    public static void createAmountList02(File file){
+        de.myelitecraft.elitelib.api.config.Config config = EliteLib.getConfigManager().getConfig("JSON");
+        ConfigSection root = config.load(file);
+        int[] amounts = {
+                127
+                ,64
+                ,32
+                ,16
+                ,8
+                ,4
+                ,2
+                ,1
+        };
+        root.setIntArray("amounts", amounts);
+        config.save(root,file);
+    }
+
+
 }

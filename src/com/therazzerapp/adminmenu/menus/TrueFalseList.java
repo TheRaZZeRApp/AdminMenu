@@ -20,27 +20,27 @@ import net.visualillusionsent.utils.LocaleHelper;
 public class TrueFalseList {
     public static ChatComponent getBody(String tooltip, String command,Player player,LocaleHelper translator) {
         ChatComponentFactory f = Canary.factory().getChatComponentFactory();
-        ChatComponent text = f.newChatComponent("");
+        ChatComponent cCText = f.newChatComponent("");
 
         for (int x = 0; x <= 1;x++) {
             String amount = "";
-            ChatComponent amountText = f.newChatComponent("");
-            amountText.getChatStyle().setColor(f.colorYellow());
+            ChatComponent cCBooleanText = f.newChatComponent("");
+            cCBooleanText.getChatStyle().setColor(f.colorYellow());
             switch (x){
                 case 0:
-                    amountText.appendText(translator.localeTranslate("extras_true",player.getLocale()) + "\n");
+                    cCBooleanText.appendText(translator.localeTranslate("extras_true",player.getLocale()) + "\n");
                     amount = "true";
                     break;
                 case 1:
-                    amountText.appendText(translator.localeTranslate("extras_false",player.getLocale()));
+                    cCBooleanText.appendText(translator.localeTranslate("extras_false",player.getLocale()));
                     amount = "false";
                     break;
             }
 
-            amountText.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip)));
-            amountText.getChatStyle().setChatClickEvent(f.newClickEvent(f.getRunCommand(), '/' + command.replaceFirst("%tf" ,amount)));
-            text.appendSibling(amountText);
+            cCBooleanText.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip)));
+            cCBooleanText.getChatStyle().setChatClickEvent(f.newClickEvent(f.getRunCommand(), '/' + command.replaceFirst("%tf" ,amount)));
+            cCText.appendSibling(cCBooleanText);
         }
-        return text;
+        return cCText;
     }
 }

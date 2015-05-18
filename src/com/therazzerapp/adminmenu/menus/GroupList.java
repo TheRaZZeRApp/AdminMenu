@@ -3,8 +3,6 @@ package com.therazzerapp.adminmenu.menus;
 import com.therazzerapp.adminmenu.AdminMenu;
 import net.canarymod.Canary;
 import net.canarymod.api.chat.ChatComponent;
-import net.canarymod.api.chat.ClickEvent;
-import net.canarymod.api.chat.HoverEvent;
 import net.canarymod.api.entity.living.humanoid.Player;
 import net.canarymod.api.factory.ChatComponentFactory;
 import net.canarymod.user.Group;
@@ -52,7 +50,7 @@ public class GroupList {
                             .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_grp_parent", player.getLocale()) + " §a" + group.getParent().getName()));
                 }
 
-                if(group.getPrefix() != null || !group.getPrefix().equals("")){
+                if(group.getPrefix() != null || !group.getPrefix().isEmpty()){
                     groupText.getChatStyle().getChatHoverEvent().getValue()
                             .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_grp_prefix", player.getLocale()) + " §a" + group.getPrefix().replaceAll("§","&")));
                 }
@@ -74,9 +72,6 @@ public class GroupList {
                 }
 
             }
-
-
-
             groupText.getChatStyle().setChatClickEvent(f.newClickEvent(f.getRunCommand(), '/' + command.replaceFirst("%g" , group.getName())));
             text.appendSibling(groupText);
         }

@@ -3,13 +3,13 @@ package com.therazzerapp.adminmenu.menus;
 import com.therazzerapp.adminmenu.AdminMenu;
 import net.canarymod.Canary;
 import net.canarymod.api.chat.ChatComponent;
-import net.canarymod.api.chat.ClickEvent;
-import net.canarymod.api.chat.HoverEvent;
 import net.canarymod.api.entity.living.humanoid.Player;
 import net.canarymod.api.factory.ChatComponentFactory;
 import net.canarymod.bansystem.Ban;
-import net.canarymod.bansystem.BanType;
 import net.visualillusionsent.utils.LocaleHelper;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Project: AdminMenu
@@ -42,11 +42,9 @@ public class BannedPlayerList {
             if(AdminMenu.settings.isBanInfos()){
 
                 String reason = translator.localeTranslate("atl_ban_noreason",player.getLocale());
-                if(ban.getReason() != null || !ban.getReason().equals("") || !ban.getReason().equals("Permanently Banned") || !ban.getReason().startsWith("Temporarily banned until ")){
+                if(ban.getReason() != null || !ban.getReason().isEmpty() || !ban.getReason().equals("Permanently Banned") || !ban.getReason().startsWith("Temporarily banned until ")){
                     reason = ban.getReason();
                 }
-
-
 
                 reserveText.getChatStyle().getChatHoverEvent().getValue()
                         .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_ban_banner", player.getLocale()) + " §a" + ban.getBanningPlayer()))
@@ -56,7 +54,14 @@ public class BannedPlayerList {
                     reserveText.getChatStyle().getChatHoverEvent().getValue()
                             .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_p_ip", player.getLocale()) + " " + ban.getIp()));
                 }
-                //todo ablaufdatum
+
+                reserveText.getChatStyle().getChatHoverEvent().getValue()
+                        .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_ban_creaton", player.getLocale()) + " §a" + new SimpleDateFormat("dd.MM.yyyy HH:mm:ss").format(new Date(ban.getIssuedDate()))));
+
+                if(ban.getExpiration() != -1L){
+                    reserveText.getChatStyle().getChatHoverEvent().getValue()
+                            .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_ban_expiration", player.getLocale()) + " §a" + new SimpleDateFormat("dd.MM.yyyy HH:mm:ss").format(new Date(ban.getExpiration()))));
+                }
             }
 
 

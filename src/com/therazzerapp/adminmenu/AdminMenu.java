@@ -1,12 +1,11 @@
 package com.therazzerapp.adminmenu;
 
-import com.google.gson.JsonObject;
 import com.therazzerapp.adminmenu.commands.Admin;
 import com.therazzerapp.adminmenu.commands.CommandBuilder;
+import com.therazzerapp.adminmenu.commands.ExitMenu;
 import com.therazzerapp.adminmenu.config.Config;
 import com.therazzerapp.adminmenu.listener.BlankLineListener;
 import de.myelitecraft.elitelib.api.EliteLib;
-import de.myelitecraft.elitelib.api.commands.CommandManager;
 import net.canarymod.plugin.Plugin;
 
 import java.io.File;
@@ -57,13 +56,10 @@ public class AdminMenu extends Plugin {
 
         createATLConfigs();
 
-
-
-
-
         CreateMenus.initMenus(translator);
         EliteLib.getCommandManager().registerCommand(this, new Admin(this, translator));
-        EliteLib.getCommandManager().registerCommand(this,new CommandBuilder(this,translator));
+        EliteLib.getCommandManager().registerCommand(this, new CommandBuilder(this,translator));
+        EliteLib.getCommandManager().registerCommand(this, new ExitMenu(this,translator));
 
         registerListener(new BlankLineListener());
 
@@ -81,6 +77,8 @@ public class AdminMenu extends Plugin {
         if(!atlConfigDir.exists()){
             atlConfigDir.mkdir();
         }
+
+        //BlockList
         File atlBlockListConfig = new File("./config/AdminMenu/ATL/blockList.json");
         if(!atlBlockListConfig.exists()){
             try {
@@ -88,8 +86,44 @@ public class AdminMenu extends Plugin {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            getLogman().info("Config file created");
+            getLogman().info("ATL block list created!");
             Config.createBlockList(atlBlockListConfig);
+        }
+
+        //AmountList00
+        File atlAmountList00Config = new File("./config/AdminMenu/ATL/amountList00.json");
+        if(!atlAmountList00Config.exists()){
+            try {
+                atlAmountList00Config.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            getLogman().info("ATL amount list 00 created!");
+            Config.createAmountList00(atlAmountList00Config);
+        }
+
+        //AmountList01
+        File atlAmountList01Config = new File("./config/AdminMenu/ATL/amountList01.json");
+        if(!atlAmountList01Config.exists()){
+            try {
+                atlAmountList01Config.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            getLogman().info("ATL amount list 01 created!");
+            Config.createAmountList01(atlAmountList01Config);
+        }
+
+        //AmountList02
+        File atlAmountList02Config = new File("./config/AdminMenu/ATL/amountList02.json");
+        if(!atlAmountList02Config.exists()){
+            try {
+                atlAmountList02Config.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            getLogman().info("ATL amount list 01 created!");
+            Config.createAmountList02(atlAmountList02Config);
         }
     }
 }
