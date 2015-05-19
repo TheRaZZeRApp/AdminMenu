@@ -11,33 +11,29 @@ import java.io.File;
 /**
  * Project: AdminMenu
  * User: Pual
- * Date: 05/05/2015
- * Time: 14:26 PM
+ * Date: 19/05/2015
+ * Time: 21:29 PM
  * Package: com.therazzerapp.adminmenu.menus
  * E-Mail: rezzer101@googlemail.com
  */
 
-public class AmountList01 {
-    public static ChatComponent getBody(String tooltip, String command) {
+public class ItemList {
+    public static ChatComponent getBody(String tooltip, String command, File file, String parameter) {
+
         ChatComponentFactory f = Canary.factory().getChatComponentFactory();
         ChatComponent cCText = f.newChatComponent("");
 
         de.myelitecraft.elitelib.api.config.Config config = EliteLib.getConfigManager().getConfig("JSON");
-        ConfigSection root = config.load(new File("./config/AdminMenu/ATL/amountList01.json"));
+        ConfigSection root = config.load(file);
 
-        String[] amounts = root.getStringArray("amounts");
+        String[] blocks = root.getStringArray("items");
         ChatComponent cCAmountText;
-        for (String amount : amounts) {
 
-            cCAmountText = f.newChatComponent("- " + amount);
-
-            if (amount.equalsIgnoreCase("complete")){
-                amount = "";
-            }
-
+        for (String item : blocks) {
+            cCAmountText = f.newChatComponent("- " + item.replaceFirst("minecraft:","").replaceAll("_"," "));
             cCAmountText.getChatStyle().setColor(f.colorYellow());
-            cCAmountText.getChatStyle().setChatClickEvent(f.newClickEvent(f.getRunCommand(),"/" + command.replaceFirst("%a1" , ""+amount)));
-            cCAmountText.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(),f.newChatComponent(tooltip)));
+            cCAmountText.getChatStyle().setChatClickEvent(f.newClickEvent(f.getRunCommand(),"/" + command.replaceFirst(parameter , item.replaceFirst("minecraft:","").toLowerCase())));
+            cCAmountText.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(),f.newChatComponent(tooltip + " §a" + item.replaceFirst("minecraft:","").replaceAll("_"," "))));
             cCText.appendSibling(cCAmountText);
             cCText.appendText("\n");
         }

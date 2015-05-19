@@ -45,7 +45,7 @@ public class SoundList {
 
             cCText.appendSibling(cCSoundText);
 
-            if (counter2 >= 120){
+            if (counter2 >= 120 && counter != 0){
                 cCText.appendText("\n");
                 return cCText;
             }

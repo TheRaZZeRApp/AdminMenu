@@ -18,7 +18,7 @@ import net.canarymod.api.factory.ChatComponentFactory;
 public class TimeList00 {
     public static ChatComponent getBody(String tooltip, String command) {
         ChatComponentFactory f = Canary.factory().getChatComponentFactory();
-        ChatComponent text = f.newChatComponent("");
+        ChatComponent cCText = f.newChatComponent("");
 
         for (int x = 1; x <= 12;x++) {
             String amount = "0 min";
@@ -75,19 +75,13 @@ public class TimeList00 {
                     break;
             }
 
-            amountText.appendText("\n");
+            amountText.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip)));
+            amountText.getChatStyle().setChatClickEvent(f.newClickEvent(f.getRunCommand(), '/' + command.replaceFirst("%t1" , ""+amount)));
 
-            HoverEvent hoverEvent = f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip));
-            amountText.getChatStyle().setChatHoverEvent(hoverEvent);
-
-            String com  = command.replaceFirst("%t1" , ""+amount);
-
-            ClickEvent clickEvent = f.newClickEvent(f.getRunCommand(), '/' + com);
-            amountText.getChatStyle().setChatClickEvent(clickEvent);
-
-            text.appendSibling(amountText);
+            cCText.appendSibling(amountText);
+            cCText.appendText("\n");
         }
-
-        return text;
+        cCText.getSiblings().get(cCText.getSiblings().size()-1).setText("");
+        return cCText;
     }
 }

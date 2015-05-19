@@ -21,23 +21,13 @@ import java.util.Date;
 public class BannedPlayerList {
     public static ChatComponent getBody(String tooltip, String command,Player player, LocaleHelper translator) {
         ChatComponentFactory f = Canary.factory().getChatComponentFactory();
-        ChatComponent text = f.newChatComponent("");
+        ChatComponent cCText = f.newChatComponent("");
 
-        int counter = 0;
-        String komma;
         for (Ban ban : Canary.bans().getAllBans()) {
 
-            counter++;
-            komma = ", ";
-            if(counter >= Canary.bans().getAllBans().length){
-                komma = "";
-            }
-
-            ChatComponent reserveText = f.newChatComponent(ban.getSubject() + komma);
-            reserveText.getChatStyle().setColor(f.colorYellow());
-
-
-            reserveText.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip + " §a" + ban.getSubject())));
+            ChatComponent cCBannedText = f.newChatComponent(ban.getSubject());
+            cCBannedText.getChatStyle().setColor(f.colorYellow());
+            cCBannedText.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip + " §a" + ban.getSubject())));
 
             if(AdminMenu.settings.isBanInfos()){
 
@@ -46,30 +36,30 @@ public class BannedPlayerList {
                     reason = ban.getReason();
                 }
 
-                reserveText.getChatStyle().getChatHoverEvent().getValue()
+                cCBannedText.getChatStyle().getChatHoverEvent().getValue()
                         .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_ban_banner", player.getLocale()) + " §a" + ban.getBanningPlayer()))
                         .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_ban_reason",player.getLocale()) + " §a" + reason));
 
                 if(ban.isIpBan()){
-                    reserveText.getChatStyle().getChatHoverEvent().getValue()
+                    cCBannedText.getChatStyle().getChatHoverEvent().getValue()
                             .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_p_ip", player.getLocale()) + " " + ban.getIp()));
                 }
 
-                reserveText.getChatStyle().getChatHoverEvent().getValue()
+                cCBannedText.getChatStyle().getChatHoverEvent().getValue()
                         .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_ban_creaton", player.getLocale()) + " §a" + new SimpleDateFormat("dd.MM.yyyy HH:mm:ss").format(new Date(ban.getIssuedDate()*1000))));
 
                 if(ban.getExpiration() != -1L){
-                    reserveText.getChatStyle().getChatHoverEvent().getValue()
+                    cCBannedText.getChatStyle().getChatHoverEvent().getValue()
                             .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_ban_expiration", player.getLocale()) + " §a" + new SimpleDateFormat("dd.MM.yyyy HH:mm:ss").format(new Date(ban.getExpiration()*1000))));
                 }
             }
 
+            cCBannedText.getChatStyle().setChatClickEvent(f.newClickEvent(f.getRunCommand(), '/' + command.replaceFirst("%bp" , ban.getSubject())));
 
-
-            reserveText.getChatStyle().setChatClickEvent(f.newClickEvent(f.getRunCommand(), '/' + command.replaceFirst("%bp" , ban.getSubject())));
-
-            text.appendSibling(reserveText);
+            cCText.appendSibling(cCBannedText);
+            cCText.appendText("\n");
         }
-        return text;
+        cCText.getSiblings().get(cCText.getSiblings().size()-1).setText("");
+        return cCText;
     }
 }

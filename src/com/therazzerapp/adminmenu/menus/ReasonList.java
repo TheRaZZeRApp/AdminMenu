@@ -1,6 +1,6 @@
 package com.therazzerapp.adminmenu.menus;
 
-/*
+/**
  * Project: AdminMenu
  * User: Sonny
  * Date: 19/05/2015
@@ -42,6 +42,7 @@ public class ReasonList {
             cCText.appendSibling(cCReasonText);
             cCText.appendText("\n");
         }
+        cCText.getSiblings().get(cCText.getSiblings().size()-1).setText("");
         return cCText;
     }
 }

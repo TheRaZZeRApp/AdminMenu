@@ -21,26 +21,27 @@ public class PlayerInventoryList {
         ChatComponentFactory f = Canary.factory().getChatComponentFactory();
         ChatComponent cCText = f.newChatComponent("");
 
-        String[] playerName = command.split(" ");
-        if (playerName.length >= 6){
-            Player player = Canary.getServer().getPlayer(playerName[5]);
+        String[] parameters = command.split(" ");
+        if (parameters.length >= 6){
+            Player player = Canary.getServer().getPlayer(parameters[5]);
             for(int x=0;x < player.getInventory().getSize();x++){
                 Item item = player.getInventory().getSlot(x);
 
                 if (item != null) {
-                    ChatComponent cCInvText = f.newChatComponent("- " + item.getDisplayName() + " Amount: §a" + item.getAmount() + "\n");
+                    ChatComponent cCInvText = f.newChatComponent("- " + item.getDisplayName() + " Amount: §a" + item.getAmount());
 
                     cCInvText.getChatStyle().setColor(f.colorYellow());
                     cCInvText.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip)));
                     cCInvText.getChatStyle().setChatClickEvent(f.newClickEvent(f.getRunCommand(), '/' + command.replaceFirst("%pi", "" + item.getType().getMachineName() + " " + item.getType().getData())));
 
                     cCText.appendSibling(cCInvText);
+                    cCText.appendText("\n");
                 }
             }
         } else {
             cCText.appendText("ERROR No player named");
         }
-
+        cCText.getSiblings().get(cCText.getSiblings().size()-1).setText("");
         return cCText;
     }
 }

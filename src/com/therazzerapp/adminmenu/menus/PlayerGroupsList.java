@@ -23,19 +23,19 @@ public class PlayerGroupsList {
 
         if (playerName.length >= 7){
             for (Group group : Canary.getServer().getPlayer(playerName[6]).getPlayerGroups()) {
-
-                ChatComponent cCGroupText = f.newChatComponent("- " + group.getName() + "\n");
+                ChatComponent cCGroupText = f.newChatComponent("- " + group.getName());
 
                 cCGroupText.getChatStyle().setColor(f.colorYellow());
                 cCGroupText.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip)));
                 cCGroupText.getChatStyle().setChatClickEvent(f.newClickEvent(f.getRunCommand(), '/' + command.replaceFirst("%gp" , group.getName())));
 
                 cCText.appendSibling(cCGroupText);
+                cCText.appendText("\n");
             }
         } else {
             cCText.appendText("ERROR No player named");
         }
-
+        cCText.getSiblings().get(cCText.getSiblings().size()-1).setText("");
         return cCText;
     }
 }

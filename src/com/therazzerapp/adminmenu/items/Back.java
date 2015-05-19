@@ -12,7 +12,7 @@ import net.visualillusionsent.utils.LocaleHelper;
  */
 
 public class Back extends SpecialItem{
-    public Back(String PERMISSION, String COMMAND, LocaleHelper TRANSLATOR) {
-        super("i_c_back", "<= ",PERMISSION, "i_c_back_hover", COMMAND, TRANSLATOR);
+    public Back(String permission, String command, LocaleHelper translator) {
+        super("i_c_back", "<= ",permission, "i_c_back_hover", command, translator);
     }
 }

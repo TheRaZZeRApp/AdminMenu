@@ -12,9 +12,9 @@ import net.visualillusionsent.utils.LocaleHelper;
  */
 
 public class Forward extends SpecialItem {
-    public Forward(String PERMISSION, String COMMAND, LocaleHelper TRANSLATOR) {
+    public Forward(String permission, String command, LocaleHelper translator) {
 
-        super("i_c_forward", "=> ", PERMISSION, "i_c_forward_hover", COMMAND, TRANSLATOR);
+        super("i_c_forward", "=> ", permission, "i_c_forward_hover", command, translator);
 
     }
 }

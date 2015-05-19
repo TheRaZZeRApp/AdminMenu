@@ -18,28 +18,29 @@ public class AchievementList {
     public static ChatComponent getBody(String tooltip, String command){
 
         ChatComponentFactory f = Canary.factory().getChatComponentFactory();
-        ChatComponent text = f.newChatComponent("");
+        ChatComponent cCText = f.newChatComponent("");
 
         int counter = 0;
-        for (Achievements type : Achievements.values()){
+        for (Achievements a : Achievements.values()){
 
-            ChatComponent amountText;
+            counter++;
+            ChatComponent cCAchievementList;
 
-            if (counter == 0){
-                amountText = f.newChatComponent("- " + type.name().toLowerCase() + "   ");
-                counter = 1;
+            if (counter %2 == 0){
+                cCAchievementList = f.newChatComponent(a.name().toLowerCase() + "\n");
             } else {
-                amountText = f.newChatComponent(type.name().toLowerCase() + "\n");
-                counter = 0;
+                cCAchievementList = f.newChatComponent("- " + a.name().toLowerCase() + "   ");
             }
 
-            amountText.getChatStyle().setColor(f.colorYellow());
+            cCAchievementList.getChatStyle().setColor(f.colorYellow());
+            cCAchievementList.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip + " §a" + a.name().toLowerCase())));
+            cCAchievementList.getChatStyle().setChatClickEvent(f.newClickEvent(f.getRunCommand(), '/' + command.replaceFirst("%ac", a.getNativeName())));
+            cCText.appendSibling(cCAchievementList);
 
-            amountText.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip + " " + type.name().toLowerCase())));
-            amountText.getChatStyle().setChatClickEvent(f.newClickEvent(f.getRunCommand(), '/' + command.replaceFirst("%ac", type.getNativeName())));
-
-            text.appendSibling(amountText);
         }
-        return text;
+        if(counter %2 != 0){
+            cCText.getSiblings().get(cCText.getSiblings().size()-1).setText("");
+        }
+        return cCText;
     }
 }

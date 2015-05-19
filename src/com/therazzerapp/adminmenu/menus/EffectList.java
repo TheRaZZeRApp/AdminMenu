@@ -20,23 +20,26 @@ public class EffectList {
         ChatComponent cCText = f.newChatComponent("");
 
         int counter = 0;
+        for (PotionEffectType p : PotionEffectType.values()){
+            
+            ChatComponent cCEffectText;
+            counter++;
 
-        for (PotionEffectType type : PotionEffectType.values()){
-            ChatComponent cCCmountText;
-
-            if (counter == 0){
-                cCCmountText = f.newChatComponent("- " + type.name().toLowerCase() + "   ");
-                counter = 1;
+            if (counter %2 == 0){
+                cCEffectText = f.newChatComponent(p.name().toLowerCase());
             } else {
-                cCCmountText = f.newChatComponent(type.name().toLowerCase() + "\n");
-                counter = 0;
+                cCEffectText = f.newChatComponent("- " + p.name().toLowerCase() + "   ");
             }
 
-            cCCmountText.getChatStyle().setColor(f.colorYellow());
-            cCCmountText.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip + type.name().toLowerCase())));
-            cCCmountText.getChatStyle().setChatClickEvent(f.newClickEvent(f.getRunCommand(), '/' + command.replaceFirst("%ef", ""+type.getID())));
+            cCEffectText.getChatStyle().setColor(f.colorYellow());
+            cCEffectText.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip + " §a" + p.name().toLowerCase())));
+            cCEffectText.getChatStyle().setChatClickEvent(f.newClickEvent(f.getRunCommand(), '/' + command.replaceFirst("%ef", ""+p.getID())));
 
-            cCText.appendSibling(cCCmountText);
+            cCText.appendSibling(cCEffectText);
+            cCText.appendText("\n");
+        }
+        if(counter %2 != 0){
+            cCText.getSiblings().get(cCText.getSiblings().size()-1).setText("");
         }
         return cCText;
     }

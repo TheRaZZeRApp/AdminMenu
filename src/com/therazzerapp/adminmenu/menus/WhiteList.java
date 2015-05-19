@@ -24,61 +24,53 @@ public class WhiteList {
         ChatComponentFactory f = Canary.factory().getChatComponentFactory();
         ChatComponent cCText = f.newChatComponent("");
 
-        int counter = 0;
-        String komma = ",";
         for (String uuid : Canary.whitelist().getWhitelisted()) {
 
-            counter++;
-            if(counter >= Canary.whitelist().getWhitelisted().length){
-                komma = "";
-            }
-
-
             PlayerReference reference = Canary.getServer().matchKnownPlayer(uuid);
+            ChatComponent cCWhitelistText;
+            HoverEvent hoverEvent;
+            ClickEvent clickEvent;
+            String whiteListText;
 
             if (reference != null) {
-
-
-                ChatComponent cCWhitelistText = f.newChatComponent(reference.getName() + komma);
-                cCWhitelistText.getChatStyle().setColor(f.colorYellow());
-                cCWhitelistText.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip +  " §a" + reference.getName())));
-
-                String online = translator.localeTranslate("extras_no",player.getLocale());
-                if(reference.isOnline()){
-                    online = translator.localeTranslate("extras_yes",player.getLocale());
-                }
+                whiteListText = reference.getName();
+                hoverEvent = f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip +  " §a" + reference.getName()));
+                clickEvent = f.newClickEvent(f.getRunCommand(), '/' + command.replaceFirst("%w" , reference.getName()));
 
                 if(AdminMenu.settings.isPlayerInfos()){
-                    cCWhitelistText.getChatStyle().getChatHoverEvent().getValue()
-                            .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_w_online", player.getLocale()) + " §f" + online))
-                            .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_p_group", player.getLocale()) + " §f" + reference.getGroup().getName()));
+
+                    String online = translator.localeTranslate("extras_no",player.getLocale());
+                    if(reference.isOnline()){
+                        online = translator.localeTranslate("extras_yes",player.getLocale());
+                    }
+
+                    hoverEvent.getValue()
+                            .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_w_online", player.getLocale()) + " §a" + online))
+                            .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_p_group", player.getLocale()) + " §a" + reference.getGroup().getName()));
 
                     if(reference.isOnline()){
-                        cCWhitelistText.getChatStyle().getChatHoverEvent().getValue()
-                                .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_p_world", player.getLocale()) + " §f" + reference.getWorld().getName()))
-                                .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_p_ip", player.getLocale()) + " §f" + reference.getIP()));
+                        hoverEvent.getValue()
+                                .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_p_world", player.getLocale()) + " §a" + reference.getWorld().getName()))
+                                .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_p_ip", player.getLocale()) + " §a" + reference.getIP()))
+                                .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_p_firstseen",player.getLocale()) + " §a" + reference.getFirstJoined().replaceAll("-",".")))
+                                .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_p_lastseen", player.getLocale()) + " §a" + reference.getLastJoined().replaceAll("-",".")));
                     }
                 }
 
-                cCWhitelistText.getChatStyle().setChatClickEvent(f.newClickEvent(f.getRunCommand(), '/' + command.replaceFirst("%w" , reference.getName())));
-
-                cCText.appendSibling(cCWhitelistText);
-
             } else {
-
-
-                ChatComponent cCWhitelistText = f.newChatComponent(translator.localeTranslate("atl_w_unknown", player.getLocale()) + komma);
-                cCWhitelistText.getChatStyle().setColor(f.colorGold());
-                HoverEvent hoverEvent = f.newHoverEvent(f.getShowText(), f.newChatComponent("UUID: §a" + uuid));
-                cCWhitelistText.getChatStyle().setChatHoverEvent(hoverEvent);
-
-
-                ClickEvent clickEvent = f.newClickEvent(f.getRunCommand(), '/' + command.replaceFirst("%w" , uuid));
-                cCWhitelistText.getChatStyle().setChatClickEvent(clickEvent);
-
-                cCText.appendSibling(cCWhitelistText);
+                whiteListText = translator.localeTranslate("atl_w_unknown", player.getLocale());
+                hoverEvent = f.newHoverEvent(f.getShowText(), f.newChatComponent("UUID: §a" + uuid));
+                clickEvent = f.newClickEvent(f.getRunCommand(), '/' + command.replaceFirst("%w" , uuid));
             }
+
+            cCWhitelistText = f.newChatComponent(whiteListText);
+            cCWhitelistText.getChatStyle().setColor(f.colorYellow());
+            cCWhitelistText.getChatStyle().setChatClickEvent(clickEvent);
+            cCWhitelistText.getChatStyle().setChatHoverEvent(hoverEvent);
+            cCText.appendSibling(cCWhitelistText);
+            cCText.appendText(", ");
         }
+        cCText.getSiblings().get(cCText.getSiblings().size()-1).setText("");
         return cCText;
     }
 }

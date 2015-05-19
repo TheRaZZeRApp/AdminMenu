@@ -159,10 +159,10 @@ public class CreateMenus {
                 //Give menu
                 Menu player_give = EliteLib.getMenuFactory().newMenu("adm_m_h_p_gi","adminmenu.menu.player.give",f.colorWhite(),translator);
                 player_give.addEntry(getBreakLine());
-                player_give.addEntry(EliteLib.getMenuFactory().newMenuEntry("i_p_give_otheritem", "adminmenu.player.give.other.item", f.colorYellow(), f.getShowText(), f.newChatComponent("i_p_give_otheritem_hover"), f.getRunCommand(), "/acb true atl_h_p_gi adm_m_h_p_gi true give %p %i %a", translator));
-                player_give.addEntry(EliteLib.getMenuFactory().newMenuEntry("i_p_give_otherblock", "adminmenu.player.give.other.block", f.colorYellow(), f.getShowText(), f.newChatComponent("i_p_give_otherblock_hover"), f.getRunCommand(), "/acb true atl_h_p_gi adm_m_h_p_gi true give %p %b1 %a", translator));
-                player_give.addEntry(EliteLib.getMenuFactory().newMenuEntry("i_p_give_item", "adminmenu.player.give.self.item", f.colorYellow(), f.getShowText(), f.newChatComponent("i_p_give_item_hover"), f.getRunCommand(), "/acb true atl_h_p_gi adm_m_h_p_gi true give %c %i %a", translator));
-                player_give.addEntry(EliteLib.getMenuFactory().newMenuEntry("i_p_give_block", "adminmenu.player.give.self.block", f.colorYellow(), f.getShowText(), f.newChatComponent("i_p_give_block_hover"), f.getRunCommand(), "/acb true atl_h_p_gi adm_m_h_p_gi true give %c %b1 %a", translator));
+                player_give.addEntry(EliteLib.getMenuFactory().newMenuEntry("i_p_gi_otheritem", "adminmenu.player.give.other.item", f.colorYellow(), f.getShowText(), f.newChatComponent("i_p_gi_otheritem_hover"), f.getRunCommand(), "/acb true atl_h_p_gi adm_m_h_p_gi true give %p %i1 %a", translator));
+                player_give.addEntry(EliteLib.getMenuFactory().newMenuEntry("i_p_gi_otherblock", "adminmenu.player.give.other.block", f.colorYellow(), f.getShowText(), f.newChatComponent("i_p_gi_otherblock_hover"), f.getRunCommand(), "/acb true atl_h_p_gi adm_m_h_p_gi true give %p %b1 %a", translator));
+                player_give.addEntry(EliteLib.getMenuFactory().newMenuEntry("i_p_gi_item", "adminmenu.player.give.self.item", f.colorYellow(), f.getShowText(), f.newChatComponent("i_p_gi_item_hover"), f.getRunCommand(), "/acb true atl_h_p_gi adm_m_h_p_gi true give %c %i1 %a", translator));
+                player_give.addEntry(EliteLib.getMenuFactory().newMenuEntry("i_p_gi_block", "adminmenu.player.give.self.block", f.colorYellow(), f.getShowText(), f.newChatComponent("i_p_gi_block_hover"), f.getRunCommand(), "/acb true atl_h_p_gi adm_m_h_p_gi true give %c %b1 %a", translator));
                 EliteLib.getMenuManager().addMenu(addNavigation(player_give, translator, null, null, "adminmenu.menu.player_00", "/chatclick chatmenu adm_m_h_p"));
 
                 //Effect menu

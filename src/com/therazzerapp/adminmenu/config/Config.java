@@ -24,16 +24,6 @@ import java.io.IOException;
  */
 
 public class Config {
-    public static void saveJsonFile(File file, JsonObject jsonObject) {
-        try {
-            try (JsonWriter jsonWriter = new JsonWriter(new FileWriter(file))) {
-                jsonWriter.setIndent("    ");
-                new Gson().toJson(jsonObject, jsonWriter);
-                jsonWriter.flush();
-            }
-        } catch (IOException e) {
-        }
-    }
 
     public static JsonObject readJsonFile(File file) {
         try {
@@ -51,26 +41,22 @@ public class Config {
     }
 
     public static void createConfig(File file){
-
-
-        JsonObject root = new JsonObject();
-
-        root.addProperty("muteChatInMenu",true);
-        root.addProperty("playermenu",true);
-        root.addProperty("servermenu",true);
-        root.addProperty("worldmenu",true);
-        root.addProperty("groupmenu",true);
-        root.addProperty("playerInfos",true);
-        root.addProperty("worldInfos",true);
-        root.addProperty("pluginInfos",true);
-        root.addProperty("banInfos",true);
-        root.addProperty("groupInfos",true);
-        saveJsonFile(file,root);
+        de.myelitecraft.elitelib.api.config.Config config = EliteLib.getConfigManager().getConfig("JSON");
+        ConfigSection root = config.load(file);
+        root.setBoolean("muteChatInMenu", true);
+        root.setBoolean("playermenu", true);
+        root.setBoolean("servermenu", true);
+        root.setBoolean("worldmenu", true);
+        root.setBoolean("groupmenu", true);
+        root.setBoolean("playerInfos", true);
+        root.setBoolean("worldInfos", true);
+        root.setBoolean("pluginInfos", true);
+        root.setBoolean("banInfos", true);
+        root.setBoolean("groupInfos", true);
+        config.save(root, file);
     }
 
     public static void createBlockList(File file){
-        de.myelitecraft.elitelib.api.config.Config config = EliteLib.getConfigManager().getConfig("JSON");
-        ConfigSection root = config.load(file);
         String[] blocks = {
                  "minecraft:stone"
                 ,"minecraft:grass"
@@ -82,14 +68,25 @@ public class Config {
                 ,"minecraft:wool"
                 ,"minecraft:stone_slab"
         };
+        createStorageList(file, "blocks", blocks);
+    }
 
-        root.setStringArray("blocks",blocks);
-        config.save(root,file);
+    public static void createItemList(File file){
+        String[] items = {
+                "minecraft:diamond_pickaxe"
+                ,"minecraft:compass"
+                ,"minecraft:sign"
+                ,"minecraft:diamond_sword"
+                ,"minecraft:flint_and_steel"
+                ,"minecraft:torch"
+                ,"minecraft:experience_bottle"
+                ,"minecraft:piston"
+                ,"minecraft:redstone"
+        };
+        createStorageList(file, "items", items);
     }
 
     public static void createAmountList00(File file){
-        de.myelitecraft.elitelib.api.config.Config config = EliteLib.getConfigManager().getConfig("JSON");
-        ConfigSection root = config.load(file);
         int[] amounts = {
                 256
                 ,128
@@ -101,13 +98,10 @@ public class Config {
                 ,2
                 ,1
         };
-        root.setIntArray("amounts", amounts);
-        config.save(root,file);
+        createStorageList(file,"amounts",amounts);
     }
 
     public static void createAmountList01(File file){
-        de.myelitecraft.elitelib.api.config.Config config = EliteLib.getConfigManager().getConfig("JSON");
-        ConfigSection root = config.load(file);
         String[] amounts = {
                 "Complete"
                 ,"128"
@@ -119,13 +113,10 @@ public class Config {
                 ,"2"
                 ,"1"
         };
-        root.setStringArray("amounts", amounts);
-        config.save(root, file);
+        createStorageList(file,"amounts",amounts);
     }
 
     public static void createAmountList02(File file){
-        de.myelitecraft.elitelib.api.config.Config config = EliteLib.getConfigManager().getConfig("JSON");
-        ConfigSection root = config.load(file);
         int[] amounts = {
                 127
                 ,64
@@ -136,13 +127,10 @@ public class Config {
                 ,2
                 ,1
         };
-        root.setIntArray("amounts", amounts);
-        config.save(root,file);
+        createStorageList(file, "amounts", amounts);
     }
 
     public static void createReasonList(File file){
-        de.myelitecraft.elitelib.api.config.Config config = EliteLib.getConfigManager().getConfig("JSON");
-        ConfigSection root = config.load(file);
         String[] reasons = {
                 "Griefing"
                 ,"Spamming"
@@ -154,9 +142,21 @@ public class Config {
                 ,"Others"
                 ,"Female"
         };
-        root.setStringArray("reasons", reasons);
+        createStorageList(file,"reasons",reasons);
+    }
+
+    public static void createStorageList(File file, String item, String[] strings){
+        de.myelitecraft.elitelib.api.config.Config config = EliteLib.getConfigManager().getConfig("JSON");
+        ConfigSection root = config.load(file);
+        root.setStringArray(item,strings);
         config.save(root,file);
     }
 
+    public static void createStorageList(File file, String item, int[] amounts){
+        de.myelitecraft.elitelib.api.config.Config config = EliteLib.getConfigManager().getConfig("JSON");
+        ConfigSection root = config.load(file);
+        root.setIntArray(item, amounts);
+        config.save(root,file);
+    }
 
 }

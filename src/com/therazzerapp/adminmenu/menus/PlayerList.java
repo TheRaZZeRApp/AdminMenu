@@ -21,17 +21,9 @@ public class PlayerList {
     public static ChatComponent getBody(String tooltip, String command,Player player, LocaleHelper translator){
         ChatComponentFactory f = Canary.factory().getChatComponentFactory();
         ChatComponent cCText = f.newChatComponent("");
-        String komma;
-        int counter = 0;
+
         for (Player p : Canary.getServer().getPlayerList()) {
-
-            counter++;
-            komma = ", ";
-            if(counter >= Canary.getServer().getPlayerList().size()){
-                komma = "";
-            }
-
-            ChatComponent cCPlayerText = f.newChatComponent(p.getName() + komma);
+            ChatComponent cCPlayerText = f.newChatComponent(p.getName());
 
             if (p.isOperator() || p.hasPermission("adminmenu.isadmin")) {
                 cCPlayerText.getChatStyle().setColor(f.colorRed());
@@ -47,15 +39,20 @@ public class PlayerList {
 
             if(AdminMenu.settings.isPlayerInfos()){
                 cCPlayerText.getChatStyle().getChatHoverEvent().getValue()
-                        .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_p_world", player.getLocale()) + " §f" + p.getWorld().getName()))
-                        .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_p_group", player.getLocale()) + " §f" + p.getGroup().getName()))
-                        .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_p_ip",player.getLocale()) + " §f" + p.getIP()))
-                        .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_p_locale",player.getLocale()) + " §f" + p.getLocale()));
+                        .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_p_world", player.getLocale()) + " §a" + p.getWorld().getName()))
+                        .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_p_group", player.getLocale()) + " §a" + p.getGroup().getName()))
+                        .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_p_ip",player.getLocale()) + " §a" + p.getIP()))
+                        .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_p_locale",player.getLocale()) + " §a" + p.getLocale()))
+                        .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_p_firstseen",player.getLocale()) + " §a" + p.getFirstJoined().replaceAll("-",".")))
+                        .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_p_lastseen",player.getLocale()) + " §a" + p.getLastJoined().replaceAll("-",".")));
             }
+
             cCPlayerText.getChatStyle().setChatClickEvent(f.newClickEvent(f.getRunCommand(), '/' + command.replaceFirst("%p" , p.getName())));
 
             cCText.appendSibling(cCPlayerText);
+            cCText.appendText("\n");
         }
+        cCText.getSiblings().get(cCText.getSiblings().size()-1).setText("");
         return cCText;
     }
 }

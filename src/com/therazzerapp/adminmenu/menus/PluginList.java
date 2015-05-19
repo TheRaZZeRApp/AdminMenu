@@ -23,18 +23,9 @@ public class PluginList {
         ChatComponent cCText = f.newChatComponent("");
 
         int counter = 0;
-        String komma;
         for (Plugin plugin : Canary.pluginManager().getPlugins()) {
-
             counter++;
-            komma = ", ";
-            if (counter >= Canary.pluginManager().getPlugins().size()){
-                komma = "";
-            }else if((counter % 5) == 0){
-                komma = ",\n";
-            }
-
-            ChatComponent cCPluginText = f.newChatComponent(plugin.getName() + komma);
+            ChatComponent cCPluginText = f.newChatComponent(plugin.getName());
 
             String status;
             if(plugin.isDisabled()){
@@ -52,12 +43,27 @@ public class PluginList {
                         .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_pg_status", player.getLocale()) + " " + status))
                         .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_pg_author", player.getLocale()) + " §a" + plugin.getAuthor()))
                         .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_pg_version", player.getLocale()) + " §a" + plugin.getVersion()));
+
+                if(plugin.getDescriptor().getDependencies().length != 0){
+                    String dependencies = "\n";
+                    for (String deps : plugin.getDescriptor().getDependencies()){
+                        dependencies += "    - §a" + deps + " (" + Canary.pluginManager().getPlugin(deps).getVersion() + ")\n";
+                    }
+                    cCPluginText.getChatStyle().getChatHoverEvent().getValue()
+                                .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_grp_dependencies", player.getLocale()) + " " + dependencies.substring(0, dependencies.length()-1)));
+                }
             }
 
             cCPluginText.getChatStyle().setChatClickEvent(f.newClickEvent(f.getRunCommand(), '/' + command.replaceFirst("%pl" , plugin.getName())));
             cCText.appendSibling(cCPluginText);
-        }
 
+            if(counter %5 == 0){
+                cCText.appendText(",\n");
+            } else {
+                cCText.appendText(", ");
+            }
+        }
+        cCText.getSiblings().get(cCText.getSiblings().size()-1).setText("");
         return cCText;
     }
 }

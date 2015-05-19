@@ -12,7 +12,7 @@ import net.visualillusionsent.utils.LocaleHelper;
  */
 
 public class BackToMainMenu extends SpecialItem {
-    public BackToMainMenu(LocaleHelper TRANSLATOR) {
-        super("i_c_backtomain", "<< ","adminmenu.command.admin", "i_c_backtomain_hover", "/admin", TRANSLATOR);
+    public BackToMainMenu(LocaleHelper translator) {
+        super("i_c_backtomain", "<< ","adminmenu.command.admin", "i_c_backtomain_hover", "/admin", translator);
     }
 }

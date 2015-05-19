@@ -36,7 +36,7 @@ public class AmountList02 {
             cCText.appendSibling(cCAmountText);
             cCText.appendText("\n");
         }
-
+        cCText.getSiblings().get(cCText.getSiblings().size()-1).setText("");
         return cCText;
     }
 }

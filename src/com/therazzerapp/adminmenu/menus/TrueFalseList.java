@@ -2,8 +2,6 @@ package com.therazzerapp.adminmenu.menus;
 
 import net.canarymod.Canary;
 import net.canarymod.api.chat.ChatComponent;
-import net.canarymod.api.chat.ClickEvent;
-import net.canarymod.api.chat.HoverEvent;
 import net.canarymod.api.entity.living.humanoid.Player;
 import net.canarymod.api.factory.ChatComponentFactory;
 import net.visualillusionsent.utils.LocaleHelper;

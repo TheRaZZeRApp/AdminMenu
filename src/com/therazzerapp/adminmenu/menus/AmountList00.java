@@ -4,8 +4,6 @@ import de.myelitecraft.elitelib.api.EliteLib;
 import de.myelitecraft.elitelib.api.config.ConfigSection;
 import net.canarymod.Canary;
 import net.canarymod.api.chat.ChatComponent;
-import net.canarymod.api.chat.ClickEvent;
-import net.canarymod.api.chat.HoverEvent;
 import net.canarymod.api.factory.ChatComponentFactory;
 
 import java.io.File;
@@ -38,7 +36,7 @@ public class AmountList00 {
             cCText.appendSibling(cCAmountText);
             cCText.appendText("\n");
         }
-
+        cCText.getSiblings().get(cCText.getSiblings().size()-1).setText("");
         return cCText;
     }
 }

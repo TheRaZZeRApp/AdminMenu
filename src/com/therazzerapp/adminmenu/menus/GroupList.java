@@ -20,62 +20,46 @@ import net.visualillusionsent.utils.LocaleHelper;
 public class GroupList {
     public static ChatComponent getBody(String tooltip, String command, Player player, LocaleHelper translator) {
         ChatComponentFactory f = Canary.factory().getChatComponentFactory();
-        ChatComponent text = f.newChatComponent("");
+        ChatComponent cCText = f.newChatComponent("");
 
-        int counter = 0;
-        String newLine;
         for (Group group : Canary.usersAndGroups().getGroups()) {
+            ChatComponent cCGroupText = f.newChatComponent("- " + group.getName());
+            cCGroupText.getChatStyle().setColor(f.colorYellow());
 
-            counter++;
-            newLine = "\n";
-            if (counter >= Canary.usersAndGroups().getGroups().length){
-                newLine = "";
-            }
-
-            ChatComponent groupText = f.newChatComponent("- " + group.getName() + newLine);
-            groupText.getChatStyle().setColor(f.colorYellow());
-
-            groupText.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip + " §a" + group.getName())));
+            cCGroupText.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip + " §a" + group.getName())));
 
             if(AdminMenu.settings.isGroupInfos()){
 
                 if(group.isDefaultGroup()){
-                    groupText.getChatStyle().getChatHoverEvent().getValue()
+                    cCGroupText.getChatStyle().getChatHoverEvent().getValue()
                             .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_grp_isdefault", player.getLocale())));
                 }
 
-
                 if(group.getParent() != null){
-                    groupText.getChatStyle().getChatHoverEvent().getValue()
+                    cCGroupText.getChatStyle().getChatHoverEvent().getValue()
                             .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_grp_parent", player.getLocale()) + " §a" + group.getParent().getName()));
                 }
 
                 if(group.getPrefix() != null || !group.getPrefix().isEmpty()){
-                    groupText.getChatStyle().getChatHoverEvent().getValue()
+                    cCGroupText.getChatStyle().getChatHoverEvent().getValue()
                             .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_grp_prefix", player.getLocale()) + " §a" + group.getPrefix().replaceAll("§","&")));
                 }
 
                 if(group.getChildren().size() != 0){
                     String childrenList = "\n";
-                    int counter2 = 0;
-                    String komma;
                     for (Group childs : group.getChildren()){
-                        counter2++;
-                        komma = "\n";
-                        if(counter2 >= group.getChildren().size()){
-                            komma = "";
-                        }
-                        childrenList += "    - §a" + childs.getName() + komma;
+                        childrenList += "    - §a" + childs.getName() + "\n";
                     }
-                    groupText.getChatStyle().getChatHoverEvent().getValue()
-                            .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_grp_childs",player.getLocale()) + " " + childrenList));
+                    cCGroupText.getChatStyle().getChatHoverEvent().getValue()
+                            .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_grp_childs",player.getLocale()) + " " + childrenList.substring(0,childrenList.length()-1)));
                 }
 
             }
-            groupText.getChatStyle().setChatClickEvent(f.newClickEvent(f.getRunCommand(), '/' + command.replaceFirst("%g" , group.getName())));
-            text.appendSibling(groupText);
+            cCGroupText.getChatStyle().setChatClickEvent(f.newClickEvent(f.getRunCommand(), '/' + command.replaceFirst("%g" , group.getName())));
+            cCText.appendSibling(cCGroupText);
+            cCText.appendText("\n");
         }
-
-        return text;
+        cCText.getSiblings().get(cCText.getSiblings().size()-1).setText("");
+        return cCText;
     }
 }

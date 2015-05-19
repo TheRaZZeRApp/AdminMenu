@@ -25,15 +25,16 @@ public class GroupPermissionList {
 
         for (PermissionNode permission : group.getPermissionProvider().getPermissionMap()) {
 
-            ChatComponent cCGroupText = f.newChatComponent("- " + permission.getFullPath() + "\n");
+            ChatComponent cCGroupText = f.newChatComponent("- " + permission.getFullPath());
 
             cCGroupText.getChatStyle().setColor(f.colorYellow());
             cCGroupText.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip)));
             cCGroupText.getChatStyle().setChatClickEvent(f.newClickEvent(f.getRunCommand(), '/' + command.replaceFirst("%pg" , permission.getFullPath())));
 
             cCText.appendSibling(cCGroupText);
+            cCText.appendText("\n");
         }
-
+        cCText.getSiblings().get(cCText.getSiblings().size()-1).setText("");
         return cCText;
     }
 }

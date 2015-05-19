@@ -90,6 +90,18 @@ public class AdminMenu extends Plugin {
             Config.createBlockList(atlBlockListConfig);
         }
 
+        //ItemList
+        File atlItemListConfig = new File("./config/AdminMenu/ATL/itemList.json");
+        if(!atlItemListConfig.exists()){
+            try {
+                atlItemListConfig.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            getLogman().info("ATL item list created!");
+            Config.createItemList(atlItemListConfig);
+        }
+
         //AmountList00
         File atlAmountList00Config = new File("./config/AdminMenu/ATL/amountList00.json");
         if(!atlAmountList00Config.exists()){

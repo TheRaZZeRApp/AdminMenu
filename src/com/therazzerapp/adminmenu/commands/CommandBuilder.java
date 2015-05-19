@@ -11,6 +11,7 @@ import net.canarymod.api.factory.ChatComponentFactory;
 import net.canarymod.commandsys.CommandOwner;
 import net.visualillusionsent.utils.LocaleHelper;
 
+import java.io.File;
 import java.util.Map;
 
 /**
@@ -24,8 +25,8 @@ import java.util.Map;
 
 public class CommandBuilder extends PlayerCommand {
 
-    //                                    0     1    2   3     4     5     6      7    8   9     10     11   12   13    14    15    16   17    18    19    20   21    22     23
-    private final String[] parameters = {"%p","%w","%r","%a","%a1","%a2","%ac","%so","%c","%t1","%t2","%i","%b","%b1","%pg","%pl","%g","%gp","%pi","%ef","%tf","%bp","%wo","%re"};
+    //                                    0     1    2   3     4     5     6      7    8   9     10     11   12   13    14    15    16   17    18    19    20   21    22     23    24
+    private final String[] parameters = {"%p","%w","%r","%a","%a1","%a2","%ac","%so","%c","%t1","%t2","%i","%b","%b1","%pg","%pl","%g","%gp","%pi","%ef","%tf","%bp","%wo","%re","%i1"};
 
     public CommandBuilder(CommandOwner owner, LocaleHelper translator) {
         super(new CommandMeta(new String[]{"commandbuilder", "cbuilder", "acb"}, new String[]{"adminmenu.command.commandbuilder"}, "Runs the command builder.", "/cbuilder <runCMD> <headline> <back> <refreshAble> <command> [%params]", 4), owner, translator);
@@ -148,7 +149,7 @@ public class CommandBuilder extends PlayerCommand {
         } else if (para.equals(parameters[12])){
             //todo ka was das ist
         } else if (para.equals(parameters[13])){
-            return BlockList.getBody(translator.localeTranslate("autolist_hover_block", player.getLocale()), command);
+            return ItemList.getBody(translator.localeTranslate("autolist_hover_block", player.getLocale()), command,new File("./config/AdminMenu/ATL/blockList.json"),"%b1");
         } else if (para.equals(parameters[14])){
             return GroupPermissionList.getBody(translator.localeTranslate("autolist_hover_permission", player.getLocale()), command);
         } else if (para.equals(parameters[15])){
@@ -158,7 +159,7 @@ public class CommandBuilder extends PlayerCommand {
         } else if (para.equals(parameters[17])){
             return PlayerGroupsList.getBody(translator.localeTranslate("autolist_hover_block", player.getLocale()), command);
         } else if (para.equals(parameters[18])){
-            return BlockList.getBody(translator.localeTranslate("autolist_hover_group", player.getLocale()), command);
+            return PlayerInventoryList.getBody(translator.localeTranslate("autolist_hover_group", player.getLocale()), command);
         } else if (para.equals(parameters[19])){
             return EffectList.getBody(translator.localeTranslate("autolist_hover_effect", player.getLocale()), command);
         } else if (para.equals(parameters[20])){
@@ -169,6 +170,8 @@ public class CommandBuilder extends PlayerCommand {
             return WorldList.getBody(translator.localeTranslate("autolist_hover_world", player.getLocale()), command, player,translator);
         } else if (para.equals(parameters[23])){
             return ReasonList.getBody(translator.localeTranslate("autolist_hover_reason", player.getLocale()), command, player);
+        } else if (para.equals(parameters[24])){
+            return ItemList.getBody(translator.localeTranslate("autolist_hover_item", player.getLocale()), command,new File("./config/AdminMenu/ATL/itemList.json"),"%i1");
         }
 
         ChatComponentFactory f = Canary.factory().getChatComponentFactory();
