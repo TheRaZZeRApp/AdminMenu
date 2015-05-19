@@ -168,7 +168,7 @@ public class CommandBuilder extends PlayerCommand {
         } else if (para.equals(parameters[22])){
             return WorldList.getBody(translator.localeTranslate("autolist_hover_world", player.getLocale()), command, player,translator);
         } else if (para.equals(parameters[23])){
-            return ReasonList.getBody(translator.localeTranslate("autolist_hover_world", player.getLocale()), command, player);
+            return ReasonList.getBody(translator.localeTranslate("autolist_hover_reason", player.getLocale()), command, player);
         }
 
         ChatComponentFactory f = Canary.factory().getChatComponentFactory();

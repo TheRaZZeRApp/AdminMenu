@@ -59,8 +59,8 @@ adm_m_h_w_showdeathmessages=Death Messages Menu
 adm_m_h_group=Group Menu
 
 atl_h_p_kick=Player Kick Menu:
-atl_h_p_ban=Player Ban_Menu:
-atl_h_p_gm=Player Gamemode_Menu:
+atl_h_p_ban=Player Ban Menu:
+atl_h_p_gm=Player Gamemode Menu:
 atl_h_p_op=Player Op Menu:
 atl_h_p_xp=Player XP Menu:
 atl_h_p_lvl=Player Level Menu:
@@ -93,6 +93,7 @@ autolist_hover_group=Click to choose a the group:
 autolist_hover_effect=Click to choose an effect.
 autolist_hover_tf=Click to choose an opinion.
 autolist_hover_world=Click to select the world:
+autolist_hover_reason=Click to select the reason:
 
 atl_w_player=Players:
 atl_w_currentw=(current world)
