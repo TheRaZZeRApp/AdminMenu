@@ -120,7 +120,7 @@ public class Config {
                 ,"1"
         };
         root.setStringArray("amounts", amounts);
-        config.save(root,file);
+        config.save(root, file);
     }
 
     public static void createAmountList02(File file){
@@ -137,6 +137,24 @@ public class Config {
                 ,1
         };
         root.setIntArray("amounts", amounts);
+        config.save(root,file);
+    }
+
+    public static void createReasonList(File file){
+        de.myelitecraft.elitelib.api.config.Config config = EliteLib.getConfigManager().getConfig("JSON");
+        ConfigSection root = config.load(file);
+        String[] reasons = {
+                "Griefing"
+                ,"Spamming"
+                ,"Bad Language"
+                ,"Promotion"
+                ,"Foolishness"
+                ,"Breaking Rules"
+                ,"Bad Name/Skins"
+                ,"Others"
+                ,"Female"
+        };
+        root.setStringArray("reasons", reasons);
         config.save(root,file);
     }
 

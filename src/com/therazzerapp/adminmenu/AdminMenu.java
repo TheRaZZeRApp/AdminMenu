@@ -122,8 +122,20 @@ public class AdminMenu extends Plugin {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            getLogman().info("ATL amount list 01 created!");
+            getLogman().info("ATL amount list 02 created!");
             Config.createAmountList02(atlAmountList02Config);
+        }
+
+        //ReasonList
+        File atlReasonListConfig = new File("./config/AdminMenu/ATL/reasonList.json");
+        if(!atlReasonListConfig.exists()){
+            try {
+                atlReasonListConfig.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            getLogman().info("ATL reason list created!");
+            Config.createReasonList(atlReasonListConfig);
         }
     }
 }

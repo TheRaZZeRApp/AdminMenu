@@ -56,11 +56,11 @@ public class BannedPlayerList {
                 }
 
                 reserveText.getChatStyle().getChatHoverEvent().getValue()
-                        .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_ban_creaton", player.getLocale()) + " §a" + new SimpleDateFormat("dd.MM.yyyy HH:mm:ss").format(new Date(ban.getIssuedDate()))));
+                        .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_ban_creaton", player.getLocale()) + " §a" + new SimpleDateFormat("dd.MM.yyyy HH:mm:ss").format(new Date(ban.getIssuedDate()*1000))));
 
                 if(ban.getExpiration() != -1L){
                     reserveText.getChatStyle().getChatHoverEvent().getValue()
-                            .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_ban_expiration", player.getLocale()) + " §a" + new SimpleDateFormat("dd.MM.yyyy HH:mm:ss").format(new Date(ban.getExpiration()))));
+                            .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_ban_expiration", player.getLocale()) + " §a" + new SimpleDateFormat("dd.MM.yyyy HH:mm:ss").format(new Date(ban.getExpiration()*1000))));
                 }
             }
 
