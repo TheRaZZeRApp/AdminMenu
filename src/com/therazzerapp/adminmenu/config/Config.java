@@ -5,13 +5,11 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
 import de.myelitecraft.elitelib.api.EliteLib;
 import de.myelitecraft.elitelib.api.config.ConfigSection;
 
 import java.io.File;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 
 /**
@@ -53,6 +51,7 @@ public class Config {
         root.setBoolean("pluginInfos", true);
         root.setBoolean("banInfos", true);
         root.setBoolean("groupInfos", true);
+        root.setBoolean("atlEmptyItem", true);
         config.save(root, file);
     }
 

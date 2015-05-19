@@ -38,6 +38,9 @@ public class AchievementList {
             cCText.appendSibling(cCAchievementList);
 
         }
+        if(cCText.getSiblings().size() < 1){
+            return null;
+        }
         if(counter %2 != 0){
             cCText.getSiblings().get(cCText.getSiblings().size()-1).setText("");
         }

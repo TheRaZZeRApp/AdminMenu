@@ -58,6 +58,7 @@ adm_m_h_w_commandfeedback=Command Feedback Menu
 adm_m_h_w_showdeathmessages=Death Messages Menu
 adm_m_h_group=Group Menu
 
+atl_i_empty=Empty
 atl_h_p_kick=Player Kick Menu:
 atl_h_p_ban=Player Ban Menu:
 atl_h_p_gm=Player Gamemode Menu:

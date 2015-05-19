@@ -52,6 +52,9 @@ public class PlayerList {
             cCText.appendSibling(cCPlayerText);
             cCText.appendText("\n");
         }
+        if(cCText.getSiblings().size() < 1){
+            return null;
+        }
         cCText.getSiblings().get(cCText.getSiblings().size()-1).setText("");
         return cCText;
     }

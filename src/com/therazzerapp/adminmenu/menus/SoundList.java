@@ -51,6 +51,9 @@ public class SoundList {
             }
 
         }
+        if(cCText.getSiblings().size() < 1){
+            return null;
+        }
         return cCText;
     }
 }

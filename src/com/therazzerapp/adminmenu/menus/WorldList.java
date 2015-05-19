@@ -47,6 +47,9 @@ public class WorldList {
             cCText.appendSibling(cCWorldText);
             cCText.appendText("\n");
         }
+        if(cCText.getSiblings().size() < 1){
+            return null;
+        }
         cCText.getSiblings().get(cCText.getSiblings().size()-1).setText("");
         return cCText;
     }

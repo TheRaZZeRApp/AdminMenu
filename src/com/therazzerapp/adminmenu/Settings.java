@@ -23,6 +23,7 @@ public class Settings {
     private final boolean pluginInfos;
     private final boolean banInfos;
     private final boolean groupInfos;
+    private final boolean atlEmptyItem;
 
     public Settings(JsonObject root) {
         this.muteChatInMenu = root.getAsJsonPrimitive("muteChatInMenu").getAsBoolean();
@@ -35,6 +36,7 @@ public class Settings {
         this.pluginInfos = root.getAsJsonPrimitive("pluginInfos").getAsBoolean();
         this.banInfos = root.getAsJsonPrimitive("banInfos").getAsBoolean();
         this.groupInfos = root.getAsJsonPrimitive("groupInfos").getAsBoolean();
+        this.atlEmptyItem = root.getAsJsonPrimitive("atlEmptyItem").getAsBoolean();
     }
 
     public boolean isMuteChatInMenu() {
@@ -75,5 +77,9 @@ public class Settings {
 
     public boolean isGroupInfos() {
         return groupInfos;
+    }
+
+    public boolean isAtlEmptyItem() {
+        return atlEmptyItem;
     }
 }

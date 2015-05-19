@@ -38,6 +38,9 @@ public class EffectList {
             cCText.appendSibling(cCEffectText);
             cCText.appendText("\n");
         }
+        if(cCText.getSiblings().size() < 1){
+            return null;
+        }
         if(counter %2 != 0){
             cCText.getSiblings().get(cCText.getSiblings().size()-1).setText("");
         }

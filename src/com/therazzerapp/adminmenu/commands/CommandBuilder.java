@@ -1,5 +1,6 @@
 package com.therazzerapp.adminmenu.commands;
 
+import com.therazzerapp.adminmenu.AdminMenu;
 import com.therazzerapp.adminmenu.menus.*;
 import de.myelitecraft.elitelib.api.commands.Arg;
 import de.myelitecraft.elitelib.api.commands.CommandMeta;
@@ -93,7 +94,12 @@ public class CommandBuilder extends PlayerCommand {
             ChatComponentFactory f = Canary.factory().getChatComponentFactory();
             player.message("\n\n\n\n\n\n\n\n\n\n\n\n\n\n" + translator.localeTranslate(headline, player.getLocale()) + "\n============================");
 
-            player.sendChatComponent(getMenu(para, "acb " + runCMD + " " + headline + " " + back + " " + refreshAble + " " + command, player));
+            ChatComponent cCText = getMenu(para, "acb " + runCMD + " " + headline + " " + back + " " + refreshAble + " " + command, player);
+            if(cCText != null){
+                player.sendChatComponent(cCText);
+            } else if (AdminMenu.settings.isAtlEmptyItem()){
+                player.sendChatComponent(f.newChatComponent("- " + translator.localeTranslate("atl_i_empty", player.getLocale())));
+            }
 
             if(refreshAble){
                 ChatComponent cCRefresh = f.newChatComponent(translator.localeTranslate("i_c_refresh",player.getLocale()));

@@ -41,6 +41,9 @@ public class PlayerInventoryList {
         } else {
             cCText.appendText("ERROR No player named");
         }
+        if(cCText.getSiblings().size() < 1){
+            return null;
+        }
         cCText.getSiblings().get(cCText.getSiblings().size()-1).setText("");
         return cCText;
     }

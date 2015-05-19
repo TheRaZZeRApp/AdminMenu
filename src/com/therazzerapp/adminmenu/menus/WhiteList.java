@@ -70,6 +70,9 @@ public class WhiteList {
             cCText.appendSibling(cCWhitelistText);
             cCText.appendText(", ");
         }
+        if(cCText.getSiblings().size() < 1){
+            return null;
+        }
         cCText.getSiblings().get(cCText.getSiblings().size()-1).setText("");
         return cCText;
     }

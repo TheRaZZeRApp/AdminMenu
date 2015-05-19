@@ -39,6 +39,9 @@ public class TrueFalseList {
             cCBooleanText.getChatStyle().setChatClickEvent(f.newClickEvent(f.getRunCommand(), '/' + command.replaceFirst("%tf" ,amount)));
             cCText.appendSibling(cCBooleanText);
         }
+        if(cCText.getSiblings().size() < 1){
+            return null;
+        }
         return cCText;
     }
 }
