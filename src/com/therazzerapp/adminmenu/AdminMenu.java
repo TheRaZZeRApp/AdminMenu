@@ -102,6 +102,18 @@ public class AdminMenu extends Plugin {
             Config.createItemList(atlItemListConfig);
         }
 
+        //TimeList00
+        File atlTimeList00Config = new File("./config/AdminMenu/ATL/timeList00.json");
+        if(!atlTimeList00Config.exists()){
+            try {
+                atlTimeList00Config.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            getLogman().info("ATL item list created!");
+            Config.createTimeList00(atlTimeList00Config);
+        }
+
         //AmountList00
         File atlAmountList00Config = new File("./config/AdminMenu/ATL/amountList00.json");
         if(!atlAmountList00Config.exists()){

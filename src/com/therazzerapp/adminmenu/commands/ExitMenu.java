@@ -29,7 +29,7 @@ public class ExitMenu extends PlayerCommand{
     @Override
     protected void execute(Player player, Map<Arg, String[]> map, String[] strings, boolean b) {
 
-        player.message("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+        player.message("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
         if(AdminMenu.settings.isMuteChatInMenu()){
             ChatComponentFactory f = Canary.factory().getChatComponentFactory();
             player.showTitle(f.newChatComponent(translator.localeTranslate("extras_chaton",player.getLocale())));

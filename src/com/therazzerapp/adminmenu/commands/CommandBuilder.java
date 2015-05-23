@@ -84,7 +84,7 @@ public class CommandBuilder extends PlayerCommand {
 
             ChatComponent cCText = f.newChatComponent(translator.localeTranslate("cbuilder_generatedtext",player.getLocale()) + "\n============================\n");
 
-            ChatComponent cCCommand = f.newChatComponent("/" + command);
+            ChatComponent cCCommand = f.newChatComponent("/" + command + "   §f<= " + translator.localeTranslate("cbuilder_click",player.getLocale()));
             cCCommand.getChatStyle().setChatClickEvent(f.newClickEvent(f.getSuggestCommand(),"/" + command));
             cCCommand.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(translator.localeTranslate("cbuilder_runcommand", player.getLocale()))));
             cCCommand.getChatStyle().setColor(f.colorYellow());

@@ -1,10 +1,12 @@
 package com.therazzerapp.adminmenu.menus;
 
+import de.myelitecraft.elitelib.api.EliteLib;
+import de.myelitecraft.elitelib.api.config.ConfigSection;
 import net.canarymod.Canary;
 import net.canarymod.api.chat.ChatComponent;
-import net.canarymod.api.chat.ClickEvent;
-import net.canarymod.api.chat.HoverEvent;
 import net.canarymod.api.factory.ChatComponentFactory;
+
+import java.io.File;
 
 /**
  * Project: AdminMenu
@@ -20,67 +22,19 @@ public class TimeList01 {
         ChatComponentFactory f = Canary.factory().getChatComponentFactory();
         ChatComponent cCText = f.newChatComponent("");
 
-        for (int x = 1; x <= 12;x++) {
-            int amount = 0;
-            ChatComponent amountText = f.newChatComponent("");
-            amountText.getChatStyle().setColor(f.colorYellow());
-            switch (x){
-                case 1:
-                    amountText.appendText("Clear");
-                    amount = 0;
-                    break;
-                case 2:
-                    amountText.appendText("1 Day");
-                    amount = 86400;
-                    break;
-                case 3:
-                    amountText.appendText("5 Hours");
-                    amount = 18000;
-                    break;
-                case 4:
-                    amountText.appendText("2 Hours");
-                    amount = 7200;
-                    break;
-                case 5:
-                    amountText.appendText("1 Hour");
-                    amount = 3600;
-                    break;
-                case 6:
-                    amountText.appendText("30 Minutes");
-                    amount = 1800;
-                    break;
-                case 7:
-                    amountText.appendText("15 Minutes");
-                    amount = 900;
-                    break;
-                case 8:
-                    amountText.appendText("10 Minutes");
-                    amount = 600;
-                    break;
-                case 9:
-                    amountText.appendText("5 Minutes");
-                    amount = 300;
-                    break;
-                case 10:
-                    amountText.appendText("1 Minute");
-                    amount = 60;
-                    break;
-                case 11:
-                    amountText.appendText("30 Sec");
-                    amount = 30;
-                    break;
-                case 12:
-                    amountText.appendText("10 Sec");
-                    amount = 10;
-                    break;
-            }
+        de.myelitecraft.elitelib.api.config.Config config = EliteLib.getConfigManager().getConfig("JSON");
+        ConfigSection root = config.load(new File("./config/AdminMenu/ATL/timeList01.json"));
 
-            amountText.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip)));
-            amountText.getChatStyle().setChatClickEvent(f.newClickEvent(f.getRunCommand(), '/' + command.replaceFirst("%t2" , ""+amount)));
+        for (ConfigSection time : root.getConfigSectionArray("time")) {
+            ChatComponent cCTimeText = f.newChatComponent("- " + time.getString("item"));
+            cCTimeText.getChatStyle().setColor(f.colorYellow());
+            cCTimeText.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip)));
+            cCTimeText.getChatStyle().setChatClickEvent(f.newClickEvent(f.getRunCommand(), '/' + command.replaceFirst("%t2" , time.getString("value"))));
 
-            cCText.appendSibling(amountText);
+            cCText.appendSibling(cCTimeText);
             cCText.appendText("\n");
         }
+
         if(cCText.getSiblings().size() < 1){
             return null;
         }

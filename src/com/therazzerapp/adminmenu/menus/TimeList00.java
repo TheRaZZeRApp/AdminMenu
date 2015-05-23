@@ -1,7 +1,5 @@
 package com.therazzerapp.adminmenu.menus;
 
-import com.google.gson.JsonArray;
-import com.google.gson.stream.JsonReader;
 import de.myelitecraft.elitelib.api.EliteLib;
 import de.myelitecraft.elitelib.api.config.ConfigSection;
 import net.canarymod.Canary;
@@ -25,16 +23,13 @@ public class TimeList00 {
         ChatComponent cCText = f.newChatComponent("");
 
         de.myelitecraft.elitelib.api.config.Config config = EliteLib.getConfigManager().getConfig("JSON");
-        ConfigSection root = config.load(new File("./config/AdminMenu/ATL/timeList.json"));
+        ConfigSection root = config.load(new File("./config/AdminMenu/ATL/timeList01.json"));
 
-        root.getConfigSectionArray("time_00");
-
-
-        for (ConfigSection time : root.getConfigSectionArray("time_00")) {
+        for (ConfigSection time : root.getConfigSectionArray("time")) {
             ChatComponent cCTimeText = f.newChatComponent("- " + time.getString("item"));
             cCTimeText.getChatStyle().setColor(f.colorYellow());
             cCTimeText.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip)));
-            cCTimeText.getChatStyle().setChatClickEvent(f.newClickEvent(f.getRunCommand(), '/' + command.replaceFirst("%t1" , root.getString("value"))));
+            cCTimeText.getChatStyle().setChatClickEvent(f.newClickEvent(f.getRunCommand(), '/' + command.replaceFirst("%t1" , time.getString("value"))));
 
             cCText.appendSibling(cCTimeText);
             cCText.appendText("\n");

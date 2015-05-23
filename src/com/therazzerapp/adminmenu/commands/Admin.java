@@ -1,7 +1,6 @@
 package com.therazzerapp.adminmenu.commands;
 
 import com.therazzerapp.adminmenu.AdminMenu;
-import com.therazzerapp.adminmenu.Settings;
 import de.myelitecraft.elitelib.api.EliteLib;
 import de.myelitecraft.elitelib.api.commands.Arg;
 import de.myelitecraft.elitelib.api.commands.CommandMeta;

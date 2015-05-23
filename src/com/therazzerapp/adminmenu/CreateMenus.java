@@ -88,17 +88,19 @@ public class CreateMenus {
                 Menu player_kick = EliteLib.getMenuFactory().newMenu("adm_m_h_p_kick", "adminmenu.menu.player.kick",f.colorWhite(),translator);
                 player_kick.addEntry(getBreakLine());
                 player_kick.addEntry(EliteLib.getMenuFactory().newMenuEntry("i_p_kick_noreason", "adminmenu.player.kick.noreason",f.colorYellow(),f.getShowText(),f.newChatComponent("i_p_kick_noreason_hover"),f.getRunCommand(),"/acb true atl_h_p_kick adm_m_h_p_kick true kick %p",translator));
-                player_kick.addEntry(EliteLib.getMenuFactory().newMenuEntry("i_p_kick_reason", "adminmenu.player.kick.reason",f.colorYellow(),f.getShowText(),f.newChatComponent("i_p_kick_reason_hover"),f.getRunCommand(),"/acb true atl_h_p_kick adm_m_h_p_kick true kick %p %r",translator));
-                player_kick.addEntry(EliteLib.getMenuFactory().newMenuEntry("i_p_kick_customreason", "adminmenu.player.kick.customreason",f.colorYellow(),f.getShowText(),f.newChatComponent("i_p_kick_customreason_hover"),f.getSuggestCommand(),"/acb true atl_h_p_kick adm_m_h_p_kick true kick %p <reason>",translator));
+                player_kick.addEntry(EliteLib.getMenuFactory().newMenuEntry("i_p_kick_reason", "adminmenu.player.kick.reason",f.colorYellow(),f.getShowText(),f.newChatComponent("i_p_kick_reason_hover"),f.getRunCommand(),"/acb true atl_h_p_kick adm_m_h_p_kick true kick %p %re",translator));
+                player_kick.addEntry(EliteLib.getMenuFactory().newMenuEntry("i_p_kick_customreason", "adminmenu.player.kick.customreason",f.colorYellow(),f.getShowText(),f.newChatComponent("i_p_kick_customreason_hover"),f.getRunCommand(),"/acb false atl_h_p_kick adm_m_h_p_kick true kick %p <reason>",translator));
                 EliteLib.getMenuManager().addMenu(addNavigation(player_kick,translator,null,null,"adminmenu.menu.player_00","/chatclick chatmenu adm_m_h_p"));
 
                 //Ban menu
                 Menu player_ban = EliteLib.getMenuFactory().newMenu("adm_m_h_p_ban","adminmenu.menu.player.ban",f.colorWhite(),translator);
                 player_ban.addEntry(getBreakLine());
                 player_ban.addEntry(EliteLib.getMenuFactory().newMenuEntry("i_p_ban_perm_noreason", "adminmenu.player.ban.perm.noreason", f.colorYellow(), f.getShowText(), f.newChatComponent("i_p_ban_perm_noreason_hover"), f.getRunCommand(), "/acb true atl_h_p_ban adm_m_h_p_ban true ban %p", translator));
-                player_ban.addEntry(EliteLib.getMenuFactory().newMenuEntry("i_p_ban_perm_reason", "adminmenu.player.ban.perm.reason",f.colorYellow(),f.getShowText(),f.newChatComponent("i_p_ban_reason_hover"),f.getRunCommand(),"/acb true atl_h_p_ban adm_m_h_p_ban true ban %p %re",translator));
-                player_ban.addEntry(EliteLib.getMenuFactory().newMenuEntry("i_p_ban_temp_noreason", "adminmenu.player.ban.temp.noreason",f.colorYellow(),f.getShowText(),f.newChatComponent("i_p_ban_noreason_hover"),f.getRunCommand(),"/acb true atl_h_p_ban adm_m_h_p_ban true ban %p noreason %t1",translator));
-                player_ban.addEntry(EliteLib.getMenuFactory().newMenuEntry("i_p_ban_temp_reason", "adminmenu.player.ban.temp.reason",f.colorYellow(),f.getShowText(),f.newChatComponent("i_p_ban_noreason_hover"),f.getRunCommand(),"/acb true atl_h_p_ban adm_m_h_p_ban true ban %p %re %t1",translator));
+                player_ban.addEntry(EliteLib.getMenuFactory().newMenuEntry("i_p_ban_perm_reason", "adminmenu.player.ban.perm.reason",f.colorYellow(),f.getShowText(),f.newChatComponent("i_p_ban_perm_reason_hover"),f.getRunCommand(),"/acb true atl_h_p_ban adm_m_h_p_ban true ban %p %re",translator));
+                player_ban.addEntry(EliteLib.getMenuFactory().newMenuEntry("i_p_ban_perm_creason", "adminmenu.player.ban.perm.customreason",f.colorYellow(),f.getShowText(),f.newChatComponent("i_p_ban_perm_creason_hover"),f.getRunCommand(),"/acb false atl_h_p_ban adm_m_h_p_ban true ban %p <reason>",translator));
+                player_ban.addEntry(EliteLib.getMenuFactory().newMenuEntry("i_p_ban_temp_noreason", "adminmenu.player.ban.temp.noreason",f.colorYellow(),f.getShowText(),f.newChatComponent("i_p_ban_temp_noreason_hover"),f.getRunCommand(),"/acb true atl_h_p_ban adm_m_h_p_ban true ban %p noreason %t1",translator));
+                player_ban.addEntry(EliteLib.getMenuFactory().newMenuEntry("i_p_ban_temp_reason", "adminmenu.player.ban.temp.reason",f.colorYellow(),f.getShowText(),f.newChatComponent("i_p_ban_temp_reason_hover"),f.getRunCommand(),"/acb true atl_h_p_ban adm_m_h_p_ban true ban %p %re %t1",translator));
+                player_ban.addEntry(EliteLib.getMenuFactory().newMenuEntry("i_p_ban_temp_creason", "adminmenu.player.ban.temp.customreason",f.colorYellow(),f.getShowText(),f.newChatComponent("i_p_ban_temp_creason_hover"),f.getRunCommand(),"/acb false atl_h_p_ban adm_m_h_p_ban true ban %p <reason> %t1",translator));
                 player_ban.addEntry(EliteLib.getMenuFactory().newMenuEntry("i_p_ban_unban", "adminmenu.player.ban.unban",f.colorYellow(),f.getShowText(),f.newChatComponent("i_p_ban_unban_hover"),f.getRunCommand(),"/acb true atl_h_p_ban adm_m_h_p_ban true unban %bp ",translator));
                 EliteLib.getMenuManager().addMenu(addNavigation(player_ban,translator,null,null,"adminmenu.menu.player_00","/chatclick chatmenu adm_m_h_p"));
 
@@ -476,7 +478,7 @@ public class CreateMenus {
         Menu group_01 = EliteLib.getMenuFactory().newMenu("adm_m_h_g_01", "adminmenu.menu.group_01", f.colorWhite(), translator);
         group_01.addEntry(getBreakLine());
         group_01.addEntry(EliteLib.getMenuFactory().newMenuEntry("i_g_permission_remove", "adminmenu.group.permission.remove", f.colorYellow(), f.getShowText(), f.newChatComponent("i_g_permission_remove_hover"), f.getRunCommand(), "/acb true atl_h_gp adm_m_h_g_01 true groupmod permission remove %g %pg", translator));
-        EliteLib.getMenuManager().addMenu(addNavigation(group_01, translator, null,null, "adminmenu.menu.group_00", "/chatclick chatmenu adm_m_h_g_00"));
+        EliteLib.getMenuManager().addMenu(addNavigation(group_01, translator, null,null, "adminmenu.menu.group_00", "/chatclick chatmenu adm_m_h_g"));
 
     }
 

@@ -1,6 +1,5 @@
 package com.therazzerapp.adminmenu.config;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -38,6 +37,7 @@ public class Config {
         }
     }
 
+
     public static void createConfig(File file){
         de.myelitecraft.elitelib.api.config.Config config = EliteLib.getConfigManager().getConfig("JSON");
         ConfigSection root = config.load(file);
@@ -53,6 +53,35 @@ public class Config {
         root.setBoolean("groupInfos", true);
         root.setBoolean("atlEmptyItem", true);
         config.save(root, file);
+    }
+
+    public static void createTimeList00(File file){
+        String[] time = {
+                "1 Year"
+                ,"12 mo"
+                ,"6 Months"
+                ,"6 mo"
+                ,"1 Moth"
+                ,"1 mo"
+                ,"2 Weeks"
+                ,"2 w"
+                ,"1 Week"
+                ,"1 w"
+                ,"3 Days"
+                ,"3 d"
+                ,"1 Day"
+                ,"1 d"
+                ,"12 Hours"
+                ,"12 h"
+                ,"1 Hour"
+                ,"1 h"
+                ,"30 Minutes"
+                ,"30 min"
+                ,"5 Minutes"
+                ,"5 min"
+                ,"1 Minute"
+                ,"1 min"
+        };
     }
 
     public static void createBlockList(File file){

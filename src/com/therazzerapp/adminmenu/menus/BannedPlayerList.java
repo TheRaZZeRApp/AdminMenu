@@ -37,8 +37,8 @@ public class BannedPlayerList {
                 }
 
                 cCBannedText.getChatStyle().getChatHoverEvent().getValue()
-                        .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_ban_banner", player.getLocale()) + " §a" + ban.getBanningPlayer()))
-                        .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_ban_reason",player.getLocale()) + " §a" + reason));
+                        .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_ban_banner", player.getLocale()) + " §a" + ban.getBanningPlayer() + " (" + Canary.getServer().getPlayer(ban.getBanningPlayer()).getGroup().getName() + ")"))
+                        .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_ban_reason", player.getLocale()) + " §a" + reason));
 
                 if(ban.isIpBan()){
                     cCBannedText.getChatStyle().getChatHoverEvent().getValue()
