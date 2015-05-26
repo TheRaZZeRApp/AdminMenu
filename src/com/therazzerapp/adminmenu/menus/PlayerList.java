@@ -39,9 +39,9 @@ public class PlayerList {
 
             if(AdminMenu.settings.isPlayerInfos()){
                 cCPlayerText.getChatStyle().getChatHoverEvent().getValue()
-                        .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_p_world", player.getLocale()) + " §a" + p.getWorld().getName()))
-                        .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_p_group", player.getLocale()) + " §a" + p.getGroup().getName()))
-                        .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_p_ip",player.getLocale()) + " §a" + p.getIP()))
+                        .appendSibling(f.newChatComponent("\n§f" + translator.localeTranslate("atl_p_world", player.getLocale()) + " §a" + p.getWorld().getName()))
+                        .appendSibling(f.newChatComponent("\n§f" + translator.localeTranslate("atl_p_group", player.getLocale()) + " §a" + p.getGroup().getName()))
+                        .appendSibling(f.newChatComponent("\n§f" + translator.localeTranslate("atl_p_ip",player.getLocale()) + " §a" + p.getIP()))
                         .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_p_locale",player.getLocale()) + " §a" + p.getLocale()))
                         .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_p_firstseen",player.getLocale()) + " §a" + p.getFirstJoined().replaceAll("-",".")))
                         .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_p_lastseen",player.getLocale()) + " §a" + p.getLastJoined().replaceAll("-",".")));

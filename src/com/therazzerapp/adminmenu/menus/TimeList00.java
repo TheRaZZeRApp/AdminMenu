@@ -23,9 +23,9 @@ public class TimeList00 {
         ChatComponent cCText = f.newChatComponent("");
 
         de.myelitecraft.elitelib.api.config.Config config = EliteLib.getConfigManager().getConfig("JSON");
-        ConfigSection root = config.load(new File("./config/AdminMenu/ATL/timeList01.json"));
+        ConfigSection root = config.load(new File("./config/AdminMenu/ATL/timeList.json"));
 
-        for (ConfigSection time : root.getConfigSectionArray("time")) {
+        for (ConfigSection time : root.getConfigSectionArray("time_00")) {
             ChatComponent cCTimeText = f.newChatComponent("- " + time.getString("item"));
             cCTimeText.getChatStyle().setColor(f.colorYellow());
             cCTimeText.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip)));

@@ -6,6 +6,7 @@ import com.therazzerapp.adminmenu.commands.ExitMenu;
 import com.therazzerapp.adminmenu.config.Config;
 import com.therazzerapp.adminmenu.listener.BlankLineListener;
 import de.myelitecraft.elitelib.api.EliteLib;
+import de.myelitecraft.elitelib.api.config.ConfigSection;
 import net.canarymod.plugin.Plugin;
 
 import java.io.File;
@@ -72,6 +73,10 @@ public class AdminMenu extends Plugin {
     }
 
     private void createATLConfigs(){
+
+        de.myelitecraft.elitelib.api.config.Config config = EliteLib.getConfigManager().getConfig("JSON");
+        ConfigSection root;
+
         //ATL Configs
         File atlConfigDir = new File("./config/AdminMenu/ATL/");
         if(!atlConfigDir.exists()){
@@ -103,15 +108,28 @@ public class AdminMenu extends Plugin {
         }
 
         //TimeList00
-        File atlTimeList00Config = new File("./config/AdminMenu/ATL/timeList00.json");
-        if(!atlTimeList00Config.exists()){
+        File atlTimeList00Config = new File("./config/AdminMenu/ATL/timeList.json");
+        root = config.load(atlTimeList00Config);
+        if(!atlTimeList00Config.exists() || !root.has("time_00")){
             try {
                 atlTimeList00Config.createNewFile();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            getLogman().info("ATL item list created!");
+            getLogman().info("ATL time list created!");
             Config.createTimeList00(atlTimeList00Config);
+        }
+
+        //TimeList01
+        root = config.load(atlTimeList00Config);
+        if(!atlTimeList00Config.exists() || !root.has("time_01")){
+            try {
+                atlTimeList00Config.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            getLogman().info("ATL time 01 list created!");
+            Config.createTimeList01(atlTimeList00Config);
         }
 
         //AmountList00

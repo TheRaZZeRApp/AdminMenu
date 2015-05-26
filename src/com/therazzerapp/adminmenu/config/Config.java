@@ -82,6 +82,37 @@ public class Config {
                 ,"1 Minute"
                 ,"1 min"
         };
+        createConfigSectionList(file,"time_00",time);
+    }
+
+    public static void createTimeList01(File file){
+        String[] time = {
+                "Clear"
+                ,"0"
+                ,"1 Day"
+                ,"86400"
+                ,"5 Hours"
+                ,"18000"
+                ,"2 Hours"
+                ,"7200"
+                ,"1 Hour"
+                ,"3600"
+                ,"30 Minutes"
+                ,"1800"
+                ,"15 Minutes"
+                ,"900"
+                ,"10 Minutes"
+                ,"600"
+                ,"5 Minutes"
+                ,"300"
+                ,"1 Minute"
+                ,"60"
+                ,"30 Sec"
+                ,"30"
+                ,"10 Sec"
+                ,"10"
+        };
+        createConfigSectionList(file,"time_01",time);
     }
 
     public static void createBlockList(File file){
@@ -171,6 +202,18 @@ public class Config {
                 ,"Female"
         };
         createStorageList(file,"reasons",reasons);
+    }
+
+    public static void createConfigSectionList(File file, String item, String[] strings){
+        de.myelitecraft.elitelib.api.config.Config config = EliteLib.getConfigManager().getConfig("JSON");
+        ConfigSection root = config.load(file);
+
+        for (int x = 0; x < strings.length; x += 2){
+            ConfigSection section = root.addConfigSectionArrayEntry(item);
+            section.setString("item", strings[x]);
+            section.setString("value", strings[x+1]);
+        }
+        config.save(root,file);
     }
 
     public static void createStorageList(File file, String item, String[] strings){
