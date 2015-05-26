@@ -85,99 +85,105 @@ public class AdminMenu extends Plugin {
 
         //BlockList
         File atlBlockListConfig = new File("./config/AdminMenu/ATL/blockList.json");
+        root = config.load(atlBlockListConfig);
         if(!atlBlockListConfig.exists()){
             try {
                 atlBlockListConfig.createNewFile();
+                getLogman().info("ATL: blockList.json created!");
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            getLogman().info("ATL block list created!");
-            Config.createBlockList(atlBlockListConfig);
         }
+
+            if(!root.has("blocks")){
+                Config.createBlockList(atlBlockListConfig);
+                getLogman().info("ATL: Section blocks has been added to blockList.json");
+            }
+
 
         //ItemList
         File atlItemListConfig = new File("./config/AdminMenu/ATL/itemList.json");
+        root = config.load(atlItemListConfig);
         if(!atlItemListConfig.exists()){
             try {
                 atlItemListConfig.createNewFile();
+                getLogman().info("ATL: itemList.json created!");
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            getLogman().info("ATL item list created!");
-            Config.createItemList(atlItemListConfig);
         }
 
-        //TimeList00
-        File atlTimeList00Config = new File("./config/AdminMenu/ATL/timeList.json");
-        root = config.load(atlTimeList00Config);
-        if(!atlTimeList00Config.exists() || !root.has("time_00")){
+            if(!root.has("items")){
+                Config.createItemList(atlItemListConfig);
+                getLogman().info("ATL: Section items has been added to itemList.json");
+            }
+
+        //TimeList
+        File atlTimeListConfig = new File("./config/AdminMenu/ATL/timeList.json");
+        root = config.load(atlTimeListConfig);
+        if(!atlTimeListConfig.exists()){
             try {
-                atlTimeList00Config.createNewFile();
+                atlTimeListConfig.createNewFile();
+                getLogman().info("ATL: timeList.json created!");
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            getLogman().info("ATL time list created!");
-            Config.createTimeList00(atlTimeList00Config);
         }
 
-        //TimeList01
-        root = config.load(atlTimeList00Config);
-        if(!atlTimeList00Config.exists() || !root.has("time_01")){
+            if(!root.has("time_00")){
+                Config.createTimeList00(atlTimeListConfig, getLogman());
+                getLogman().info("ATL: Section time_00 has been added to timeList.json");
+            }
+
+            if(!root.has("time_01")){
+                Config.createTimeList01(atlTimeListConfig, getLogman());
+                getLogman().info("ATL: Section time_01 has been added to timeList.json");
+            }
+
+
+        //AmountList
+        File atlAmountListConfig = new File("./config/AdminMenu/ATL/amountList.json");
+        root = config.load(atlAmountListConfig);
+        if(!atlAmountListConfig.exists()){
             try {
-                atlTimeList00Config.createNewFile();
+                atlAmountListConfig.createNewFile();
+                getLogman().info("ATL: amountList.json created!");
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            getLogman().info("ATL time 01 list created!");
-            Config.createTimeList01(atlTimeList00Config);
         }
 
-        //AmountList00
-        File atlAmountList00Config = new File("./config/AdminMenu/ATL/amountList00.json");
-        if(!atlAmountList00Config.exists()){
-            try {
-                atlAmountList00Config.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
+            if(!root.has("amounts_00")){
+                Config.createAmountList00(atlAmountListConfig);
+                getLogman().info("ATL: Section amount_00 has been added to amountList.json");
             }
-            getLogman().info("ATL amount list 00 created!");
-            Config.createAmountList00(atlAmountList00Config);
-        }
 
-        //AmountList01
-        File atlAmountList01Config = new File("./config/AdminMenu/ATL/amountList01.json");
-        if(!atlAmountList01Config.exists()){
-            try {
-                atlAmountList01Config.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
+            if(!root.has("amounts_01")){
+                Config.createAmountList01(atlAmountListConfig);
+                getLogman().info("ATL: Section amount_01 has been added to amountList.json");
             }
-            getLogman().info("ATL amount list 01 created!");
-            Config.createAmountList01(atlAmountList01Config);
-        }
 
-        //AmountList02
-        File atlAmountList02Config = new File("./config/AdminMenu/ATL/amountList02.json");
-        if(!atlAmountList02Config.exists()){
-            try {
-                atlAmountList02Config.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
+            if(!root.has("amounts_01")){
+                Config.createAmountList02(atlAmountListConfig);
+                getLogman().info("ATL: Section amount_02 has been added to amountList.json");
             }
-            getLogman().info("ATL amount list 02 created!");
-            Config.createAmountList02(atlAmountList02Config);
-        }
+
 
         //ReasonList
         File atlReasonListConfig = new File("./config/AdminMenu/ATL/reasonList.json");
+        root = config.load(atlReasonListConfig);
         if(!atlReasonListConfig.exists()){
             try {
                 atlReasonListConfig.createNewFile();
+                getLogman().info("ATL: reasonList.json created!");
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            getLogman().info("ATL reason list created!");
-            Config.createReasonList(atlReasonListConfig);
         }
+
+            if(!root.has("reasons")){
+                Config.createReasonList(atlReasonListConfig);
+                getLogman().info("ATL: Section reasons has been added to reasonList.json");
+            }
     }
 }

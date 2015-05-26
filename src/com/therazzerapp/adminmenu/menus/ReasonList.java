@@ -9,6 +9,7 @@ package com.therazzerapp.adminmenu.menus;
  * E-Mail: e-mail@therazzerapp.com
  */
 
+import com.therazzerapp.adminmenu.AdminMenu;
 import de.myelitecraft.elitelib.api.EliteLib;
 import de.myelitecraft.elitelib.api.config.ConfigSection;
 import net.canarymod.Canary;
@@ -26,8 +27,13 @@ public class ReasonList {
         de.myelitecraft.elitelib.api.config.Config config = EliteLib.getConfigManager().getConfig("JSON");
         ConfigSection root = config.load(new File("./config/AdminMenu/ATL/reasonList.json"));
 
-        String[] reasons = root.getStringArray("reasons_" + player.getLocale());
-        if(reasons.length == 0){
+        String[] reasons;
+        if(AdminMenu.settings.isMultiLanguageReasons()){
+            reasons = root.getStringArray("reasons_" + player.getLocale());
+            if(reasons.length == 0){
+                reasons = root.getStringArray("reasons");
+            }
+        } else {
             reasons = root.getStringArray("reasons");
         }
 

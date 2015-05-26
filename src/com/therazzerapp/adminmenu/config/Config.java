@@ -6,6 +6,8 @@ import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
 import de.myelitecraft.elitelib.api.EliteLib;
 import de.myelitecraft.elitelib.api.config.ConfigSection;
+import net.canarymod.logger.Logman;
+import sun.rmi.runtime.Log;
 
 import java.io.File;
 import java.io.FileReader;
@@ -37,25 +39,25 @@ public class Config {
         }
     }
 
-
     public static void createConfig(File file){
         de.myelitecraft.elitelib.api.config.Config config = EliteLib.getConfigManager().getConfig("JSON");
         ConfigSection root = config.load(file);
-        root.setBoolean("muteChatInMenu", true);
+        root.setBoolean("mute_chat_in_menu", true);
         root.setBoolean("playermenu", true);
         root.setBoolean("servermenu", true);
         root.setBoolean("worldmenu", true);
         root.setBoolean("groupmenu", true);
-        root.setBoolean("playerInfos", true);
-        root.setBoolean("worldInfos", true);
-        root.setBoolean("pluginInfos", true);
-        root.setBoolean("banInfos", true);
-        root.setBoolean("groupInfos", true);
-        root.setBoolean("atlEmptyItem", true);
+        root.setBoolean("player_infos", true);
+        root.setBoolean("world_infos", true);
+        root.setBoolean("plugin_infos", true);
+        root.setBoolean("ban_infos", true);
+        root.setBoolean("group_infos", true);
+        root.setBoolean("atl_empty_item", true);
+        root.setBoolean("multi_language_reasons", true);
         config.save(root, file);
     }
 
-    public static void createTimeList00(File file){
+    public static void createTimeList00(File file, Logman logman){
         String[] time = {
                 "1 Year"
                 ,"12 mo"
@@ -82,10 +84,10 @@ public class Config {
                 ,"1 Minute"
                 ,"1 min"
         };
-        createConfigSectionList(file,"time_00",time);
+        createConfigSectionList(file,"time_00",time,logman);
     }
 
-    public static void createTimeList01(File file){
+    public static void createTimeList01(File file, Logman logman){
         String[] time = {
                 "Clear"
                 ,"0"
@@ -112,7 +114,7 @@ public class Config {
                 ,"10 Sec"
                 ,"10"
         };
-        createConfigSectionList(file,"time_01",time);
+        createConfigSectionList(file,"time_01",time, logman);
     }
 
     public static void createBlockList(File file){
@@ -157,7 +159,7 @@ public class Config {
                 ,2
                 ,1
         };
-        createStorageList(file,"amounts",amounts);
+        createStorageList(file,"amounts_00",amounts);
     }
 
     public static void createAmountList01(File file){
@@ -172,7 +174,7 @@ public class Config {
                 ,"2"
                 ,"1"
         };
-        createStorageList(file,"amounts",amounts);
+        createStorageList(file,"amounts_01",amounts);
     }
 
     public static void createAmountList02(File file){
@@ -186,7 +188,7 @@ public class Config {
                 ,2
                 ,1
         };
-        createStorageList(file, "amounts", amounts);
+        createStorageList(file, "amounts_02", amounts);
     }
 
     public static void createReasonList(File file){
@@ -196,22 +198,38 @@ public class Config {
                 ,"Bad Language"
                 ,"Promotion"
                 ,"Foolishness"
-                ,"Breaking Rules"
+                ,"Broken Rules"
                 ,"Bad Name/Skins"
                 ,"Others"
-                ,"Female"
+                ,"Female"       //I know i know
         };
         createStorageList(file,"reasons",reasons);
+        String[] reasons_de = {
+                "Griefing"
+                ,"Spamming"
+                ,"Vulgärsprache"
+                ,"Werbung"
+                ,"Dummheit"
+                ,"Regeln Gebrochen"
+                ,"Schlechter Name/Skin"
+                ,"Sonstiges"
+                ,"Männlich"       //Für die Fairness
+        };
+        createStorageList(file,"reasons_de_DE",reasons_de);
     }
 
-    public static void createConfigSectionList(File file, String item, String[] strings){
+    public static void createConfigSectionList(File file, String item, String[] strings, Logman logman){
         de.myelitecraft.elitelib.api.config.Config config = EliteLib.getConfigManager().getConfig("JSON");
         ConfigSection root = config.load(file);
 
-        for (int x = 0; x < strings.length; x += 2){
-            ConfigSection section = root.addConfigSectionArrayEntry(item);
-            section.setString("item", strings[x]);
-            section.setString("value", strings[x+1]);
+        try{
+            for (int x = 0; x < strings.length; x += 2){
+                ConfigSection section = root.addConfigSectionArrayEntry(item);
+                section.setString("item", strings[x]);
+                section.setString("value", strings[x+1]);
+            }
+        } catch (ArrayIndexOutOfBoundsException ex){
+            logman.error("File: " + file.getName() + " needs one more value!");
         }
         config.save(root,file);
     }

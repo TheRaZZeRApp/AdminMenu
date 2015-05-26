@@ -36,16 +36,16 @@ public class CreateMenus {
         Menu mainMenu = EliteLib.getMenuFactory().newMenu("adm_m_h_main", "adminmenu.menu.main", f.colorWhite(),translator);
         mainMenu.addEntry(getBreakLine());
         if (AdminMenu.settings.isPlayermenu()){
-            mainMenu.addEntry(EliteLib.getMenuFactory().newMenuEntry("i_m_player_commands", "adminmenu.menu.player", f.colorYellow(), f.getShowText(), f.newChatComponent("hover_main_player_commands"),f.getRunCommand(), "/chatclick chatmenu adm_m_h_p",translator));
+            mainMenu.addEntry(EliteLib.getMenuFactory().newMenuEntry("i_m_player", "adminmenu.menu.player", f.colorYellow(), f.getShowText(), f.newChatComponent("i_m_player_hover"),f.getRunCommand(), "/chatclick chatmenu adm_m_h_p",translator));
         }
         if (AdminMenu.settings.isServermenu()){
-            mainMenu.addEntry(EliteLib.getMenuFactory().newMenuEntry("i_m_server_commands","adminmenu.menu.server", f.colorYellow(), f.getShowText(), f.newChatComponent("hover_main_server_commands"),f.getRunCommand(), "/chatclick chatmenu adm_m_h_s",translator));
+            mainMenu.addEntry(EliteLib.getMenuFactory().newMenuEntry("i_m_server","adminmenu.menu.server", f.colorYellow(), f.getShowText(), f.newChatComponent("i_m_server_hover"),f.getRunCommand(), "/chatclick chatmenu adm_m_h_s",translator));
         }
         if(AdminMenu.settings.isWorldmenu()){
-            mainMenu.addEntry(EliteLib.getMenuFactory().newMenuEntry("i_m_world_commands","adminmenu.menu.world", f.colorYellow(), f.getShowText(), f.newChatComponent("hover_main_world_commands"),f.getRunCommand(), "/chatclick chatmenu adm_m_h_w",translator));
+            mainMenu.addEntry(EliteLib.getMenuFactory().newMenuEntry("i_m_world","adminmenu.menu.world", f.colorYellow(), f.getShowText(), f.newChatComponent("i_m_world_hover"),f.getRunCommand(), "/chatclick chatmenu adm_m_h_w",translator));
         }
         if(AdminMenu.settings.isGroupmenu()){
-            mainMenu.addEntry(EliteLib.getMenuFactory().newMenuEntry("i_m_group_commands" ,"adminmenu.menu.group", f.colorYellow(), f.getShowText(), f.newChatComponent("hover_main_group_commands"),f.getRunCommand(), "/chatclick chatmenu adm_m_h_g",translator));
+            mainMenu.addEntry(EliteLib.getMenuFactory().newMenuEntry("i_m_group" ,"adminmenu.menu.group", f.colorYellow(), f.getShowText(), f.newChatComponent("i_m_group_hover"),f.getRunCommand(), "/chatclick chatmenu adm_m_h_g",translator));
         }
         EliteLib.getMenuManager().addMenu(addNavigation(mainMenu,translator));
 
@@ -123,9 +123,9 @@ public class CreateMenus {
                 //XP menu
                 Menu player_xp = EliteLib.getMenuFactory().newMenu("adm_m_h_p_xp","adminmenu.menu.player.xp",f.colorWhite(),translator);
                 player_xp.addEntry(getBreakLine());
-                player_xp.addEntry(EliteLib.getMenuFactory().newMenuEntry("100","adminmenu.player.xp.100",f.colorYellow(),f.getShowText(),f.newChatComponent("i_p_xp_100_hover"),f.getRunCommand(),"/acb true atl_h_p_xp adm_m_h_p_xp true xp 100 %p",translator));
-                player_xp.addEntry(EliteLib.getMenuFactory().newMenuEntry("1000","adminmenu.player.xp.1000",f.colorYellow(),f.getShowText(),f.newChatComponent("i_p_xp_1000_hover"),f.getRunCommand(),"/acb true atl_h_p_xp adm_m_h_p_xp true xp 1000 %p",translator));
-                player_xp.addEntry(EliteLib.getMenuFactory().newMenuEntry("10000","adminmenu.player.xp.100",f.colorYellow(),f.getShowText(),f.newChatComponent("i_p_xp_10000_hover"),f.getRunCommand(),"/acb true atl_h_p_xp adm_m_h_p_xp true xp 10000 %p",translator));
+                player_xp.addEntry(EliteLib.getMenuFactory().newMenuEntry("- 100","adminmenu.player.xp.100",f.colorYellow(),f.getShowText(),f.newChatComponent("i_p_xp_100_hover"),f.getRunCommand(),"/acb true atl_h_p_xp adm_m_h_p_xp true xp 100 %p",translator));
+                player_xp.addEntry(EliteLib.getMenuFactory().newMenuEntry("- 1000","adminmenu.player.xp.1000",f.colorYellow(),f.getShowText(),f.newChatComponent("i_p_xp_1000_hover"),f.getRunCommand(),"/acb true atl_h_p_xp adm_m_h_p_xp true xp 1000 %p",translator));
+                player_xp.addEntry(EliteLib.getMenuFactory().newMenuEntry("- 10000","adminmenu.player.xp.100",f.colorYellow(),f.getShowText(),f.newChatComponent("i_p_xp_10000_hover"),f.getRunCommand(),"/acb true atl_h_p_xp adm_m_h_p_xp true xp 10000 %p",translator));
                 player_xp.addEntry(EliteLib.getMenuFactory().newMenuEntry("i_c_other","adminmenu.player.xp.other",f.colorYellow(),f.getShowText(),f.newChatComponent("i_p_xp_other_hover"),f.getRunCommand(),"/acb true atl_h_p_xp adm_m_h_p_xp true xp %a %p",translator));
                 player_xp.addEntry(EliteLib.getMenuFactory().newMenuEntry("i_c_custom","adminmenu.player.xp.custom",f.colorYellow(),f.getShowText(),f.newChatComponent("i_p_xp_custom_hover"),f.getRunCommand(),"/acb false atl_h_p_xp adm_m_h_p_xp true xp <amount> %p",translator));
                 EliteLib.getMenuManager().addMenu(addNavigation(player_xp,translator,null,null,"adminmenu.menu.player_01","/chatclick chatmenu adm_m_h_p_01"));
@@ -133,9 +133,9 @@ public class CreateMenus {
                 //Level menu
                 Menu player_level = EliteLib.getMenuFactory().newMenu("adm_m_h_p_lvl","adminmenu.menu.player.lvl",f.colorWhite(),translator);
                 player_level.addEntry(getBreakLine());
-                player_level.addEntry(EliteLib.getMenuFactory().newMenuEntry("10","adminmenu.player.lvl.10",f.colorYellow(),f.getShowText(),f.newChatComponent("i_p_lvl_10_hover"),f.getRunCommand(),"/acb true atl_h_p_lvl adm_m_h_p_lvl true xp 10L %p",translator));
-                player_level.addEntry(EliteLib.getMenuFactory().newMenuEntry("100","adminmenu.player.lvl.100",f.colorYellow(),f.getShowText(),f.newChatComponent("i_p_lvl_100_hover"),f.getRunCommand(),"/acb true atl_h_p_lvl adm_m_h_p_lvl true xp 100L %p",translator));
-                player_level.addEntry(EliteLib.getMenuFactory().newMenuEntry("1000","adminmenu.player.lvl.1000",f.colorYellow(),f.getShowText(),f.newChatComponent("i_p_lvl_1000_hover"),f.getRunCommand(),"/acb true atl_h_p_lvl adm_m_h_p_lvl true xp 1000L %p",translator));
+                player_level.addEntry(EliteLib.getMenuFactory().newMenuEntry("- 10","adminmenu.player.lvl.10",f.colorYellow(),f.getShowText(),f.newChatComponent("i_p_lvl_10_hover"),f.getRunCommand(),"/acb true atl_h_p_lvl adm_m_h_p_lvl true xp 10L %p",translator));
+                player_level.addEntry(EliteLib.getMenuFactory().newMenuEntry("- 100","adminmenu.player.lvl.100",f.colorYellow(),f.getShowText(),f.newChatComponent("i_p_lvl_100_hover"),f.getRunCommand(),"/acb true atl_h_p_lvl adm_m_h_p_lvl true xp 100L %p",translator));
+                player_level.addEntry(EliteLib.getMenuFactory().newMenuEntry("- 1000","adminmenu.player.lvl.1000",f.colorYellow(),f.getShowText(),f.newChatComponent("i_p_lvl_1000_hover"),f.getRunCommand(),"/acb true atl_h_p_lvl adm_m_h_p_lvl true xp 1000L %p",translator));
                 player_level.addEntry(EliteLib.getMenuFactory().newMenuEntry("i_c_other","adminmenu.player.lvl.other",f.colorYellow(),f.getShowText(),f.newChatComponent("i_p_lvl_other_hover"),f.getRunCommand(),"/acb true atl_h_p_lvl adm_m_h_p_lvl true xp %aL %p",translator));
                 player_level.addEntry(EliteLib.getMenuFactory().newMenuEntry("i_c_custom","adminmenu.player.lvl.custom",f.colorYellow(),f.getShowText(),f.newChatComponent("i_p_lvl_custom_hover"),f.getRunCommand(),"/acb false atl_h_p_lvl adm_m_h_p_lvl true xp <amount>L %p",translator));
                 EliteLib.getMenuManager().addMenu(addNavigation(player_level,translator,null,null,"adminmenu.menu.player_01","/chatclick chatmenu adm_m_h_p_01"));
@@ -237,8 +237,8 @@ public class CreateMenus {
             //Timeout menu
             Menu server_timeout = EliteLib.getMenuFactory().newMenu("adm_m_h_s_t", "adminmenu.menu.server.timeout", f.colorWhite(), translator);
             server_timeout.addEntry(getBreakLine());
-            server_timeout.addEntry(EliteLib.getMenuFactory().newMenuEntry("i_s_afktimeout", "adminmenu.server.timeout.set", f.colorYellow(), f.getShowText(), f.newChatComponent("i_s_afktimeout_hover"), f.getSuggestCommand(), "/setidletimeout <minutes>", translator));
-            server_timeout.addEntry(EliteLib.getMenuFactory().newMenuEntry("i_c_turnoff", "adminmenu.server.timeout.turnoff", f.colorYellow(), f.getShowText(), f.newChatComponent("i_s_afktimeout_disable_hover"), f.getRunCommand(), "/setidletimeout 0", translator));
+            server_timeout.addEntry(EliteLib.getMenuFactory().newMenuEntry("i_s_t_set", "adminmenu.server.timeout.set", f.colorYellow(), f.getShowText(), f.newChatComponent("i_s_t_set_hover"), f.getSuggestCommand(), "/setidletimeout <minutes>", translator));
+            server_timeout.addEntry(EliteLib.getMenuFactory().newMenuEntry("i_c_turnoff", "adminmenu.server.timeout.turnoff", f.colorYellow(), f.getShowText(), f.newChatComponent("i_s_t_turnoff_hover"), f.getRunCommand(), "/setidletimeout 0", translator));
             EliteLib.getMenuManager().addMenu(addNavigation(server_timeout, translator, null, null, "adminmenu.menu.server_00", "/chatclick chatmenu adm_m_h_s"));
 
             //Createworld menu

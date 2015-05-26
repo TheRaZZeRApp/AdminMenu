@@ -30,11 +30,11 @@ public class PluginList {
             String status;
             if(plugin.isDisabled()){
                 status = translator.localeTranslate("atl_pg_disabled",player.getLocale());
+                cCPluginText.getChatStyle().setColor(f.colorRed());
             }else {
                 status = translator.localeTranslate("atl_pg_enabled",player.getLocale());
+                cCPluginText.getChatStyle().setColor(f.colorYellow());
             }
-
-            cCPluginText.getChatStyle().setColor(f.colorYellow());
 
             cCPluginText.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip + " §a" + plugin.getName())));
 

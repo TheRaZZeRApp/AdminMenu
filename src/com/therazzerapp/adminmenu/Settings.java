@@ -24,19 +24,21 @@ public class Settings {
     private final boolean banInfos;
     private final boolean groupInfos;
     private final boolean atlEmptyItem;
+    private final boolean multiLanguageReasons;
 
     public Settings(JsonObject root) {
-        this.muteChatInMenu = root.getAsJsonPrimitive("muteChatInMenu").getAsBoolean();
+        this.muteChatInMenu = root.getAsJsonPrimitive("mute_chat_in_menu").getAsBoolean();
         this.playermenu = root.getAsJsonPrimitive("playermenu").getAsBoolean();
         this.servermenu = root.getAsJsonPrimitive("servermenu").getAsBoolean();
         this.worldmenu = root.getAsJsonPrimitive("worldmenu").getAsBoolean();
         this.groupmenu = root.getAsJsonPrimitive("groupmenu").getAsBoolean();
-        this.playerInfos = root.getAsJsonPrimitive("playerInfos").getAsBoolean();
-        this.worldInfos = root.getAsJsonPrimitive("worldInfos").getAsBoolean();
-        this.pluginInfos = root.getAsJsonPrimitive("pluginInfos").getAsBoolean();
-        this.banInfos = root.getAsJsonPrimitive("banInfos").getAsBoolean();
-        this.groupInfos = root.getAsJsonPrimitive("groupInfos").getAsBoolean();
-        this.atlEmptyItem = root.getAsJsonPrimitive("atlEmptyItem").getAsBoolean();
+        this.playerInfos = root.getAsJsonPrimitive("player_infos").getAsBoolean();
+        this.worldInfos = root.getAsJsonPrimitive("world_infos").getAsBoolean();
+        this.pluginInfos = root.getAsJsonPrimitive("plugin_infos").getAsBoolean();
+        this.banInfos = root.getAsJsonPrimitive("ban_infos").getAsBoolean();
+        this.groupInfos = root.getAsJsonPrimitive("group_infos").getAsBoolean();
+        this.atlEmptyItem = root.getAsJsonPrimitive("atl_empty_item").getAsBoolean();
+        this.multiLanguageReasons = root.getAsJsonPrimitive("multi_language_reasons").getAsBoolean();
     }
 
     public boolean isMuteChatInMenu() {
@@ -81,5 +83,9 @@ public class Settings {
 
     public boolean isAtlEmptyItem() {
         return atlEmptyItem;
+    }
+
+    public boolean isMultiLanguageReasons() {
+        return multiLanguageReasons;
     }
 }

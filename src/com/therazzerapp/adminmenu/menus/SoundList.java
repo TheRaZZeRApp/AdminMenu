@@ -40,14 +40,18 @@ public class SoundList {
             }
 
             cCSoundText.getChatStyle().setColor(f.colorYellow());
-            cCSoundText.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip + type.name().toLowerCase())));
+            cCSoundText.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip + " §a" + type.name().toLowerCase())));
             cCSoundText.getChatStyle().setChatClickEvent(f.newClickEvent(f.getRunCommand(), '/' + command.replaceFirst("%so", ""+type.getMcName())));
 
-            cCText.appendSibling(cCSoundText);
 
-            if (counter2 >= 120 && counter != 0){
-                cCText.appendText("\n");
+
+            if (counter2 >= 119){
+                if(counter == 0)
+                cCSoundText.getSiblings().get(cCText.getSiblings().size()-1).setText("");
+                cCText.appendSibling(cCSoundText);
                 return cCText;
+            } else {
+                cCText.appendSibling(cCSoundText);
             }
 
         }

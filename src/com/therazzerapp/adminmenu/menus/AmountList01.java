@@ -23,9 +23,9 @@ public class AmountList01 {
         ChatComponent cCText = f.newChatComponent("");
 
         de.myelitecraft.elitelib.api.config.Config config = EliteLib.getConfigManager().getConfig("JSON");
-        ConfigSection root = config.load(new File("./config/AdminMenu/ATL/amountList01.json"));
+        ConfigSection root = config.load(new File("./config/AdminMenu/ATL/amountList.json"));
 
-        String[] amounts = root.getStringArray("amounts");
+        String[] amounts = root.getStringArray("amounts_01");
         ChatComponent cCAmountText;
         for (String amount : amounts) {
 
