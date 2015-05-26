@@ -22,20 +22,28 @@ public class PlayerInventoryList {
         ChatComponent cCText = f.newChatComponent("");
 
         String[] parameters = command.split(" ");
+        for (int i = 0; i < parameters.length; i++) {
+            String parameter = parameters[i];
+            System.out.println("Stelle " + i + ": " + parameter);
+        }
         if (parameters.length >= 6){
-            Player player = Canary.getServer().getPlayer(parameters[5]);
-            for(int x=0;x < player.getInventory().getSize();x++){
-                Item item = player.getInventory().getSlot(x);
+            Player player = Canary.getServer().getPlayer(parameters[6]);
+            if(player == null){
+                cCText.appendText("ERROR Player not found!");
+            } else {
+                for(int x=0 ;x < player.getInventory().getSize(); x++){
+                    Item item = player.getInventory().getSlot(x);
 
-                if (item != null) {
-                    ChatComponent cCInvText = f.newChatComponent("- " + item.getDisplayName() + " Amount: §a" + item.getAmount());
+                    if (item != null) {
+                        ChatComponent cCInvText = f.newChatComponent("- " + item.getDisplayName() + " §f(Amount: §a" + item.getAmount() + "§f)");
 
-                    cCInvText.getChatStyle().setColor(f.colorYellow());
-                    cCInvText.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip)));
-                    cCInvText.getChatStyle().setChatClickEvent(f.newClickEvent(f.getRunCommand(), '/' + command.replaceFirst("%pi", "" + item.getType().getMachineName() + " " + item.getType().getData())));
+                        cCInvText.getChatStyle().setColor(f.colorYellow());
+                        cCInvText.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip)));
+                        cCInvText.getChatStyle().setChatClickEvent(f.newClickEvent(f.getRunCommand(), '/' + command.replaceFirst("%pi", "" + item.getType().getMachineName() + " " + item.getType().getData())));
 
-                    cCText.appendSibling(cCInvText);
-                    cCText.appendText("\n");
+                        cCText.appendSibling(cCInvText);
+                        cCText.appendText("\n");
+                    }
                 }
             }
         } else {

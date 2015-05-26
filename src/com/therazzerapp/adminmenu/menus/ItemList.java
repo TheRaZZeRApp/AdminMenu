@@ -18,7 +18,7 @@ import java.io.File;
  */
 
 public class ItemList {
-    public static ChatComponent getBody(String tooltip, String command, File file, String parameter) {
+    public static ChatComponent getBody(String tooltip, String command, File file, String parameter, String sectionName) {
 
         ChatComponentFactory f = Canary.factory().getChatComponentFactory();
         ChatComponent cCText = f.newChatComponent("");
@@ -26,10 +26,10 @@ public class ItemList {
         de.myelitecraft.elitelib.api.config.Config config = EliteLib.getConfigManager().getConfig("JSON");
         ConfigSection root = config.load(file);
 
-        String[] blocks = root.getStringArray("items");
+        String[] items = root.getStringArray(sectionName);
         ChatComponent cCAmountText;
 
-        for (String item : blocks) {
+        for (String item : items) {
             cCAmountText = f.newChatComponent("- " + item.replaceFirst("minecraft:","").replaceAll("_"," "));
             cCAmountText.getChatStyle().setColor(f.colorYellow());
             cCAmountText.getChatStyle().setChatClickEvent(f.newClickEvent(f.getRunCommand(),"/" + command.replaceFirst(parameter , item.replaceFirst("minecraft:","").toLowerCase())));
