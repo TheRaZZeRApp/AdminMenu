@@ -74,17 +74,18 @@ public class AdminMenu extends Plugin {
 
     private void createATLConfigs(){
 
+        String dir = "./config/AdminMenu/ATL/";
         de.myelitecraft.elitelib.api.config.Config config = EliteLib.getConfigManager().getConfig("JSON");
         ConfigSection root;
 
         //ATL Configs
-        File atlConfigDir = new File("./config/AdminMenu/ATL/");
+        File atlConfigDir = new File(dir);
         if(!atlConfigDir.exists()){
             atlConfigDir.mkdir();
         }
 
         //BlockList
-        File atlBlockListConfig = new File("./config/AdminMenu/ATL/blockList.json");
+        File atlBlockListConfig = new File(dir + "blockList.json");
         root = config.load(atlBlockListConfig);
         if(!atlBlockListConfig.exists()){
             try {
@@ -102,7 +103,7 @@ public class AdminMenu extends Plugin {
 
 
         //ItemList
-        File atlItemListConfig = new File("./config/AdminMenu/ATL/itemList.json");
+        File atlItemListConfig = new File(dir + "itemList.json");
         root = config.load(atlItemListConfig);
         if(!atlItemListConfig.exists()){
             try {
@@ -113,13 +114,13 @@ public class AdminMenu extends Plugin {
             }
         }
 
-            if(!root.has("items")){
-                Config.createItemList(atlItemListConfig);
-                getLogman().info("ATL: Section items has been added to itemList.json");
+        if(!root.has("items")){
+            Config.createItemList(atlItemListConfig);
+            getLogman().info("ATL: Section items has been added to itemList.json");
             }
 
         //TimeList
-        File atlTimeListConfig = new File("./config/AdminMenu/ATL/timeList.json");
+        File atlTimeListConfig = new File(dir + "timeList.json");
         root = config.load(atlTimeListConfig);
         if(!atlTimeListConfig.exists()){
             try {
@@ -142,7 +143,7 @@ public class AdminMenu extends Plugin {
 
 
         //AmountList
-        File atlAmountListConfig = new File("./config/AdminMenu/ATL/amountList.json");
+        File atlAmountListConfig = new File(dir + "amountList.json");
         root = config.load(atlAmountListConfig);
         if(!atlAmountListConfig.exists()){
             try {
@@ -153,9 +154,9 @@ public class AdminMenu extends Plugin {
             }
         }
 
-            if(!root.has("amounts_00")){
+        if (!root.has("amounts_00")){
                 Config.createAmountList00(atlAmountListConfig);
-                getLogman().info("ATL: Section amount_00 has been added to amountList.json");
+            getLogman().info("ATL: Section amount_00 has been added to amountList.json");
             }
 
             if(!root.has("amounts_01")){
@@ -163,14 +164,14 @@ public class AdminMenu extends Plugin {
                 getLogman().info("ATL: Section amount_01 has been added to amountList.json");
             }
 
-            if(!root.has("amounts_01")){
+        if (!root.has("amounts_01")){
                 Config.createAmountList02(atlAmountListConfig);
-                getLogman().info("ATL: Section amount_02 has been added to amountList.json");
+            getLogman().info("ATL: Section amount_02 has been added to amountList.json");
             }
 
 
         //ReasonList
-        File atlReasonListConfig = new File("./config/AdminMenu/ATL/reasonList.json");
+        File atlReasonListConfig = new File(dir + "reasonList.json");
         root = config.load(atlReasonListConfig);
         if(!atlReasonListConfig.exists()){
             try {
@@ -181,9 +182,9 @@ public class AdminMenu extends Plugin {
             }
         }
 
-            if(!root.has("reasons")){
+        if(!root.has("reasons")){
                 Config.createReasonList(atlReasonListConfig);
-                getLogman().info("ATL: Section reasons has been added to reasonList.json");
+            getLogman().info("ATL: Section reasons has been added to reasonList.json");
             }
     }
 }
