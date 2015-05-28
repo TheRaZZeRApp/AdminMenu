@@ -86,7 +86,9 @@ public class CommandBuilder extends PlayerCommand {
 
             ChatComponent cCCommand = f.newChatComponent("/" + command + "   §f<= " + translator.localeTranslate("cbuilder_click",player.getLocale()));
             cCCommand.getChatStyle().setChatClickEvent(f.newClickEvent(f.getSuggestCommand(),"/" + command));
-            cCCommand.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(translator.localeTranslate("cbuilder_runcommand", player.getLocale()))));
+            if(!AdminMenu.settings.isDisableHoverInfos()){
+                cCCommand.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(translator.localeTranslate("cbuilder_runcommand", player.getLocale()))));
+            }
             cCCommand.getChatStyle().setColor(f.colorYellow());
             player.sendChatComponent(cCText.appendSibling(cCCommand));
         } else {
@@ -105,14 +107,18 @@ public class CommandBuilder extends PlayerCommand {
                 ChatComponent cCRefresh = f.newChatComponent(translator.localeTranslate("i_c_refresh",player.getLocale()));
                 cCRefresh.getChatStyle().setColor(f.colorYellow());
                 cCRefresh.getChatStyle().setChatClickEvent(f.newClickEvent(f.getRunCommand(), "/acb " + runCMD + " " + headline + " " + back + " " + refreshAble + " " + command));
-                cCRefresh.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(),f.newChatComponent(translator.localeTranslate("i_c_refresh_hover", player.getLocale()))));
+                if(!AdminMenu.settings.isDisableHoverInfos()) {
+                    cCRefresh.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(translator.localeTranslate("i_c_refresh_hover", player.getLocale()))));
+                }
                 player.sendChatComponent(cCRefresh);
             }
 
             ChatComponent cCBack = f.newChatComponent("<= " + translator.localeTranslate("i_c_back", player.getLocale()));
             cCBack.getChatStyle().setColor(f.colorYellow());
             cCBack.getChatStyle().setChatClickEvent(f.newClickEvent(f.getRunCommand(), "/chatclick chatmenu " + back));
-            cCBack.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(),f.newChatComponent(translator.localeTranslate("i_c_back_hover", player.getLocale()))));
+            if(!AdminMenu.settings.isDisableHoverInfos()) {
+                cCBack.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(translator.localeTranslate("i_c_back_hover", player.getLocale()))));
+            }
             player.sendChatComponent(cCBack);
 
             player.message("============================");
@@ -120,7 +126,9 @@ public class CommandBuilder extends PlayerCommand {
             ChatComponent cCExit = f.newChatComponent(translator.localeTranslate("i_c_close", player.getLocale()));
             cCExit.getChatStyle().setColor(f.colorYellow());
             cCExit.getChatStyle().setChatClickEvent(f.newClickEvent(f.getRunCommand(), "/admin exit"));
-            cCExit.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(),f.newChatComponent(translator.localeTranslate("i_c_exit_hover", player.getLocale()))));
+            if(!AdminMenu.settings.isDisableHoverInfos()) {
+                cCExit.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(translator.localeTranslate("i_c_exit_hover", player.getLocale()))));
+            }
             player.sendChatComponent(cCExit);
 
             player.message("\n");
@@ -151,9 +159,9 @@ public class CommandBuilder extends PlayerCommand {
         } else if (para.equals(parameters[10])){
             return TimeList01.getBody(translator.localeTranslate("autolist_hover_time", player.getLocale()), command);
         } else if (para.equals(parameters[11])){
-            //todo ka was das ist
+            //todo Kommt noch
         } else if (para.equals(parameters[12])){
-            //todo ka was das ist
+            //todo Kommt noch
         } else if (para.equals(parameters[13])){
             return ItemList.getBody(translator.localeTranslate("autolist_hover_block", player.getLocale()), command,new File("./config/AdminMenu/ATL/blockList.json"),"%b1","blocks");
         } else if (para.equals(parameters[14])){

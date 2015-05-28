@@ -1,5 +1,6 @@
 package com.therazzerapp.adminmenu.menus;
 
+import com.therazzerapp.adminmenu.AdminMenu;
 import de.myelitecraft.elitelib.api.EliteLib;
 import de.myelitecraft.elitelib.api.config.ConfigSection;
 import net.canarymod.Canary;
@@ -33,7 +34,9 @@ public class ItemList {
             cCAmountText = f.newChatComponent("- " + item.replaceFirst("minecraft:","").replaceAll("_"," "));
             cCAmountText.getChatStyle().setColor(f.colorYellow());
             cCAmountText.getChatStyle().setChatClickEvent(f.newClickEvent(f.getRunCommand(),"/" + command.replaceFirst(parameter , item.replaceFirst("minecraft:","").toLowerCase())));
-            cCAmountText.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(),f.newChatComponent(tooltip + " §a" + item.replaceFirst("minecraft:","").replaceAll("_"," "))));
+            if(!AdminMenu.settings.isDisableHoverInfos()) {
+                cCAmountText.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip + " §a" + item.replaceFirst("minecraft:", "").replaceAll("_", " "))));
+            }
             cCText.appendSibling(cCAmountText);
             cCText.appendText("\n");
         }

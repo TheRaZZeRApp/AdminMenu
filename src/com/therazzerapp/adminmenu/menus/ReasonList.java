@@ -44,7 +44,9 @@ public class ReasonList {
 
             cCReasonText.getChatStyle().setColor(f.colorYellow());
             cCReasonText.getChatStyle().setChatClickEvent(f.newClickEvent(f.getRunCommand(),"/" + command.replaceFirst("%re" , ""+reason)));
-            cCReasonText.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(),f.newChatComponent(tooltip + " §a" + reason)));
+            if(!AdminMenu.settings.isDisableHoverInfos()) {
+                cCReasonText.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip + " §a" + reason)));
+            }
             cCText.appendSibling(cCReasonText);
             cCText.appendText("\n");
         }

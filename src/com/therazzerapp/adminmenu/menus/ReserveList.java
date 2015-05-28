@@ -34,10 +34,10 @@ public class ReserveList {
 
             if (reference != null) {
                 whiteListText = reference.getName();
-                hoverEvent = f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip +  " §a" + reference.getName()));
                 clickEvent = f.newClickEvent(f.getRunCommand(), '/' + command.replaceFirst("%w" , reference.getName()));
+                hoverEvent = f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip +  " §a" + reference.getName()));
 
-                if(AdminMenu.settings.isPlayerInfos()){
+                if(AdminMenu.settings.isPlayerInfos() && !AdminMenu.settings.isDisableHoverInfos()){
 
                     String online = translator.localeTranslate("extras_no",player.getLocale());
                     if(reference.isOnline()){
@@ -66,7 +66,9 @@ public class ReserveList {
             cCReservelistText = f.newChatComponent(whiteListText);
             cCReservelistText.getChatStyle().setColor(f.colorYellow());
             cCReservelistText.getChatStyle().setChatClickEvent(clickEvent);
-            cCReservelistText.getChatStyle().setChatHoverEvent(hoverEvent);
+            if(!AdminMenu.settings.isDisableHoverInfos()) {
+                cCReservelistText.getChatStyle().setChatHoverEvent(hoverEvent);
+            }
             cCText.appendSibling(cCReservelistText);
             cCText.appendText(", ");
         }

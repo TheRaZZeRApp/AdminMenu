@@ -1,5 +1,6 @@
 package com.therazzerapp.adminmenu.menus;
 
+import com.therazzerapp.adminmenu.AdminMenu;
 import net.canarymod.Canary;
 import net.canarymod.api.chat.ChatComponent;
 import net.canarymod.api.factory.ChatComponentFactory;
@@ -40,7 +41,9 @@ public class SoundList {
             }
 
             cCSoundText.getChatStyle().setColor(f.colorYellow());
-            cCSoundText.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip + " §a" + type.name().toLowerCase())));
+            if(!AdminMenu.settings.isDisableHoverInfos()) {
+                cCSoundText.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip + " §a" + type.name().toLowerCase())));
+            }
             cCSoundText.getChatStyle().setChatClickEvent(f.newClickEvent(f.getRunCommand(), '/' + command.replaceFirst("%so", ""+type.getMcName())));
 
 

@@ -1,5 +1,6 @@
 package com.therazzerapp.adminmenu.menus;
 
+import com.therazzerapp.adminmenu.AdminMenu;
 import net.canarymod.Canary;
 import net.canarymod.api.chat.ChatComponent;
 import net.canarymod.api.factory.ChatComponentFactory;
@@ -26,7 +27,9 @@ public class PlayerGroupsList {
                 ChatComponent cCGroupText = f.newChatComponent("- " + group.getName());
 
                 cCGroupText.getChatStyle().setColor(f.colorYellow());
-                cCGroupText.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip)));
+                if(!AdminMenu.settings.isDisableHoverInfos()) {
+                    cCGroupText.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip)));
+                }
                 cCGroupText.getChatStyle().setChatClickEvent(f.newClickEvent(f.getRunCommand(), '/' + command.replaceFirst("%gp" , group.getName())));
 
                 cCText.appendSibling(cCGroupText);

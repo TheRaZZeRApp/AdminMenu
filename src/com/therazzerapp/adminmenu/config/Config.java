@@ -54,6 +54,8 @@ public class Config {
         root.setBoolean("group_infos", true);
         root.setBoolean("atl_empty_item", true);
         root.setBoolean("multi_language_reasons", true);
+        root.setBoolean("disable_hover_infos", false);
+        root.setBoolean("extended_hover_infos", true);
         config.save(root, file);
     }
 

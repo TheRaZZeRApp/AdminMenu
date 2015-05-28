@@ -1,5 +1,6 @@
 package com.therazzerapp.adminmenu.menus;
 
+import com.therazzerapp.adminmenu.AdminMenu;
 import net.canarymod.Canary;
 import net.canarymod.api.chat.ChatComponent;
 import net.canarymod.api.entity.living.humanoid.Player;
@@ -35,7 +36,9 @@ public class TrueFalseList {
                     break;
             }
 
-            cCBooleanText.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip)));
+            if(!AdminMenu.settings.isDisableHoverInfos()) {
+                cCBooleanText.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip)));
+            }
             cCBooleanText.getChatStyle().setChatClickEvent(f.newClickEvent(f.getRunCommand(), '/' + command.replaceFirst("%tf" ,amount)));
             cCText.appendSibling(cCBooleanText);
         }

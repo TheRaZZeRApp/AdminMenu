@@ -1,5 +1,6 @@
 package com.therazzerapp.adminmenu.menus;
 
+import com.therazzerapp.adminmenu.AdminMenu;
 import net.canarymod.Canary;
 import net.canarymod.api.chat.ChatComponent;
 import net.canarymod.api.entity.living.humanoid.Player;
@@ -38,7 +39,9 @@ public class PlayerInventoryList {
                         ChatComponent cCInvText = f.newChatComponent("- " + item.getDisplayName() + " §f(Amount: §a" + item.getAmount() + "§f)");
 
                         cCInvText.getChatStyle().setColor(f.colorYellow());
-                        cCInvText.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip)));
+                        if(!AdminMenu.settings.isDisableHoverInfos()) {
+                            cCInvText.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip)));
+                        }
                         cCInvText.getChatStyle().setChatClickEvent(f.newClickEvent(f.getRunCommand(), '/' + command.replaceFirst("%pi", "" + item.getType().getMachineName() + " " + item.getType().getData())));
 
                         cCText.appendSibling(cCInvText);

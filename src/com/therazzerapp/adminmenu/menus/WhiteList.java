@@ -37,7 +37,7 @@ public class WhiteList {
                 hoverEvent = f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip +  " §a" + reference.getName()));
                 clickEvent = f.newClickEvent(f.getRunCommand(), '/' + command.replaceFirst("%w" , reference.getName()));
 
-                if(AdminMenu.settings.isPlayerInfos()){
+                if(AdminMenu.settings.isPlayerInfos() && !AdminMenu.settings.isDisableHoverInfos()){
 
                     String online = translator.localeTranslate("extras_no",player.getLocale());
                     if(reference.isOnline()){
@@ -66,7 +66,9 @@ public class WhiteList {
             cCWhitelistText = f.newChatComponent(whiteListText);
             cCWhitelistText.getChatStyle().setColor(f.colorYellow());
             cCWhitelistText.getChatStyle().setChatClickEvent(clickEvent);
-            cCWhitelistText.getChatStyle().setChatHoverEvent(hoverEvent);
+            if(!AdminMenu.settings.isDisableHoverInfos()) {
+                cCWhitelistText.getChatStyle().setChatHoverEvent(hoverEvent);
+            }
             cCText.appendSibling(cCWhitelistText);
             cCText.appendText(", ");
         }

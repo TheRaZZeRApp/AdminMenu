@@ -25,6 +25,8 @@ public class Settings {
     private final boolean groupInfos;
     private final boolean atlEmptyItem;
     private final boolean multiLanguageReasons;
+    private final boolean disableHoverInfos;
+    private final boolean extendedHoverInfos;
 
     public Settings(JsonObject root) {
         this.muteChatInMenu = root.getAsJsonPrimitive("mute_chat_in_menu").getAsBoolean();
@@ -39,6 +41,8 @@ public class Settings {
         this.groupInfos = root.getAsJsonPrimitive("group_infos").getAsBoolean();
         this.atlEmptyItem = root.getAsJsonPrimitive("atl_empty_item").getAsBoolean();
         this.multiLanguageReasons = root.getAsJsonPrimitive("multi_language_reasons").getAsBoolean();
+        this.extendedHoverInfos = root.getAsJsonPrimitive("extended_hover_infos").getAsBoolean();
+        this.disableHoverInfos = root.getAsJsonPrimitive("disable_hover_infos").getAsBoolean();
     }
 
     public boolean isMuteChatInMenu() {
@@ -87,5 +91,13 @@ public class Settings {
 
     public boolean isMultiLanguageReasons() {
         return multiLanguageReasons;
+    }
+
+    public boolean isExtendedHoverInfos() {
+        return extendedHoverInfos;
+    }
+
+    public boolean isDisableHoverInfos() {
+        return disableHoverInfos;
     }
 }

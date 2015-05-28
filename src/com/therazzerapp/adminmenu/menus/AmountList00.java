@@ -1,5 +1,6 @@
 package com.therazzerapp.adminmenu.menus;
 
+import com.therazzerapp.adminmenu.AdminMenu;
 import de.myelitecraft.elitelib.api.EliteLib;
 import de.myelitecraft.elitelib.api.config.ConfigSection;
 import net.canarymod.Canary;
@@ -32,7 +33,9 @@ public class AmountList00 {
             cCAmountText = f.newChatComponent("- " + amount);
             cCAmountText.getChatStyle().setColor(f.colorYellow());
             cCAmountText.getChatStyle().setChatClickEvent(f.newClickEvent(f.getRunCommand(),"/" + command.replaceFirst("%a" , ""+amount)));
-            cCAmountText.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(),f.newChatComponent(tooltip)));
+            if(!AdminMenu.settings.isDisableHoverInfos()) {
+                cCAmountText.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip)));
+            }
             cCText.appendSibling(cCAmountText);
             cCText.appendText("\n");
         }

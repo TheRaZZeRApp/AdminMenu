@@ -19,7 +19,7 @@ import java.util.Date;
  * Package: com.therazzerapp.adminmenu.menus
  */
 public class BannedPlayerList {
-    public static ChatComponent getBody(String tooltip, String command,Player player, LocaleHelper translator) {
+    public static ChatComponent getBody(String tooltip, String command, Player player, LocaleHelper translator) {
         ChatComponentFactory f = Canary.factory().getChatComponentFactory();
         ChatComponent cCText = f.newChatComponent("");
 
@@ -27,30 +27,33 @@ public class BannedPlayerList {
 
             ChatComponent cCBannedText = f.newChatComponent(ban.getSubject());
             cCBannedText.getChatStyle().setColor(f.colorYellow());
-            cCBannedText.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip + " §a" + ban.getSubject())));
 
-            if(AdminMenu.settings.isBanInfos()){
+            if(!AdminMenu.settings.isDisableHoverInfos()) {
+                cCBannedText.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip + " §a" + ban.getSubject())));
 
-                String reason = translator.localeTranslate("atl_ban_noreason",player.getLocale());
-                if(ban.getReason() != null || !ban.getReason().isEmpty() || !ban.getReason().equals("Permanently Banned") || !ban.getReason().startsWith("Temporarily banned until ")){
-                    reason = ban.getReason();
-                }
+                if (AdminMenu.settings.isBanInfos()) {
 
-                cCBannedText.getChatStyle().getChatHoverEvent().getValue()
-                        .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_ban_banner", player.getLocale()) + " §a" + ban.getBanningPlayer() + " (" + Canary.getServer().getPlayer(ban.getBanningPlayer()).getGroup().getName() + ")"))
-                        .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_ban_reason", player.getLocale()) + " §a" + reason));
+                    String reason = translator.localeTranslate("atl_ban_noreason", player.getLocale());
+                    if (ban.getReason() != null || !ban.getReason().isEmpty() || !ban.getReason().equals("Permanently Banned") || !ban.getReason().startsWith("Temporarily banned until ")) {
+                        reason = ban.getReason();
+                    }
 
-                if(ban.isIpBan()){
                     cCBannedText.getChatStyle().getChatHoverEvent().getValue()
-                            .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_p_ip", player.getLocale()) + " " + ban.getIp()));
-                }
+                            .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_ban_banner", player.getLocale()) + " §a" + ban.getBanningPlayer() + " (" + Canary.getServer().getPlayer(ban.getBanningPlayer()).getGroup().getName() + ")"))
+                            .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_ban_reason", player.getLocale()) + " §a" + reason));
 
-                cCBannedText.getChatStyle().getChatHoverEvent().getValue()
-                        .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_ban_creaton", player.getLocale()) + " §a" + new SimpleDateFormat("dd.MM.yyyy HH:mm:ss").format(new Date(ban.getIssuedDate()*1000))));
+                    if (ban.isIpBan()) {
+                        cCBannedText.getChatStyle().getChatHoverEvent().getValue()
+                                .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_p_ip", player.getLocale()) + " " + ban.getIp()));
+                    }
 
-                if(ban.getExpiration() != -1L){
                     cCBannedText.getChatStyle().getChatHoverEvent().getValue()
-                            .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_ban_expiration", player.getLocale()) + " §a" + new SimpleDateFormat("dd.MM.yyyy HH:mm:ss").format(new Date(ban.getExpiration()*1000))));
+                            .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_ban_creaton", player.getLocale()) + " §a" + new SimpleDateFormat("dd.MM.yyyy HH:mm:ss").format(new Date(ban.getIssuedDate() * 1000))));
+
+                    if (ban.getExpiration() != -1L) {
+                        cCBannedText.getChatStyle().getChatHoverEvent().getValue()
+                                .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_ban_expiration", player.getLocale()) + " §a" + new SimpleDateFormat("dd.MM.yyyy HH:mm:ss").format(new Date(ban.getExpiration() * 1000))));
+                    }
                 }
             }
 

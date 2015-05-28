@@ -1,5 +1,6 @@
 package com.therazzerapp.adminmenu.menus;
 
+import com.therazzerapp.adminmenu.AdminMenu;
 import net.canarymod.Canary;
 import net.canarymod.api.chat.ChatComponent;
 import net.canarymod.api.factory.ChatComponentFactory;
@@ -32,7 +33,9 @@ public class EffectList {
             }
 
             cCEffectText.getChatStyle().setColor(f.colorYellow());
-            cCEffectText.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip + " §a" + p.name().toLowerCase())));
+            if(!AdminMenu.settings.isDisableHoverInfos()) {
+                cCEffectText.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip + " §a" + p.name().toLowerCase())));
+            }
             cCEffectText.getChatStyle().setChatClickEvent(f.newClickEvent(f.getRunCommand(), '/' + command.replaceFirst("%ef", ""+p.getID())));
 
             cCText.appendSibling(cCEffectText);

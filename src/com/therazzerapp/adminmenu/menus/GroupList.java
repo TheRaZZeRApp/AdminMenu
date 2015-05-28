@@ -26,34 +26,36 @@ public class GroupList {
             ChatComponent cCGroupText = f.newChatComponent("- " + group.getName());
             cCGroupText.getChatStyle().setColor(f.colorYellow());
 
-            cCGroupText.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip + " §a" + group.getName())));
+            if(!AdminMenu.settings.isDisableHoverInfos()) {
+                cCGroupText.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip + " §a" + group.getName())));
 
-            if(AdminMenu.settings.isGroupInfos()){
+                if (AdminMenu.settings.isGroupInfos()) {
 
-                if(group.isDefaultGroup()){
-                    cCGroupText.getChatStyle().getChatHoverEvent().getValue()
-                            .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_grp_isdefault", player.getLocale())));
-                }
-
-                if(group.getParent() != null){
-                    cCGroupText.getChatStyle().getChatHoverEvent().getValue()
-                            .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_grp_parent", player.getLocale()) + " §a" + group.getParent().getName()));
-                }
-
-                if(group.getPrefix() != null || !group.getPrefix().isEmpty()){
-                    cCGroupText.getChatStyle().getChatHoverEvent().getValue()
-                            .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_grp_prefix", player.getLocale()) + " §a" + group.getPrefix().replaceAll("§","&")));
-                }
-
-                if(group.getChildren().size() != 0){
-                    String childrenList = "\n";
-                    for (Group childs : group.getChildren()){
-                        childrenList += "    - §a" + childs.getName() + "\n";
+                    if (group.isDefaultGroup()) {
+                        cCGroupText.getChatStyle().getChatHoverEvent().getValue()
+                                .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_grp_isdefault", player.getLocale())));
                     }
-                    cCGroupText.getChatStyle().getChatHoverEvent().getValue()
-                            .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_grp_childs",player.getLocale()) + " " + childrenList.substring(0,childrenList.length()-1)));
-                }
 
+                    if (group.getParent() != null) {
+                        cCGroupText.getChatStyle().getChatHoverEvent().getValue()
+                                .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_grp_parent", player.getLocale()) + " §a" + group.getParent().getName()));
+                    }
+
+                    if (group.getPrefix() != null || !group.getPrefix().isEmpty()) {
+                        cCGroupText.getChatStyle().getChatHoverEvent().getValue()
+                                .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_grp_prefix", player.getLocale()) + " §a" + group.getPrefix().replaceAll("§", "&")));
+                    }
+
+                    if (group.getChildren().size() != 0) {
+                        String childrenList = "\n";
+                        for (Group childs : group.getChildren()) {
+                            childrenList += "    - §a" + childs.getName() + "\n";
+                        }
+                        cCGroupText.getChatStyle().getChatHoverEvent().getValue()
+                                .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_grp_childs", player.getLocale()) + " " + childrenList.substring(0, childrenList.length() - 1)));
+                    }
+
+                }
             }
             cCGroupText.getChatStyle().setChatClickEvent(f.newClickEvent(f.getRunCommand(), '/' + command.replaceFirst("%g" , group.getName())));
             cCText.appendSibling(cCGroupText);

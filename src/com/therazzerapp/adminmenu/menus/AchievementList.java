@@ -1,5 +1,6 @@
 package com.therazzerapp.adminmenu.menus;
 
+import com.therazzerapp.adminmenu.AdminMenu;
 import net.canarymod.Canary;
 import net.canarymod.api.chat.ChatComponent;
 import net.canarymod.api.factory.ChatComponentFactory;
@@ -33,7 +34,9 @@ public class AchievementList {
             }
 
             cCAchievementList.getChatStyle().setColor(f.colorYellow());
-            cCAchievementList.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip + " §a" + a.name().toLowerCase())));
+            if(!AdminMenu.settings.isDisableHoverInfos()) {
+                cCAchievementList.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip + " §a" + a.name().toLowerCase())));
+            }
             cCAchievementList.getChatStyle().setChatClickEvent(f.newClickEvent(f.getRunCommand(), '/' + command.replaceFirst("%ac", a.getNativeName())));
             cCText.appendSibling(cCAchievementList);
 

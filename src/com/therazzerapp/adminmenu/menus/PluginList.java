@@ -36,21 +36,23 @@ public class PluginList {
                 cCPluginText.getChatStyle().setColor(f.colorYellow());
             }
 
-            cCPluginText.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip + " §a" + plugin.getName())));
+            if(!AdminMenu.settings.isDisableHoverInfos()) {
+                cCPluginText.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip + " §a" + plugin.getName())));
 
-            if(AdminMenu.settings.isPluginInfos()){
-                cCPluginText.getChatStyle().getChatHoverEvent().getValue()
-                        .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_pg_status", player.getLocale()) + " " + status))
-                        .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_pg_author", player.getLocale()) + " §a" + plugin.getAuthor()))
-                        .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_pg_version", player.getLocale()) + " §a" + plugin.getVersion()));
-
-                if(plugin.getDescriptor().getDependencies().length != 0){
-                    String dependencies = "\n";
-                    for (String deps : plugin.getDescriptor().getDependencies()){
-                        dependencies += "    - §a" + deps + " (" + Canary.pluginManager().getPlugin(deps).getVersion() + ")\n";
-                    }
+                if (AdminMenu.settings.isPluginInfos()) {
                     cCPluginText.getChatStyle().getChatHoverEvent().getValue()
-                                .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_grp_dependencies", player.getLocale()) + " " + dependencies.substring(0, dependencies.length()-1)));
+                            .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_pg_status", player.getLocale()) + " " + status))
+                            .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_pg_author", player.getLocale()) + " §a" + plugin.getAuthor()))
+                            .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_pg_version", player.getLocale()) + " §a" + plugin.getVersion()));
+
+                    if (plugin.getDescriptor().getDependencies().length != 0) {
+                        String dependencies = "\n";
+                        for (String deps : plugin.getDescriptor().getDependencies()) {
+                            dependencies += "    - §a" + deps + " (" + Canary.pluginManager().getPlugin(deps).getVersion() + ")\n";
+                        }
+                        cCPluginText.getChatStyle().getChatHoverEvent().getValue()
+                                .appendSibling(f.newChatComponent("\n" + translator.localeTranslate("atl_grp_dependencies", player.getLocale()) + " " + dependencies.substring(0, dependencies.length() - 1)));
+                    }
                 }
             }
 
