@@ -90,7 +90,7 @@ public class CommandBuilder extends PlayerCommand {
                 cCCommand.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(translator.localeTranslate("cbuilder_runcommand", player.getLocale()))));
             }
             cCCommand.getChatStyle().setColor(f.colorYellow());
-            player.sendChatComponent(cCText.appendSibling(cCCommand));
+            player.sendChatComponent(cCText.appendSibling(cCCommand).appendSibling(f.newChatComponent("\n============================")));
         } else {
 
             ChatComponentFactory f = Canary.factory().getChatComponentFactory();

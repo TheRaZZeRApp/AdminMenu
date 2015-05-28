@@ -36,8 +36,6 @@ public class WorldList {
                 cCWorldText.getChatStyle().setColor(f.colorYellow());
             }
 
-
-
             if(!AdminMenu.settings.isDisableHoverInfos()) {
                 cCWorldText.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(translator.localeTranslate(tooltip, player.getLocale()) + " §a" + w.getName())));
                 if (AdminMenu.settings.isWorldInfos()) {
