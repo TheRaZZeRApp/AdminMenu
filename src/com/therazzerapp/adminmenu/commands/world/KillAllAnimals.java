@@ -5,7 +5,6 @@ import de.myelitecraft.elitelib.api.commands.CommandMeta;
 import de.myelitecraft.elitelib.api.commands.PlayerCommand;
 import net.canarymod.api.entity.living.animal.EntityAnimal;
 import net.canarymod.api.entity.living.humanoid.Player;
-import net.canarymod.chat.MessageReceiver;
 import net.canarymod.commandsys.CommandOwner;
 import net.visualillusionsent.utils.LocaleHelper;
 
@@ -23,7 +22,7 @@ import java.util.Map;
 public class KillAllAnimals extends PlayerCommand{
 
     public KillAllAnimals(CommandOwner owner, LocaleHelper translator) {
-        super(new CommandMeta(new String[]{"killallanimals"},new String[]{"adminmenu.command.killallanimals"},"Kills all animals.", "/killallanimals",0,0), owner, translator);
+        super(new CommandMeta(new String[]{"killallanimals"},new String[]{"adminmenu.command.killallanimals"},"Kills every animal in the current world.", "/killallanimals",0,0), owner, translator);
     }
 
     @Override
