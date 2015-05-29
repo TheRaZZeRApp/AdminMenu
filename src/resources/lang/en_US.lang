@@ -104,6 +104,7 @@ atl_h_s_whl_l=Whitelisted Player:
 atl_h_s_res=Reservelisted Player:
 atl_h_s_w=World Menu:
 atl_h_s_wd=World Delete Menu:
+atl_h_s_wul=World Unload Menu:
 atl_h_s_p=Plugin Menu:
 atl_h_w_t=Tickspeed Menu:
 atl_h_gp=Permission Menu:

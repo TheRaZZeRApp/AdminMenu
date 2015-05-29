@@ -17,7 +17,6 @@ import net.canarymod.api.statistics.Achievements;
 
 public class AchievementList {
     public static ChatComponent getBody(String tooltip, String command){
-
         ChatComponentFactory f = Canary.factory().getChatComponentFactory();
         ChatComponent cCText = f.newChatComponent("");
 
@@ -30,7 +29,7 @@ public class AchievementList {
             if (counter %2 == 0){
                 cCAchievementList = f.newChatComponent(a.name().toLowerCase() + "\n");
             } else {
-                cCAchievementList = f.newChatComponent("- " + a.name().toLowerCase() + "   ");
+                cCAchievementList = f.newChatComponent("- " + a.name().toLowerCase() + ",  ");
             }
 
             cCAchievementList.getChatStyle().setColor(f.colorYellow());
@@ -44,7 +43,7 @@ public class AchievementList {
         if(cCText.getSiblings().size() < 1){
             return null;
         }
-        if(counter %2 != 0){
+        if(counter %2 == 0){
             cCText.getSiblings().get(cCText.getSiblings().size()-1).setText("");
         }
         return cCText;

@@ -27,9 +27,9 @@ public class EffectList {
             counter++;
 
             if (counter %2 == 0){
-                cCEffectText = f.newChatComponent(p.name().toLowerCase());
+                cCEffectText = f.newChatComponent(p.name().toLowerCase() + "\n");
             } else {
-                cCEffectText = f.newChatComponent("- " + p.name().toLowerCase() + "   ");
+                cCEffectText = f.newChatComponent("- " + p.name().toLowerCase() + ",  ");
             }
 
             cCEffectText.getChatStyle().setColor(f.colorYellow());
@@ -37,14 +37,13 @@ public class EffectList {
                 cCEffectText.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip + " §a" + p.name().toLowerCase())));
             }
             cCEffectText.getChatStyle().setChatClickEvent(f.newClickEvent(f.getRunCommand(), '/' + command.replaceFirst("%ef", ""+p.getID())));
-
             cCText.appendSibling(cCEffectText);
-            cCText.appendText("\n");
+
         }
         if(cCText.getSiblings().size() < 1){
             return null;
         }
-        if(counter %2 != 0){
+        if(counter %2 == 0){
             cCText.getSiblings().get(cCText.getSiblings().size()-1).setText("");
         }
         return cCText;

@@ -30,10 +30,10 @@ public class SoundList {
             ChatComponent cCSoundText;
 
             if (counter == 0){
-                cCSoundText = f.newChatComponent("- " + type.name().toLowerCase() + "   ");
+                cCSoundText = f.newChatComponent("- " + type.name().toLowerCase() + ",  ");
                 counter = 1;
             } else if (counter == 1){
-                cCSoundText = f.newChatComponent(type.name().toLowerCase() + "   ");
+                cCSoundText = f.newChatComponent(type.name().toLowerCase() + ",  ");
                 counter = 2;
             } else {
                 cCSoundText = f.newChatComponent(type.name().toLowerCase() + "\n");
