@@ -1,6 +1,6 @@
 package com.therazzerapp.adminmenu.items;
 
-import com.therazzerapp.adminmenu.CreateMenus;
+import com.therazzerapp.adminmenu.AdminMenuUtils;
 import de.myelitecraft.elitelib.api.EliteLib;
 import de.myelitecraft.elitelib.api.menu.MenuEntry;
 import net.canarymod.Canary;
@@ -37,7 +37,7 @@ public abstract class SpecialItem {
 
     public MenuEntry getItem(){
         ChatComponentFactory f = Canary.factory().getChatComponentFactory();
-        return EliteLib.getMenuFactory().newMenuEntry(name, f.newChatComponent(titlePrefix).appendSibling(f.newChatComponent(name)) , permission, f.colorYellow(), f.getShowText(), CreateMenus.getProvedHover(f.newChatComponent(hovertext)), f.getRunCommand(), command, translator);
+        return EliteLib.getMenuFactory().newMenuEntry(name, f.newChatComponent(titlePrefix).appendSibling(f.newChatComponent(name)), permission, f.colorYellow(), f.getShowText(), AdminMenuUtils.getProvedHover(f.newChatComponent(hovertext)), f.getRunCommand(), command, translator);
     }
 
 }
