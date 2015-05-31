@@ -13,9 +13,10 @@ import net.canarymod.api.factory.ChatComponentFactory;
 import net.visualillusionsent.utils.LocaleHelper;
 
 /**
- * A collection of useful menu methods.
+ * A collection of useful {@link Menu} editing methods.
  *
  * @author The RaZZeR App <rezzer101@googlemail.com; e-mail@therazzerapp.com>
+ * @since AdminMenu v.1.0.0
  */
 public abstract class AdminMenuUtils {
 
@@ -24,18 +25,27 @@ public abstract class AdminMenuUtils {
     private final static ChatComponentFactory f = Canary.factory().getChatComponentFactory();
 
     /**
+     * Creates a {@link Menu} which is designed for gameRule commands.<br>
+     * It contains a Turn On, Turn Off and Status button.<br>
+     * Every command starts with: "<i>/gamerule </i>"
      *
      * @param menuName
+     *          The {@link Menu} name
      * @param menuPermission
+     *          The permission to get the {@link Menu} displayed
      * @param itemPermission
      * @param onHover
      * @param offHover
      * @param statusHover
      * @param gameRule
+     *          The gamerule
      * @param commandBack
+     *          The command to get back
      * @param permissionBack
+     *          The permission to get back
      * @param translator
-     * @return
+     *          The {@link LocaleHelper} who translates every text
+     * @return a {@link Menu}
      */
     public static Menu getGameruleMenu(String menuName, String menuPermission, String itemPermission, String onHover, String offHover, String statusHover, String gameRule, String commandBack, String permissionBack, LocaleHelper translator){
         Menu menu = EliteLib.getMenuFactory().newMenu(menuName,menuPermission, f.colorWhite(),translator);
@@ -47,18 +57,22 @@ public abstract class AdminMenuUtils {
     }
 
     /**
+     * Creates a {@link MenuEntry} which contains the following text:<br><i>============================</i>
      *
-     * @return
+     * @return a {@link MenuEntry}
      */
     public static MenuEntry getBreakLine(){
         return EliteLib.getMenuFactory().newMenuEntry("============================");
     }
 
     /**
+     * Adds a back to main and close button to the menu.
      *
      * @param menu
+     *          The {@link Menu} to edit
      * @param translator
-     * @return
+     *          The {@link LocaleHelper} who translates every text
+     * @return a {@link Menu} with navigation elements
      */
     public static Menu addNavigation(Menu menu,LocaleHelper translator){
         menu.addEntry(getBreakLine());
@@ -68,14 +82,23 @@ public abstract class AdminMenuUtils {
     }
 
     /**
+     * Adds a forward, back, back to main and close button to the menu.<br>
+     * Normally the commands are <i>/chatclick chatmenu adm_menuName</i><br>
+     * The permissions are the menu permissions.
      *
      * @param menu
+     *          The {@link Menu} to edit
      * @param translator
+     *          The {@link LocaleHelper} who translates every text
      * @param permissionForward
+     *          The permission to get forward
      * @param commandForward
+     *          The command to get forward
      * @param permissionBack
+     *          The permission to get back
      * @param commandBack
-     * @return
+     *          The command to get back
+     * @return a {@link Menu} with navigation elements
      */
     public static Menu addNavigation(Menu menu, LocaleHelper translator, String permissionForward, String commandForward, String permissionBack, String commandBack){
         if(commandForward != null){
@@ -101,9 +124,13 @@ public abstract class AdminMenuUtils {
     }
 
     /**
+     * Proves hover {@link ChatComponent}. If hover infos are disabled in the admin menu config file<br>
+     * the method returns null, if extended hover infos are disabled the method returns a new {@link ChatComponent}<br>
+     * without siblings and the text from the <i>chatComponent</i>.
      *
      * @param chatComponent
-     * @return
+     *          The hover {@link ChatComponent}
+     * @return the proved hover {@link ChatComponent}, <tt>null</tt> if hover infos are disabled
      */
     public static ChatComponent getProvedHover(ChatComponent chatComponent){
         if(disableHoverInfos){

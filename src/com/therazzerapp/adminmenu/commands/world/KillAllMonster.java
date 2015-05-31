@@ -20,7 +20,7 @@ import java.util.Map;
 
 public class KillAllMonster extends PlayerCommand{
 
-    public KillAllMonster(CommandMeta meta, CommandOwner owner, LocaleHelper translator) {
+    public KillAllMonster(CommandOwner owner, LocaleHelper translator) {
         super(new CommandMeta(new String[]{"killallamonsters"},new String[]{"adminmenu.command.killallamonsters"},"Kills every monster in the current world.", "/killallmonsters",0,0), owner, translator);
     }
 

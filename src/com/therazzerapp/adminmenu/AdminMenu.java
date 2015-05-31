@@ -3,6 +3,8 @@ package com.therazzerapp.adminmenu;
 import com.therazzerapp.adminmenu.commands.Admin;
 import com.therazzerapp.adminmenu.commands.CommandBuilder;
 import com.therazzerapp.adminmenu.commands.ExitMenu;
+import com.therazzerapp.adminmenu.commands.world.KillAllAnimals;
+import com.therazzerapp.adminmenu.commands.world.KillAllMonster;
 import com.therazzerapp.adminmenu.config.Config;
 import com.therazzerapp.adminmenu.listener.BlankLineListener;
 import de.myelitecraft.elitelib.api.EliteLib;
@@ -61,6 +63,8 @@ public class AdminMenu extends Plugin {
         EliteLib.getCommandManager().registerCommand(this, new Admin(this, translator));
         EliteLib.getCommandManager().registerCommand(this, new CommandBuilder(this,translator));
         EliteLib.getCommandManager().registerCommand(this, new ExitMenu(this,translator));
+        EliteLib.getCommandManager().registerCommand(this, new KillAllAnimals(this,translator));
+        EliteLib.getCommandManager().registerCommand(this, new KillAllMonster(this,translator));
 
         registerListener(new BlankLineListener());
 
