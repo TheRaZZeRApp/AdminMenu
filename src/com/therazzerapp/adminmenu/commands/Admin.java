@@ -30,7 +30,7 @@ public class Admin extends PlayerCommand{
     private final List<Player> playersInMenu = new ArrayList<>();
 
     public Admin(CommandOwner owner, LocaleHelper translator) {
-        super(new CommandMeta(new String[]{"admin","adminmenu","menuadmin"},new String[]{"adminmenu.command.admin"},"Opens the admin menu.", "/admin ",0,0), owner, translator);
+        super(new CommandMeta(new String[]{"admin","adminmenu","menuadmin"},new String[]{"adminmenu.command.admin"},"Opens the admin menu.", "/admin",0,0), owner, translator);
     }
 
     @Override
