@@ -34,7 +34,7 @@ public class AmountList00 {
             cCAmountText.getChatStyle().setColor(f.colorYellow());
             cCAmountText.getChatStyle().setChatClickEvent(f.newClickEvent(f.getRunCommand(),"/" + command.replaceFirst("%a" , ""+amount)));
             if(!AdminMenu.settings.isDisableHoverInfos()) {
-                cCAmountText.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip)));
+                cCAmountText.getChatStyle().setChatHoverEvent(f.newHoverEvent(f.getShowText(), f.newChatComponent(tooltip + " " + amount)));
             }
             cCText.appendSibling(cCAmountText);
             cCText.appendText("\n");
