@@ -155,7 +155,6 @@ atl_ban_expiration=Unbann Date:
 
 i_m_player=- Player Commands
 i_m_player_hover=Click to §eopen §fthe §aplayer menu§f.
-i_m_player_hover_extension_00=Contains
 i_m_server=- Server Commands
 i_m_server_hover=Click to §eopen §fthe §aserver menu§f.
 i_m_world=- World Commands
