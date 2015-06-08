@@ -187,8 +187,8 @@ public class AdminMenu extends Plugin {
         }
 
         if(!root.has("reasons")){
-                Config.createReasonList(atlReasonListConfig);
+            Config.createReasonList(atlReasonListConfig);
             getLogman().info("ATL: Section reasons has been added to reasonList.json");
-            }
+        }
     }
 }

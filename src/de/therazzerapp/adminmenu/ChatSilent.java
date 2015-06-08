@@ -23,7 +23,6 @@ import java.util.Map;
  * Package: com.therazzerapp.adminmenu.commands
  * E-Mail: rezzer101@googlemail.com
  */
-
 public class ChatSilent implements PluginListener{
     public static final Map<Player, List<String>> chatMap = new HashMap<>();
 

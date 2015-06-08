@@ -133,14 +133,6 @@ public abstract class AdminMenuUtils {
      * @return the proved hover {@link ChatComponent}, <tt>null</tt> if hover infos are disabled
      */
     public static ChatComponent getProvedHover(ChatComponent chatComponent){
-        if(disableHoverInfos){
-            return null;
-        } else {
-            if(extendedHoverInfos){
-                return chatComponent;
-            } else {
-                return f.newChatComponent(chatComponent.getText());
-            }
-        }
+        return disableHoverInfos ? null : extendedHoverInfos ? chatComponent : f.newChatComponent(chatComponent.getText());
     }
 }
