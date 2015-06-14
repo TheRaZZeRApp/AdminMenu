@@ -1,16 +1,12 @@
 package de.therazzerapp.adminmenu.config;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import com.google.gson.stream.JsonReader;
 import de.myelitecraft.elitelib.api.EliteLib;
 import de.myelitecraft.elitelib.api.config.ConfigSection;
+import de.myelitecraft.elitelib.config.YAMLComment;
+import de.myelitecraft.elitelib.config.YAMLConfigSection;
 import net.canarymod.logger.Logman;
 
 import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 
 /**
  * Project: AdminMenu
@@ -23,37 +19,36 @@ import java.io.IOException;
 
 public class Config {
 
-    public static JsonObject readJsonFile(File file) {
-        try {
-            JsonElement parse;
-            try (JsonReader jsonReader = new JsonReader(new FileReader(file))) {
-                parse = new JsonParser().parse(jsonReader);
-            }
-            if (parse == null || parse.isJsonNull()) {
-                parse = new JsonObject();
-            }
-            return parse.getAsJsonObject();
-        } catch (IOException ex) {
-            return new JsonObject();
-        }
-    }
-
     public static void createConfig(File file){
-        de.myelitecraft.elitelib.api.config.Config config = EliteLib.getConfigManager().getConfig("JSON");
-        ConfigSection root = config.load(file);
+        de.myelitecraft.elitelib.api.config.Config config = EliteLib.getConfigManager().getConfig("YAML");
+        YAMLConfigSection root = (YAMLConfigSection) config.load(file);
+        root.addComments(new YAMLComment(new String[]{"This is the main AdminMenu config file.","==========================","Mute Chat While In Admin Menu","If this is true, you wont receive any messages from other players while in the admin menu.","If you exit the menu all messages will be restored.","Default: true"}));
         root.setBoolean("mute_chat_in_menu", true);
+        root.addComments(new YAMLComment(new String[]{"=============","Enable Player Commands Menu","If this is true, the player commands menu will be enabled","Default: true"}));
         root.setBoolean("playermenu", true);
+        root.addComments(new YAMLComment(new String[]{"=============","Enable Server Commands Menu","If this is true, the server commands menu will be enabled","Default: true"}));
         root.setBoolean("servermenu", true);
+        root.addComments(new YAMLComment(new String[]{"=============","Enable World Commands Menu","If this is true, the world commands menu will be enabled","Default: true"}));
         root.setBoolean("worldmenu", true);
+        root.addComments(new YAMLComment(new String[]{"=============","Enable Group Commands Menu","If this is true, the group commands menu will be enabled","Default: true"}));
         root.setBoolean("groupmenu", true);
+        root.addComments(new YAMLComment(new String[]{"=============","Show Player Infos In Auto List","If this is true you will see player infos like ip and local as a hover text in the player selection menu.","Default: true"}));
         root.setBoolean("player_infos", true);
+        root.addComments(new YAMLComment(new String[]{"=============","Show World Infos In Auto List","If this is true you will see world infos like player amount and type as a hover text in the world selection menu.","Default: true"}));
         root.setBoolean("world_infos", true);
+        root.addComments(new YAMLComment(new String[]{"=============","Show Plugin Infos In Auto List","If this is true you will see plugin infos like version and author as a hover text in the plugin selection menu.","Default: true"}));
         root.setBoolean("plugin_infos", true);
+        root.addComments(new YAMLComment(new String[]{"=============","Show Ban Infos In Auto List","If this is true you will see ban infos like banner and duration as a hover text in the player unban selection menu.","Default: true"}));
         root.setBoolean("ban_infos", true);
+        root.addComments(new YAMLComment(new String[]{"=============","Show Group Infos In Auto List","If this is true you will see group infos like parent and permissions as a hover text in the group selection menu.","Default: true"}));
         root.setBoolean("group_infos", true);
+        root.addComments(new YAMLComment(new String[]{"=============","Show Empty Item In Auto List","If this is true you will see the empty item in an auto list if there is no menu entry.","Default: true"}));
         root.setBoolean("atl_empty_item", true);
+        root.addComments(new YAMLComment(new String[]{"=============","Multi Language Reason","If this is true the ban and kick reasons will be translated if possible.","Default: true"}));
         root.setBoolean("multi_language_reasons", true);
+        root.addComments(new YAMLComment(new String[]{"=============","Disable Hover Infos","If this is true you won't see any hover informations.","Default: false"}));
         root.setBoolean("disable_hover_infos", false);
+        root.addComments(new YAMLComment(new String[]{"=============","Disable Extended Hover Infos","If this is true you only see the first line from a hover information.","Default: false"}));
         root.setBoolean("extended_hover_infos", true);
         config.save(root, file);
     }

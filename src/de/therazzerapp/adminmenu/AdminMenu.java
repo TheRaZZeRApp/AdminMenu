@@ -36,7 +36,7 @@ public class AdminMenu extends Plugin {
             configDir.mkdir();
         }
 
-        File configFile = new File("./config/AdminMenu/config.json");
+        File configFile = new File("./config/AdminMenu/config.yml");
         if(!configFile.exists()){
             try {
                 configFile.createNewFile();
@@ -46,7 +46,8 @@ public class AdminMenu extends Plugin {
             getLogman().info("Config file created");
             Config.createConfig(configFile);
         }
-        settings = new Settings(Config.readJsonFile(configFile));
+        de.myelitecraft.elitelib.api.config.Config config = EliteLib.getConfigManager().getConfig("YAML");
+        settings = new Settings(config.load(configFile));
         getLogman().info("Config loaded!");
 
         try{

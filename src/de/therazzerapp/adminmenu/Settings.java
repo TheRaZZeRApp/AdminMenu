@@ -1,6 +1,7 @@
 package de.therazzerapp.adminmenu;
 
 import com.google.gson.JsonObject;
+import de.myelitecraft.elitelib.api.config.ConfigSection;
 
 /**
  * Project: AdminMenu
@@ -28,21 +29,21 @@ public class Settings {
     private final boolean disableHoverInfos;
     private final boolean extendedHoverInfos;
 
-    public Settings(JsonObject root) {
-        this.muteChatInMenu = root.getAsJsonPrimitive("mute_chat_in_menu").getAsBoolean();
-        this.playermenu = root.getAsJsonPrimitive("playermenu").getAsBoolean();
-        this.servermenu = root.getAsJsonPrimitive("servermenu").getAsBoolean();
-        this.worldmenu = root.getAsJsonPrimitive("worldmenu").getAsBoolean();
-        this.groupmenu = root.getAsJsonPrimitive("groupmenu").getAsBoolean();
-        this.playerInfos = root.getAsJsonPrimitive("player_infos").getAsBoolean();
-        this.worldInfos = root.getAsJsonPrimitive("world_infos").getAsBoolean();
-        this.pluginInfos = root.getAsJsonPrimitive("plugin_infos").getAsBoolean();
-        this.banInfos = root.getAsJsonPrimitive("ban_infos").getAsBoolean();
-        this.groupInfos = root.getAsJsonPrimitive("group_infos").getAsBoolean();
-        this.atlEmptyItem = root.getAsJsonPrimitive("atl_empty_item").getAsBoolean();
-        this.multiLanguageReasons = root.getAsJsonPrimitive("multi_language_reasons").getAsBoolean();
-        this.extendedHoverInfos = root.getAsJsonPrimitive("extended_hover_infos").getAsBoolean();
-        this.disableHoverInfos = root.getAsJsonPrimitive("disable_hover_infos").getAsBoolean();
+    public Settings(ConfigSection root) {
+        this.muteChatInMenu = root.getBoolean("mute_chat_in_menu");
+        this.playermenu = root.getBoolean("playermenu");
+        this.servermenu = root.getBoolean("servermenu");
+        this.worldmenu = root.getBoolean("worldmenu");
+        this.groupmenu = root.getBoolean("groupmenu");
+        this.playerInfos = root.getBoolean("player_infos");
+        this.worldInfos = root.getBoolean("world_infos");
+        this.pluginInfos = root.getBoolean("plugin_infos");
+        this.banInfos = root.getBoolean("ban_infos");
+        this.groupInfos = root.getBoolean("group_infos");
+        this.atlEmptyItem = root.getBoolean("atl_empty_item");
+        this.multiLanguageReasons = root.getBoolean("multi_language_reasons");
+        this.extendedHoverInfos = root.getBoolean("extended_hover_infos");
+        this.disableHoverInfos = root.getBoolean("disable_hover_infos");
     }
 
     public boolean isMuteChatInMenu() {
